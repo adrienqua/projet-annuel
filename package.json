@@ -1,7 +1,6 @@
 {
     "name": "projet-annuel",
     "version": "1.0.0",
-    "description": "",
     "main": "app.js",
     "scripts": {
         "start": "nodemon",
@@ -21,5 +20,9 @@
         "prisma": "^6.8.2",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3"
-    }
+    },
+    "directories": {
+        "lib": "lib"
+    },
+    "description": ""
 }
