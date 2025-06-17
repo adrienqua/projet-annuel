@@ -1,7 +1,15 @@
 import { PrismaClient } from '@prisma/client'
+
+import bcrypt from 'bcrypt';
+
 const prisma = new PrismaClient()
 
+
 async function main() {
+
+    const password = 'admin123';
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     await prisma.manufacturer.createMany({
         data: [
             { name: 'Intel', website: 'https://www.intel.com' },
@@ -227,18 +235,21 @@ async function main() {
                 name: 'Admin1',
                 email: 'admin1@test.com',
                 role: 'ADMIN',
+                password : hashedPassword
             },
             {
                 created_at: new Date(Date.now() - 60 * 24 * 3600 * 1000),
                 name: 'Admin2',
                 email: 'admin2@test.com',
                 role: 'ADMIN',
+                password : hashedPassword
             },
             {
                 created_at: new Date(Date.now() - 45 * 24 * 3600 * 1000),
                 name: 'Admin3',
                 email: 'admin3@test.com',
                 role: 'ADMIN',
+                password : hashedPassword
             },
         ],
     })
