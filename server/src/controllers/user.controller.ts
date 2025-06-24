@@ -1,9 +1,8 @@
-import { Router } from 'express'
-import { prisma } from '../../../lib/prisma'
-import { userSchema } from '../../../prisma/validation'
-const router = Router()
+import { Request, Response } from 'express'
+import { prisma } from '../../lib/prisma'
+import { userSchema } from '../../prisma/validation'
 
-router.get('/', async (req, res) => {
+export const getAllUsers = async (req: Request, res: Response) => {
     try {
         const users = await prisma.user.findMany()
         res.json(users)
@@ -11,30 +10,24 @@ router.get('/', async (req, res) => {
         console.error('Error fetching users:', error)
         res.status(500).json({ error })
     }
-})
+}
 
-router.post('/', async (req, res) => {
+export const createUser = async (req: Request, res: Response) => {
     try {
         const { name, email, password, role } = userSchema.parse(req.body)
 
         const user = await prisma.user.create({
-            data: {
-                name,
-                email,
-                password,
-                role,
-            },
+            data: { name, email, password, role },
         })
         res.status(201).json(user)
     } catch (error) {
         res.status(500).json({ error })
     }
-})
+}
 
-router.get('/:id', async (req, res) => {
+export const getUserById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        const { name, email, password } = userSchema.parse(req.body)
 
         const user = await prisma.user.findUnique({
             where: { id },
@@ -43,29 +36,37 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error })
     }
-})
+}
 
-router.put('/:id', async (req, res) => {
+export const getUserByEmail = async (req: Request, res: Response) => {
+    try {
+        const { email } = req.params
+
+        const user = await prisma.user.findUnique({
+            where: { email },
+        })
+        res.json(user)
+    } catch (error) {
+        res.status(500).json({ error })
+    }
+}
+
+export const updateUser = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
         const { name, email, password, role } = userSchema.parse(req.body)
 
         const user = await prisma.user.update({
             where: { id },
-            data: {
-                name,
-                email,
-                password,
-                role,
-            },
+            data: { name, email, password, role },
         })
         res.json(user)
     } catch (error) {
         res.status(500).json({ error })
     }
-})
+}
 
-router.delete('/:id', async (req, res) => {
+export const deleteUser = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
 
@@ -76,6 +77,4 @@ router.delete('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error })
     }
-})
-
-export default router
+}

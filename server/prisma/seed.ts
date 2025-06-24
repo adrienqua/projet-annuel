@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function main() {
@@ -223,22 +224,26 @@ async function main() {
     await prisma.user.createMany({
         data: [
             {
+                id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 created_at: new Date(Date.now() - 30 * 24 * 3600 * 1000),
                 name: 'Admin1',
                 email: 'admin1@test.com',
                 role: 'ADMIN',
+                password: await bcrypt.hash('admin', 12),
             },
             {
                 created_at: new Date(Date.now() - 60 * 24 * 3600 * 1000),
                 name: 'Admin2',
                 email: 'admin2@test.com',
                 role: 'ADMIN',
+                password: await bcrypt.hash('admin', 12),
             },
             {
                 created_at: new Date(Date.now() - 45 * 24 * 3600 * 1000),
                 name: 'Admin3',
                 email: 'admin3@test.com',
                 role: 'ADMIN',
+                password: await bcrypt.hash('admin', 12),
             },
         ],
     })
@@ -248,13 +253,13 @@ async function main() {
             {
                 created_at: new Date(Date.now() - 1 * 24 * 3600 * 1000),
                 price: 2500,
-                user_id: 1,
+                user_id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 name: 'Gaming Rig - Mai 2025',
             },
             {
                 created_at: new Date(Date.now() - 15 * 24 * 3600 * 1000),
                 price: 1500,
-                user_id: 1,
+                user_id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 name: 'Workstation - Avril 2025',
             },
         ],
