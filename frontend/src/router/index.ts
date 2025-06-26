@@ -1,5 +1,7 @@
 import Home from '@/components/Home.vue'
 import Login from '@/components/Login.vue'
+import ComponentDetail from '@/pages/ComponentDetail.vue'
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -13,6 +15,16 @@ const routes = [
     name: 'Login',
     component: Login,
   },
+  {
+    path: '/component/:id',
+    name: 'ComponentDetail',
+    component: ComponentDetail,
+  },
+  {
+    path: '/compare',
+    name: 'ComponentCompare',
+    component: () => import('@/pages/ComponentCompare.vue'),
+  }
 ]
 
 const router = createRouter({
@@ -21,3 +33,4 @@ const router = createRouter({
 })
 
 export default router
+
