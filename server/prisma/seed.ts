@@ -5,57 +5,254 @@ const prisma = new PrismaClient()
 async function main() {
     await prisma.manufacturer.createMany({
         data: [
-            { name: 'Intel', website: 'https://www.intel.com' },
-            { name: 'AMD', website: 'https://www.amd.com' },
-            { name: 'NVIDIA', website: 'https://www.nvidia.com' },
+            { id: 1, name: 'Intel', website: 'https://www.intel.com' },
+            { id: 2, name: 'AMD', website: 'https://www.amd.com' },
+            { id: 3, name: 'NVIDIA', website: 'https://www.nvidia.com' },
+            { id: 4, name: 'Crucial', website: 'https://www.crucial.com' },
+            { id: 5, name: 'Samsung', website: 'https://www.samsung.com/semiconductor/' },
+            { id: 6, name: 'Noctua', website: 'https://noctua.at' },
+            { id: 7, name: 'BeQuiet', website: 'https://www.bequiet.com' },
+            { id: 8, name: 'Lian Li', website: 'https://lian-li.com' },
+            { id: 9, name: 'Seasonic', website: 'https://seasonic.com' },
+            { id: 10, name: 'Fractal Design', website: 'https://www.fractal-design.com' },
+            { id: 11, name: 'Phanteks', website: 'https://www.phanteks.com' },
         ],
     })
 
     await prisma.componentType.createMany({
-        data: [{ name: 'CPU' }, { name: 'GPU' }, { name: 'RAM' }, { name: 'Motherboard' }],
+        data: [
+            { id: 1, name: 'CPU' },
+            { id: 2, name: 'GPU' },
+            { id: 3, name: 'RAM' },
+            { id: 4, name: 'Motherboard' },
+            { id: 5, name: 'CPU Cooler' },
+            { id: 6, name: 'Storage' },
+            { id: 7, name: 'Case' },
+            { id: 8, name: 'Power Supply' },
+            { id: 9, name: 'Case Fan' },
+        ],
     })
 
     await prisma.component.createMany({
         data: [
+            // CPUs
             {
-                release_date: new Date('2021-03-30'),
-                specs: { cores: 8, threads: 16, base_clock_GHz: 3.5, tdp_W: 125 },
-                oc_profiles: { turbo_clock_GHz: 5.3 },
-                name: 'Intel Core i9-11900K',
+                release_date: new Date('2023-04-06'),
+                specs: { cores: 8, threads: 16, base_clock_GHz: 4.2, tdp_W: 120 },
+                oc_profiles: { boost_clock_GHz: 5.0 },
+                name: 'AMD Ryzen 7 7800X3D',
                 type_id: 1,
-                manufacturer_id: 1,
+                manufacturer_id: 2, // AMD
             },
             {
-                release_date: new Date('2020-11-25'),
-                specs: { cores: 12, threads: 24, base_clock_GHz: 3.7, tdp_W: 105 },
-                oc_profiles: { boost_clock_GHz: 4.8 },
-                name: 'AMD Ryzen 9 5900X',
+                release_date: new Date('2025-05-10'),
+                specs: { cores: 12, threads: 24, base_clock_GHz: 4.4, tdp_W: 125 },
+                oc_profiles: { boost_clock_GHz: 5.4 },
+                name: 'AMD Ryzen 9 9800X3D',
                 type_id: 1,
-                manufacturer_id: 2,
+                manufacturer_id: 2, // AMD
             },
             {
-                release_date: new Date('2020-09-17'),
-                specs: { memory_GB: 10, base_clock_MHz: 1440, boost_clock_MHz: 1710 },
-                oc_profiles: { overclock_core_MHz: 1800 },
-                name: 'NVIDIA GeForce RTX 3080',
+                release_date: new Date('2023-10-17'),
+                specs: { cores: 24, threads: 32, base_clock_GHz: 3.2, tdp_W: 125 },
+                oc_profiles: { turbo_clock_GHz: 6.0 },
+                name: 'Intel Core i9-14900K',
+                type_id: 1,
+                manufacturer_id: 1, // Intel
+            },
+
+            // GPUs
+            {
+                release_date: new Date('2022-11-16'),
+                specs: { memory_GB: 16, base_clock_MHz: 2205, boost_clock_MHz: 2505 },
+                oc_profiles: { overclock_core_MHz: 2700 },
+                name: 'NVIDIA GeForce RTX 4080',
                 type_id: 2,
-                manufacturer_id: 3,
+                manufacturer_id: 3, // NVIDIA
             },
             {
-                release_date: new Date('2018-01-10'),
+                release_date: new Date('2025-06-01'),
+                specs: { memory_GB: 24, base_clock_MHz: 2300, boost_clock_MHz: 2700 },
+                oc_profiles: { overclock_core_MHz: 2900 },
+                name: 'NVIDIA GeForce RTX 5090',
+                type_id: 2,
+                manufacturer_id: 3, // NVIDIA
+            },
+            {
+                release_date: new Date('2022-12-13'),
+                specs: { memory_GB: 24, base_clock_MHz: 1900, boost_clock_MHz: 2500 },
+                oc_profiles: { overclock_core_MHz: 2700 },
+                name: 'AMD Radeon RX 7900 XTX',
+                type_id: 2,
+                manufacturer_id: 2, // AMD
+            },
+
+            // RAM
+            {
+                release_date: new Date('2023-02-01'),
+                specs: { capacity_GB: 32, speed_MHz: 5600, type: 'DDR5' },
+                oc_profiles: { overclock_XMP_profile: { speed_MHz: 6000, voltage_V: 1.35 } },
+                name: 'Crucial Ballistix 32GB DDR5',
+                type_id: 3,
+                manufacturer_id: 4, // Crucial
+            },
+            {
+                release_date: new Date('2024-01-05'),
+                specs: { capacity_GB: 32, speed_MHz: 6000, type: 'DDR5' },
+                oc_profiles: { overclock_XMP_profile: { speed_MHz: 6400, voltage_V: 1.35 } },
+                name: 'Samsung DDR5 32GB',
+                type_id: 3,
+                manufacturer_id: 5, // Samsung
+            },
+            {
+                release_date: new Date('2022-05-10'),
                 specs: { capacity_GB: 16, speed_MHz: 3200, type: 'DDR4' },
                 oc_profiles: { overclock_XMP_profile: { speed_MHz: 3600, voltage_V: 1.35 } },
-                name: 'Corsair Vengeance LPX 16GB',
+                name: 'Crucial DDR4 16GB',
                 type_id: 3,
-                manufacturer_id: 1,
+                manufacturer_id: 4, // Crucial
+            },
+
+            // CPU Coolers
+            {
+                release_date: new Date('2020-01-01'),
+                specs: { type: 'Air', height_mm: 165, tdp_W: 250 },
+                oc_profiles: {},
+                name: 'Noctua NH-D15',
+                type_id: 5,
+                manufacturer_id: 6, // Noctua
             },
             {
-                release_date: new Date('2021-01-15'),
-                specs: { chipset: 'Z590', form_factor: 'ATX', socket: 'LGA1200' },
+                release_date: new Date('2018-06-10'),
+                specs: { type: 'Air', height_mm: 162.8, tdp_W: 250 },
                 oc_profiles: {},
-                name: 'ASUS ROG Strix Z590-E Gaming',
-                type_id: 4,
-                manufacturer_id: 1,
+                name: 'BeQuiet Dark Rock Pro 4',
+                type_id: 5,
+                manufacturer_id: 7, // BeQuiet
+            },
+            {
+                release_date: new Date('2021-02-01'),
+                specs: { type: 'Air', height_mm: 158, tdp_W: 220 },
+                oc_profiles: {},
+                name: 'Noctua NH-U12A',
+                type_id: 5,
+                manufacturer_id: 6, // Noctua
+            },
+
+            // Storage
+            {
+                release_date: new Date('2023-01-01'),
+                specs: { capacity_GB: 2048, type: 'NVMe', read_MBps: 7450, write_MBps: 6900 },
+                oc_profiles: {},
+                name: 'Samsung 990 Pro 2TB NVMe',
+                type_id: 6,
+                manufacturer_id: 5, // Samsung
+            },
+            {
+                release_date: new Date('2022-03-15'),
+                specs: { capacity_GB: 1024, type: 'NVMe', read_MBps: 6600, write_MBps: 5000 },
+                oc_profiles: {},
+                name: 'Crucial P5 Plus 1TB NVMe',
+                type_id: 6,
+                manufacturer_id: 4, // Crucial
+            },
+            {
+                release_date: new Date('2021-04-01'),
+                specs: { capacity_GB: 1024, type: 'NVMe', read_MBps: 3500, write_MBps: 3000 },
+                oc_profiles: {},
+                name: 'Samsung 980 1TB NVMe',
+                type_id: 6,
+                manufacturer_id: 5, // Samsung
+            },
+
+            // Case
+            {
+                release_date: new Date('2022-03-01'),
+                specs: {
+                    form_factor: 'ATX',
+                    material: 'Aluminum + Tempered Glass',
+                    fan_support: 'Top/Side/Bottom',
+                },
+                oc_profiles: {},
+                name: 'Lian Li O11 Dynamic EVO',
+                type_id: 7,
+                manufacturer_id: 8, // Lian Li
+            },
+            {
+                release_date: new Date('2021-06-15'),
+                specs: {
+                    form_factor: 'ATX',
+                    material: 'Steel + Tempered Glass',
+                    fan_support: 'Front/Top/Rear',
+                },
+                oc_profiles: {},
+                name: 'Fractal Design Meshify 2',
+                type_id: 7,
+                manufacturer_id: 10, // Fractal Design
+            },
+            {
+                release_date: new Date('2023-09-10'),
+                specs: {
+                    form_factor: 'ATX',
+                    material: 'Aluminum + Mesh Panels',
+                    fan_support: 'Top/Front/Rear',
+                },
+                oc_profiles: {},
+                name: 'Phanteks Eclipse P500A',
+                type_id: 7,
+                manufacturer_id: 11, // Phanteks
+            },
+
+            // Power Supplies
+            {
+                release_date: new Date('2022-07-10'),
+                specs: { wattage_W: 850, efficiency_rating: '80+ Platinum', modular: true },
+                oc_profiles: {},
+                name: 'BeQuiet Straight Power 11 850W Platinum',
+                type_id: 8,
+                manufacturer_id: 7, // BeQuiet
+            },
+            {
+                release_date: new Date('2021-09-01'),
+                specs: { wattage_W: 1000, efficiency_rating: '80+ Titanium', modular: true },
+                oc_profiles: {},
+                name: 'Seasonic PRIME TX-1000',
+                type_id: 8,
+                manufacturer_id: 9, // Seasonic
+            },
+            {
+                release_date: new Date('2023-05-01'),
+                specs: { wattage_W: 750, efficiency_rating: '80+ Gold', modular: true },
+                oc_profiles: {},
+                name: 'BeQuiet Pure Power 12 M 750W',
+                type_id: 8,
+                manufacturer_id: 7, // BeQuiet
+            },
+
+            // Case Fans
+            {
+                release_date: new Date('2018-05-01'),
+                specs: { size_mm: 120, rpm: 2000, noise_dBA: 22.6 },
+                oc_profiles: {},
+                name: 'Noctua NF-A12x25 PWM',
+                type_id: 9,
+                manufacturer_id: 6, // Noctua
+            },
+            {
+                release_date: new Date('2017-06-01'),
+                specs: { size_mm: 120, rpm: 1500, noise_dBA: 22.4 },
+                oc_profiles: {},
+                name: 'Noctua NF-F12 PWM',
+                type_id: 9,
+                manufacturer_id: 6, // Noctua
+            },
+            {
+                release_date: new Date('2022-11-01'),
+                specs: { size_mm: 120, rpm: 1600, noise_dBA: 18.9 },
+                oc_profiles: {},
+                name: 'BeQuiet Silent Wings 4 120mm PWM',
+                type_id: 9,
+                manufacturer_id: 7, // BeQuiet
             },
         ],
     })

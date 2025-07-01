@@ -1,17 +1,23 @@
-import Home from '@/components/Home.vue'
 import Login from '@/components/Login.vue'
+import BuilderView from '@/views/BuilderView.vue'
+import HomeView from '@/views/HomeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: HomeView,
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/builder',
+    name: 'Builder',
+    component: BuilderView,
   },
 ]
 

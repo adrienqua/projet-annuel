@@ -2,6 +2,6 @@
 
 <template>
   <main>
-    <h1 class="font-extrabold text-4xl">Home</h1>
+    <h1 class="font-extrabold text-4xl">Configurateur</h1>
   </main>
 </template>

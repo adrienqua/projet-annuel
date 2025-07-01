@@ -1,4 +1,4 @@
-import type { UserType } from '@/components/types/userType'
+import type { User } from '@/components/types/User'
 import axios from 'axios'
 
 const API = import.meta.env.VITE_API_URL
@@ -19,7 +19,7 @@ export const login = async (email: string, password: string) => {
   }
 }
 
-export const getUser = async (email: string): Promise<UserType> => {
+export const getUser = async (email: string): Promise<User> => {
   try {
     const user = await axios.get(`${API}/auth/user?email=${email}`)
     return user.data
