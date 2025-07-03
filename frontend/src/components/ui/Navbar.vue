@@ -9,8 +9,8 @@ watchEffect(() => {
 })
 </script>
 <template>
-  <nav class="bg-blue-900 text-white px-6 py-4 flex items-center justify-between">
-    <router-link to="/" class="text-xl font-semibold">Logo</router-link>
+  <nav class="bg-black text-white px-6 py-4 flex items-center justify-between">
+    <router-link to="/" class="text-xl font-semibold text-secondary">Logo</router-link>
     <ul class="flex space-x-6 text-sm">
       <li><router-link to="/" class="hover:text-blue-300 transition">Home</router-link></li>
       <li>

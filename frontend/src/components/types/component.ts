@@ -6,4 +6,8 @@ export interface Component {
   name: string
   type_id: number
   manufacturer_id: number
+  manufacturer?: {
+    id: number
+    name: string
+  }
 }

@@ -2,6 +2,7 @@ import express from 'express'
 import userRoute from './routes/user.route'
 import userAuth from './routes/auth.route'
 import componentRoute from './routes/component.route'
+import componentTypeRoute from './routes/componentType.route'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -14,6 +15,7 @@ app.use(cors())
 app.use(express.json())
 app.use('/api/users', userRoute)
 app.use('/api/components', componentRoute)
+app.use('/api/componentTypes', componentTypeRoute)
 app.use('/api/auth', userAuth)
 
 app.get('/', (req, res) => {
