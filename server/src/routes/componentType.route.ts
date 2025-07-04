@@ -23,10 +23,10 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     try {
-        const { name } = req.body
+        const { name, slug, reference } = req.body
 
         const componentType = await prisma.componentType.create({
-            data: { name },
+            data: { name, slug, reference },
         })
 
         res.status(201).json(componentType)
