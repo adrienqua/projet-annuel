@@ -1,6 +1,7 @@
 import express from 'express'
 import userRoute from './routes/user.route'
 import userAuth from './routes/auth.route'
+import compareRoute from './routes/compare.route'
 import componentRoute from './routes/component.route'
 import componentTypeRoute from './routes/componentType.route'
 import dotenv from 'dotenv'
@@ -17,7 +18,9 @@ app.use('/api/users', userRoute)
 app.use('/api/components', componentRoute)
 app.use('/api/componentTypes', componentTypeRoute)
 app.use('/api/auth', userAuth)
+app.use('/api/components', componentRoutes)
 
+app.use('/api/compare', compareRoute)
 app.get('/', (req, res) => {
     res.send('Hello from TypeScript!')
 })
