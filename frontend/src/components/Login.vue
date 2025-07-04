@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const { user } = useAuth()
+const { user } = useAuth() as any
 
 const email = ref<string>('')
 const password = ref<string>('')
@@ -18,7 +18,7 @@ interface LoginResponse {
 }
 
 onMounted(() => {
-  if (user) {
+  if (user.email) {
     router.push('/')
   }
 })
@@ -26,7 +26,7 @@ const handleLogin = async () => {
   try {
     const res = (await login(email.value, password.value)) as LoginResponse
     localStorage.setItem('token', res.data.token)
-    alert('Login successful!')
+    window.location.href = '/'
   } catch {
     alert('Invalid credentials')
   }

@@ -25,6 +25,8 @@ model Manufacturer {
 model ComponentType {
   id         Int         @id @default(autoincrement())
   name       String      @db.VarChar(100)
+  slug       String      @unique @db.VarChar(100)
+  reference  String?     @db.VarChar(100)
   components Component[]
 
   @@map("ComponentType")
