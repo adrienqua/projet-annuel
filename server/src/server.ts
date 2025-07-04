@@ -2,6 +2,7 @@ import express from 'express'
 import userRoute from './routes/user.route'
 import userAuth from './routes/auth.route'
 import componentRoutes from './routes/component.route'
+import compareRoute from './routes/compare.route'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -16,6 +17,7 @@ app.use('/api/users', userRoute)
 app.use('/api/auth', userAuth)
 app.use('/api/components', componentRoutes)
 
+app.use('/api/compare', compareRoute)
 app.get('/', (req, res) => {
     res.send('Hello from TypeScript!')
 })
