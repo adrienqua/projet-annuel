@@ -27,5 +27,8 @@ defineExpose({ open, close })
         <button class="btn btn-md btn-circle btn-ghost absolute right-4 top-4">✕</button>
       </form>
     </div>
+    <form method="dialog" className="modal-backdrop">
+      <button>close</button>
+    </form>
   </dialog>
 </template>

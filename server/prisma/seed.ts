@@ -49,6 +49,8 @@ async function main() {
             { id: 15, name: 'G.SKILL', website: 'https://www.gskill.com' },
             { id: 16, name: 'Corsair', website: 'https://www.corsair.com' },
             { id: 17, name: 'Fractal Design', website: 'https://www.fractal-design.com' },
+            { id: 18, name: 'Arctic', website: 'https://www.arctic.de' },
+            { id: 19, name: 'NZXT', website: 'https://www.nzxt.com' },
         ],
     })
 
@@ -58,7 +60,7 @@ async function main() {
             { id: 2, name: 'Carte Graphique', reference: 'gpu', slug: 'carte-graphique' },
             { id: 3, name: 'Mémoire vive', reference: 'ram', slug: 'memoire-vive' },
             { id: 4, name: 'Carte Mère', reference: 'motherboard', slug: 'carte-mere' },
-            { id: 5, name: 'Ventirad', reference: 'cpuCooler', slug: 'ventirad' },
+            { id: 5, name: 'Ventirad / AIO', reference: 'cpuCooler', slug: 'ventirad-aio' },
             { id: 6, name: 'Stockage', reference: 'storage', slug: 'stockage' },
             { id: 7, name: 'Boitier', reference: 'case', slug: 'boitier' },
             { id: 8, name: 'Alimentation', reference: 'powerSupply', slug: 'alimentation' },
@@ -81,7 +83,7 @@ async function main() {
                 name: 'AMD Ryzen 7 7800X3D',
                 type_id: 1,
                 manufacturer_id: 2,
-                img_url: '/img/components/7800x3d.jpg',
+                img_url: '/img/components/amd_7800x3d.jpg',
             },
             {
                 release_date: new Date('2025-05-10'),
@@ -90,7 +92,7 @@ async function main() {
                 name: 'AMD Ryzen 9 9800X3D',
                 type_id: 1,
                 manufacturer_id: 2,
-                img_url: '/img/components/9800x3d.jpg',
+                img_url: '/img/components/amd_9800x3d.jpg',
             },
             {
                 release_date: new Date('2023-10-17'),
@@ -99,7 +101,7 @@ async function main() {
                 name: 'Intel Core i9-14900K',
                 type_id: 1,
                 manufacturer_id: 1,
-                img_url: '/img/components/14900k.jpg',
+                img_url: '/img/components/intel_14900k.jpg',
             },
 
             // GPUs
@@ -110,7 +112,7 @@ async function main() {
                 name: 'NVIDIA GeForce RTX 4080',
                 type_id: 2,
                 manufacturer_id: 3,
-                img_url: '/img/components/rtx4080.jpg',
+                img_url: '/img/components/nvidia_rtx4080.jpg',
             },
             {
                 release_date: new Date('2025-06-01'),
@@ -119,7 +121,7 @@ async function main() {
                 name: 'NVIDIA GeForce RTX 5090',
                 type_id: 2,
                 manufacturer_id: 3,
-                img_url: '/img/components/rtx5090.jpg',
+                img_url: '/img/components/nvidia_rtx5090.jpg',
             },
             {
                 release_date: new Date('2022-12-13'),
@@ -128,7 +130,7 @@ async function main() {
                 name: 'AMD Radeon RX 7900 XT',
                 type_id: 2,
                 manufacturer_id: 2,
-                img_url: '/img/components/rx7900xt.jpg',
+                img_url: '/img/components/amd_rx7900xt.jpg',
             },
 
             // RAM
@@ -141,7 +143,7 @@ async function main() {
                 name: 'G.SKILL Trident Z5 RGB 2x32GB DDR5-6400',
                 type_id: 3,
                 manufacturer_id: 15,
-                img_url: '/img/components/tridentz5.jpg',
+                img_url: '/img/components/gskill_tridentz5.jpg',
             },
             {
                 release_date: new Date('2024-02-01'),
@@ -152,7 +154,7 @@ async function main() {
                 name: 'Corsair Vengeance 2x16GB DDR5-5600',
                 type_id: 3,
                 manufacturer_id: 16,
-                img_url: '/img/components/vengeance5600.jpg',
+                img_url: '/img/components/corsair_vengeance_5600.jpg',
             },
             {
                 release_date: new Date('2022-05-10'),
@@ -161,7 +163,7 @@ async function main() {
                 name: 'Crucial Ballistix RGB DDR4-3600  2x8GB',
                 type_id: 3,
                 manufacturer_id: 4,
-                img_url: '/img/components/ballistix3600.jpg',
+                img_url: '/img/components/crucial_ballistix3600.jpg',
             },
 
             //AMD Motherboards
@@ -178,6 +180,7 @@ async function main() {
                 name: 'ASUS ROG Crosshair X670E Hero',
                 type_id: 4,
                 manufacturer_id: 12,
+                img_url: '/img/components/asus_x670e_hero.jpg',
             },
             {
                 release_date: new Date('2023-02-20'),
@@ -192,6 +195,7 @@ async function main() {
                 name: 'MSI MAG B650M Mortar WiFi',
                 type_id: 4,
                 manufacturer_id: 13,
+                img_url: '/img/components/msi_b650m_mortar.jpg',
             },
             {
                 release_date: new Date('2022-10-10'),
@@ -206,6 +210,7 @@ async function main() {
                 name: 'Gigabyte X670 AORUS Elite AX',
                 type_id: 4,
                 manufacturer_id: 14,
+                img_url: '/img/components/gigabyte_x670_aorus_elite.jpg',
             },
 
             // Intel Motherboards
@@ -222,6 +227,7 @@ async function main() {
                 name: 'ASUS ROG Maximus Z790 Hero',
                 type_id: 4,
                 manufacturer_id: 12,
+                img_url: '/img/components/asus_z790_hero.jpg',
             },
             {
                 release_date: new Date('2023-01-12'),
@@ -236,6 +242,7 @@ async function main() {
                 name: 'MSI MAG B760M Mortar WiFi',
                 type_id: 4,
                 manufacturer_id: 13,
+                img_url: '/img/components/msi_b760m_mortar.jpg',
             },
             {
                 release_date: new Date('2022-12-05'),
@@ -250,6 +257,7 @@ async function main() {
                 name: 'Gigabyte Z790 AORUS Master',
                 type_id: 4,
                 manufacturer_id: 14,
+                img_url: '/img/components/gigabyte_z790_aorus_master.jpg',
             },
 
             // CPU Coolers
@@ -260,6 +268,7 @@ async function main() {
                 name: 'Noctua NH-D15',
                 type_id: 5,
                 manufacturer_id: 6,
+                img_url: '/img/components/noctua_nh-d15.jpg',
             },
             {
                 release_date: new Date('2018-06-10'),
@@ -268,6 +277,7 @@ async function main() {
                 name: 'BeQuiet Dark Rock Pro 4',
                 type_id: 5,
                 manufacturer_id: 7,
+                img_url: '/img/components/bequiet_dark_rock_pro_4.jpg',
             },
             {
                 release_date: new Date('2021-02-01'),
@@ -276,6 +286,25 @@ async function main() {
                 name: 'Noctua NH-U12A',
                 type_id: 5,
                 manufacturer_id: 6,
+                img_url: '/img/components/noctua_nh-u12a.jpg',
+            },
+            {
+                release_date: new Date('2023-10-01'),
+                specs: { type: 'Liquid', radiator_mm: 360, tdp_W: 300 },
+                oc_profiles: {},
+                name: 'Arctic Liquid Freezer III 360',
+                type_id: 5,
+                manufacturer_id: 18,
+                img_url: '/img/components/arctic_liquid_freezer_iii_360.jpg',
+            },
+            {
+                release_date: new Date('2024-01-15'),
+                specs: { type: 'Liquid', radiator_mm: 240, tdp_W: 250 },
+                oc_profiles: {},
+                name: 'NZXT Kraken 240 RGB Blanc',
+                type_id: 5,
+                manufacturer_id: 19,
+                img_url: '/img/components/nzxt_kraken_240_rgb_blanc.jpg',
             },
 
             // Storage
@@ -286,6 +315,7 @@ async function main() {
                 name: 'Samsung 990 Pro 2TB NVMe',
                 type_id: 6,
                 manufacturer_id: 5,
+                img_url: '/img/components/samsung_990_pro.jpg',
             },
             {
                 release_date: new Date('2022-03-15'),
@@ -294,6 +324,7 @@ async function main() {
                 name: 'Crucial P5 Plus 1TB NVMe',
                 type_id: 6,
                 manufacturer_id: 4,
+                img_url: '/img/components/crucial_p5_plus.jpg',
             },
             {
                 release_date: new Date('2021-04-01'),
@@ -302,6 +333,7 @@ async function main() {
                 name: 'Samsung 980 1TB NVMe',
                 type_id: 6,
                 manufacturer_id: 5,
+                img_url: '/img/components/samsung_980.jpg',
             },
 
             // Case
@@ -318,6 +350,7 @@ async function main() {
                 name: 'Lian Li O11 Dynamic EVO',
                 type_id: 7,
                 manufacturer_id: 8,
+                img_url: '/img/components/lian_li_o11_dynamic_evo.jpg',
             },
             {
                 release_date: new Date('2021-06-15'),
@@ -332,6 +365,7 @@ async function main() {
                 name: 'Fractal Design Meshify 2',
                 type_id: 7,
                 manufacturer_id: 10,
+                img_url: '/img/components/fractal_design_meshify_2.jpg',
             },
             {
                 release_date: new Date('2023-09-10'),
@@ -346,6 +380,7 @@ async function main() {
                 name: 'Phanteks Eclipse P500A',
                 type_id: 7,
                 manufacturer_id: 11,
+                img_url: '/img/components/phanteks_eclipse_p500a.jpg',
             },
             {
                 release_date: new Date('2020-11-20'),
@@ -357,9 +392,10 @@ async function main() {
                     compatible_motherboard_form_factors: ['Mini-ITX', 'Micro-ATX', 'ATX'],
                 },
                 oc_profiles: {},
-                name: 'Lian Li O11 Dynamic Mini',
+                name: 'Lian Li O11 Dynamic Mini Blanc',
                 type_id: 7,
                 manufacturer_id: 8,
+                img_url: '/img/components/lian_li_o11_dynamic_mini.jpg',
             },
 
             // Power Supplies
@@ -375,6 +411,7 @@ async function main() {
                 name: 'BeQuiet Straight Power 11 850W Platinum',
                 type_id: 8,
                 manufacturer_id: 7,
+                img_url: '/img/components/bequiet_straight_power_11_850w.jpg',
             },
             {
                 release_date: new Date('2021-09-01'),
@@ -388,6 +425,7 @@ async function main() {
                 name: 'Seasonic PRIME TX-1000',
                 type_id: 8,
                 manufacturer_id: 9,
+                img_url: '/img/components/seasonic_prime_tx_1000.jpg',
             },
             {
                 release_date: new Date('2023-05-01'),
@@ -401,6 +439,7 @@ async function main() {
                 name: 'BeQuiet Pure Power 12 M 750W',
                 type_id: 8,
                 manufacturer_id: 7,
+                img_url: '/img/components/bequiet_pure_power_12_m_750w.jpg',
             },
             {
                 release_date: new Date('2022-01-10'),
@@ -414,6 +453,7 @@ async function main() {
                 name: 'Fractal Design Ion SFX 650G',
                 type_id: 8,
                 manufacturer_id: 17,
+                img_url: '/img/components/fractal_design_ion_sfx_650g.jpg',
             },
 
             // Case Fans
@@ -424,6 +464,7 @@ async function main() {
                 name: 'Noctua NF-A12x25 PWM',
                 type_id: 9,
                 manufacturer_id: 6,
+                img_url: '/img/components/noctua_nf-a12x25_pwm.jpg',
             },
             {
                 release_date: new Date('2017-06-01'),
@@ -432,6 +473,7 @@ async function main() {
                 name: 'Noctua NF-F12 PWM',
                 type_id: 9,
                 manufacturer_id: 6,
+                img_url: '/img/components/noctua_nf-f12_pwm.jpg',
             },
             {
                 release_date: new Date('2022-11-01'),
@@ -440,6 +482,7 @@ async function main() {
                 name: 'BeQuiet Silent Wings 4 120mm PWM',
                 type_id: 9,
                 manufacturer_id: 7,
+                img_url: '/img/components/bequiet_silent_wings_4_120mm_pwm.jpg',
             },
         ],
     })
