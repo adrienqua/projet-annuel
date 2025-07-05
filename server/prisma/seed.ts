@@ -80,7 +80,8 @@ async function main() {
                 oc_profiles: { boost_clock_GHz: 5.0 },
                 name: 'AMD Ryzen 7 7800X3D',
                 type_id: 1,
-                manufacturer_id: 2, // AMD
+                manufacturer_id: 2,
+                img_url: '/img/components/7800x3d.jpg',
             },
             {
                 release_date: new Date('2025-05-10'),
@@ -88,7 +89,8 @@ async function main() {
                 oc_profiles: { boost_clock_GHz: 5.4 },
                 name: 'AMD Ryzen 9 9800X3D',
                 type_id: 1,
-                manufacturer_id: 2, // AMD
+                manufacturer_id: 2,
+                img_url: '/img/components/9800x3d.jpg',
             },
             {
                 release_date: new Date('2023-10-17'),
@@ -96,7 +98,8 @@ async function main() {
                 oc_profiles: { turbo_clock_GHz: 6.0 },
                 name: 'Intel Core i9-14900K',
                 type_id: 1,
-                manufacturer_id: 1, // Intel
+                manufacturer_id: 1,
+                img_url: '/img/components/14900k.jpg',
             },
 
             // GPUs
@@ -106,7 +109,8 @@ async function main() {
                 oc_profiles: { overclock_core_MHz: 2700 },
                 name: 'NVIDIA GeForce RTX 4080',
                 type_id: 2,
-                manufacturer_id: 3, // NVIDIA
+                manufacturer_id: 3,
+                img_url: '/img/components/rtx4080.jpg',
             },
             {
                 release_date: new Date('2025-06-01'),
@@ -114,15 +118,17 @@ async function main() {
                 oc_profiles: { overclock_core_MHz: 2900 },
                 name: 'NVIDIA GeForce RTX 5090',
                 type_id: 2,
-                manufacturer_id: 3, // NVIDIA
+                manufacturer_id: 3,
+                img_url: '/img/components/rtx5090.jpg',
             },
             {
                 release_date: new Date('2022-12-13'),
-                specs: { memory_GB: 24, base_clock_MHz: 1900, boost_clock_MHz: 2500 },
-                oc_profiles: { overclock_core_MHz: 2700 },
-                name: 'AMD Radeon RX 7900 XTX',
+                specs: { memory_GB: 16, base_clock_MHz: 1500, boost_clock_MHz: 2400 },
+                oc_profiles: { overclock_core_MHz: 2600 },
+                name: 'AMD Radeon RX 7900 XT',
                 type_id: 2,
-                manufacturer_id: 2, // AMD
+                manufacturer_id: 2,
+                img_url: '/img/components/rx7900xt.jpg',
             },
 
             // RAM
@@ -134,7 +140,8 @@ async function main() {
                 },
                 name: 'G.SKILL Trident Z5 RGB 2x32GB DDR5-6400',
                 type_id: 3,
-                manufacturer_id: 15, // G.SKILL
+                manufacturer_id: 15,
+                img_url: '/img/components/tridentz5.jpg',
             },
             {
                 release_date: new Date('2024-02-01'),
@@ -144,18 +151,20 @@ async function main() {
                 },
                 name: 'Corsair Vengeance 2x16GB DDR5-5600',
                 type_id: 3,
-                manufacturer_id: 16, // Corsair
+                manufacturer_id: 16,
+                img_url: '/img/components/vengeance5600.jpg',
             },
             {
                 release_date: new Date('2022-05-10'),
                 specs: { capacity_GB: 16, speed_MHz: 3200, type: 'DDR4' },
                 oc_profiles: { overclock_XMP_profile: { speed_MHz: 3600, voltage_V: 1.35 } },
-                name: 'Crucial Ballistix DDR4 2x8GB',
+                name: 'Crucial Ballistix RGB DDR4-3600  2x8GB',
                 type_id: 3,
-                manufacturer_id: 4, // Crucial
+                manufacturer_id: 4,
+                img_url: '/img/components/ballistix3600.jpg',
             },
 
-            // AMD Motherboards
+            //AMD Motherboards
             {
                 release_date: new Date('2023-05-15'),
                 specs: {
@@ -168,7 +177,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'ASUS ROG Crosshair X670E Hero',
                 type_id: 4,
-                manufacturer_id: 12, // ASUS
+                manufacturer_id: 12,
             },
             {
                 release_date: new Date('2023-02-20'),
@@ -182,7 +191,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'MSI MAG B650M Mortar WiFi',
                 type_id: 4,
-                manufacturer_id: 13, // MSI
+                manufacturer_id: 13,
             },
             {
                 release_date: new Date('2022-10-10'),
@@ -196,7 +205,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Gigabyte X670 AORUS Elite AX',
                 type_id: 4,
-                manufacturer_id: 14, // Gigabyte
+                manufacturer_id: 14,
             },
 
             // Intel Motherboards
@@ -212,7 +221,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'ASUS ROG Maximus Z790 Hero',
                 type_id: 4,
-                manufacturer_id: 12, // ASUS
+                manufacturer_id: 12,
             },
             {
                 release_date: new Date('2023-01-12'),
@@ -226,7 +235,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'MSI MAG B760M Mortar WiFi',
                 type_id: 4,
-                manufacturer_id: 13, // MSI
+                manufacturer_id: 13,
             },
             {
                 release_date: new Date('2022-12-05'),
@@ -240,7 +249,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Gigabyte Z790 AORUS Master',
                 type_id: 4,
-                manufacturer_id: 14, // Gigabyte
+                manufacturer_id: 14,
             },
 
             // CPU Coolers
@@ -250,7 +259,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Noctua NH-D15',
                 type_id: 5,
-                manufacturer_id: 6, // Noctua
+                manufacturer_id: 6,
             },
             {
                 release_date: new Date('2018-06-10'),
@@ -258,7 +267,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'BeQuiet Dark Rock Pro 4',
                 type_id: 5,
-                manufacturer_id: 7, // BeQuiet
+                manufacturer_id: 7,
             },
             {
                 release_date: new Date('2021-02-01'),
@@ -266,7 +275,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Noctua NH-U12A',
                 type_id: 5,
-                manufacturer_id: 6, // Noctua
+                manufacturer_id: 6,
             },
 
             // Storage
@@ -276,7 +285,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Samsung 990 Pro 2TB NVMe',
                 type_id: 6,
-                manufacturer_id: 5, // Samsung
+                manufacturer_id: 5,
             },
             {
                 release_date: new Date('2022-03-15'),
@@ -284,7 +293,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Crucial P5 Plus 1TB NVMe',
                 type_id: 6,
-                manufacturer_id: 4, // Crucial
+                manufacturer_id: 4,
             },
             {
                 release_date: new Date('2021-04-01'),
@@ -292,7 +301,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Samsung 980 1TB NVMe',
                 type_id: 6,
-                manufacturer_id: 5, // Samsung
+                manufacturer_id: 5,
             },
 
             // Case
@@ -308,7 +317,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Lian Li O11 Dynamic EVO',
                 type_id: 7,
-                manufacturer_id: 8, // Lian Li
+                manufacturer_id: 8,
             },
             {
                 release_date: new Date('2021-06-15'),
@@ -322,7 +331,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Fractal Design Meshify 2',
                 type_id: 7,
-                manufacturer_id: 10, // Fractal Design
+                manufacturer_id: 10,
             },
             {
                 release_date: new Date('2023-09-10'),
@@ -336,7 +345,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Phanteks Eclipse P500A',
                 type_id: 7,
-                manufacturer_id: 11, // Phanteks
+                manufacturer_id: 11,
             },
             {
                 release_date: new Date('2020-11-20'),
@@ -350,7 +359,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Lian Li O11 Dynamic Mini',
                 type_id: 7,
-                manufacturer_id: 8, // Lian Li
+                manufacturer_id: 8,
             },
 
             // Power Supplies
@@ -365,7 +374,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'BeQuiet Straight Power 11 850W Platinum',
                 type_id: 8,
-                manufacturer_id: 7, // BeQuiet
+                manufacturer_id: 7,
             },
             {
                 release_date: new Date('2021-09-01'),
@@ -378,7 +387,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Seasonic PRIME TX-1000',
                 type_id: 8,
-                manufacturer_id: 9, // Seasonic
+                manufacturer_id: 9,
             },
             {
                 release_date: new Date('2023-05-01'),
@@ -391,7 +400,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'BeQuiet Pure Power 12 M 750W',
                 type_id: 8,
-                manufacturer_id: 7, // BeQuiet
+                manufacturer_id: 7,
             },
             {
                 release_date: new Date('2022-01-10'),
@@ -404,7 +413,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Fractal Design Ion SFX 650G',
                 type_id: 8,
-                manufacturer_id: 17, // Fractal Design
+                manufacturer_id: 17,
             },
 
             // Case Fans
@@ -414,7 +423,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Noctua NF-A12x25 PWM',
                 type_id: 9,
-                manufacturer_id: 6, // Noctua
+                manufacturer_id: 6,
             },
             {
                 release_date: new Date('2017-06-01'),
@@ -422,7 +431,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'Noctua NF-F12 PWM',
                 type_id: 9,
-                manufacturer_id: 6, // Noctua
+                manufacturer_id: 6,
             },
             {
                 release_date: new Date('2022-11-01'),
@@ -430,7 +439,7 @@ async function main() {
                 oc_profiles: {},
                 name: 'BeQuiet Silent Wings 4 120mm PWM',
                 type_id: 9,
-                manufacturer_id: 7, // BeQuiet
+                manufacturer_id: 7,
             },
         ],
     })

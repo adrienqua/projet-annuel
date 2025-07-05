@@ -1,6 +1,7 @@
 export interface Component {
   id: number
   release_date?: Date
+  img_url?: string
   specs: any
   oc_profiles: any
   name: string

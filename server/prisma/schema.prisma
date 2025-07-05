@@ -34,6 +34,7 @@ model ComponentType {
 
 model Component {
   id              Int       @id @default(autoincrement())
+  img_url         String?   @db.VarChar(500)
   release_date    DateTime? @db.Date
   specs           Json
   oc_profiles     Json
