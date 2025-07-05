@@ -18,7 +18,6 @@ app.use('/api/users', userRoute)
 app.use('/api/components', componentRoute)
 app.use('/api/componentTypes', componentTypeRoute)
 app.use('/api/auth', userAuth)
-app.use('/api/components', componentRoutes)
 
 app.use('/api/compare', compareRoute)
 app.get('/', (req, res) => {

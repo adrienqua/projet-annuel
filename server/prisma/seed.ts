@@ -3,6 +3,33 @@ import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function main() {
+    await prisma.user.createMany({
+        data: [
+            {
+                id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+                created_at: new Date(Date.now() - 30 * 24 * 3600 * 1000),
+                name: 'Admin1',
+                email: 'admin1@test.com',
+                role: 'ADMIN',
+                password: await bcrypt.hash('admin', 12),
+            },
+            {
+                created_at: new Date(Date.now() - 60 * 24 * 3600 * 1000),
+                name: 'Admin2',
+                email: 'admin2@test.com',
+                role: 'ADMIN',
+                password: await bcrypt.hash('admin', 12),
+            },
+            {
+                created_at: new Date(Date.now() - 45 * 24 * 3600 * 1000),
+                name: 'Admin3',
+                email: 'admin3@test.com',
+                role: 'ADMIN',
+                password: await bcrypt.hash('admin', 12),
+            },
+        ],
+    })
+
     await prisma.manufacturer.createMany({
         data: [
             { id: 1, name: 'Intel', website: 'https://www.intel.com' },
@@ -566,33 +593,6 @@ async function main() {
                 vendor_component_id: 9,
             },
             { recorded_at: new Date(), price: 309.99, vendor_component_id: 10 },
-        ],
-    })
-
-    await prisma.user.createMany({
-        data: [
-            {
-                id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-                created_at: new Date(Date.now() - 30 * 24 * 3600 * 1000),
-                name: 'Admin1',
-                email: 'admin1@test.com',
-                role: 'ADMIN',
-                password: await bcrypt.hash('admin', 12),
-            },
-            {
-                created_at: new Date(Date.now() - 60 * 24 * 3600 * 1000),
-                name: 'Admin2',
-                email: 'admin2@test.com',
-                role: 'ADMIN',
-                password: await bcrypt.hash('admin', 12),
-            },
-            {
-                created_at: new Date(Date.now() - 45 * 24 * 3600 * 1000),
-                name: 'Admin3',
-                email: 'admin3@test.com',
-                role: 'ADMIN',
-                password: await bcrypt.hash('admin', 12),
-            },
         ],
     })
 

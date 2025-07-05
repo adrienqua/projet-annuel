@@ -8,6 +8,9 @@ import Loader from './ui/Loader.vue'
 import Modal from './ui/Modal.vue'
 import { PlusIcon } from '@heroicons/vue/24/outline'
 
+const modalRef = ref<HTMLDialogElement | null>(null)
+const test = ref('test')
+
 const componentTypes = ref<ComponentType[]>([])
 const selectedComponent = reactive({
   cpu: '',
@@ -24,6 +27,15 @@ const selectedComponent = reactive({
 onMounted(async () => {
   componentTypes.value = await getComponentTypes()
 })
+
+onMounted(() => {
+  console.log('Access child template element:', modalRef.value)
+})
+
+const openModal = () => {
+  modalRef.value?.showModal()
+  console.log('Modal opened')
+}
 
 const handleSelectedComponent = (componentType: string, component: Component) => {
   // @ts-ignore
@@ -60,5 +72,7 @@ const handleSelectedComponent = (componentType: string, component: Component) =>
       </div>
     </div>
   </div>
-  <Modal> </Modal>
+  <button @click="openModal">teub</button>
+
+  <Modal :modalRef="modalRef" :test="test"> </Modal>
 </template>

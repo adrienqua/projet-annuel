@@ -1,8 +1,8 @@
-import express from 'express'
-import { PrismaClient } from '@prisma/client'
+import { Router } from 'express'
+import { Request, Response } from 'express'
+import { prisma } from '../../lib/prisma'
 
-const prisma = new PrismaClient()
-const router = express.Router()
+const router = Router()
 
 router.get('/:id', async (req, res) => {
     const id = Number(req.params.id)
@@ -49,14 +49,10 @@ router.get('/', async (_req, res) => {
         res.status(200).json(components)
     } catch (error: any) {
         res.status(500).json({ message: 'Erreur serveur', error: error.message })
-=======
-import { Router } from 'express'
-import { Request, Response } from 'express'
-import { prisma } from '../../lib/prisma'
+    }
+})
 
-const router = Router()
-
-router.get('/', async (req: Request, res: Response) => {
+/* router.get('/', async (req: Request, res: Response) => {
     try {
         const { manufacturer_id } = req.query
 
@@ -68,6 +64,20 @@ router.get('/', async (req: Request, res: Response) => {
         res.status(500).json({ error })
     }
 })
+
+router.get('/:id', async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+
+        const component = await prisma.component.findUnique({
+            where: { id: Number(id) },
+        })
+
+        res.json(component)
+    } catch (error) {
+        res.status(500).json({ error })
+    }
+}) */
 
 router.post('/', async (req: Request, res: Response) => {
     try {
@@ -85,20 +95,6 @@ router.post('/', async (req: Request, res: Response) => {
         })
 
         res.status(201).json(component)
-    } catch (error) {
-        res.status(500).json({ error })
-    }
-})
-
-router.get('/:id', async (req: Request, res: Response) => {
-    try {
-        const { id } = req.params
-
-        const component = await prisma.component.findUnique({
-            where: { id: Number(id) },
-        })
-
-        res.json(component)
     } catch (error) {
         res.status(500).json({ error })
     }

@@ -1,20 +1,25 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed, toRefs, useTemplateRef, toRef, type Ref } from 'vue'
 
-const modalRef = ref<HTMLDialogElement | null>(null)
+const props = defineProps<{
+  modalRef: Ref<HTMLDialogElement | null>
+  test: string
+}>()
 
-watch(modalRef, (newVal) => {
+/* const { modalRef } = toRefs(props)
+ */
+/* watch(modalRef, (newVal) => {
   if (newVal) {
     const dialog = newVal as HTMLDialogElement
     dialog.addEventListener('cancel', () => {
       dialog.close()
     })
   }
-})
+}) */
 </script>
 
 <template>
-  <button class="btn" @click="modalRef && modalRef.showModal()">open modal</button>
+  <button class="btn" @click="modalRef?.value?.showModal()">open modal</button>
   <dialog ref="modalRef" id="my_modal_2" class="modal">
     <div class="modal-box bg-white">
       <h3 class="text-lg font-bold">Hello!</h3>
