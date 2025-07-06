@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getComponents } from '@/services/ComponentAPI'
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 import type { Component } from './types/component'
 import { getComponentTypes } from '@/services/ComponentTypeAPI'
 import type { ComponentType } from './types/componentType'
@@ -9,6 +9,11 @@ import Modal from './ui/Modal.vue'
 import { PlusIcon } from '@heroicons/vue/24/outline'
 import ComponentList from './ComponentList.vue'
 import { createBuild } from '@/services/BuildAPI'
+import { useAuth } from '@/stores/auth'
+import type { User } from './types/User'
+
+const auth = useAuth()
+const user = auth.user as User
 
 const modalRef = ref<{ open: () => void; close: () => void } | null>(null)
 const test = ref('test')
@@ -23,8 +28,10 @@ const selectedComponents = reactive<Record<string, Component[]>>({
   storage: [],
   case: [],
   powerSupply: [],
-  caseFan: [],
+  caseFans: [],
 })
+const selectedComponentsList = ref<Component[]>([])
+
 const selectedType = reactive({
   name: '' as string,
   type: '' as string,
@@ -36,10 +43,17 @@ onMounted(async () => {
 })
 
 onMounted(() => {
-  console.log('Access child template element:', modalRef.value)
+  console.log('user', user)
 })
 
-const openModal = () => {}
+watch(selectedComponents, (selectedComponents) => {
+  selectedComponentsList.value = []
+  Object.keys(selectedComponents).forEach((key) => {
+    selectedComponentsList.value.push(...selectedComponents[key])
+  })
+
+  console.log('Selected components updated:', selectedComponentsList)
+})
 
 const handleSelectType = (type: ComponentType) => {
   selectedType.components = type.components || []
@@ -61,8 +75,17 @@ const handleRemoveComponent = (component: Component, type: string) => {
   }
 }
 
-const handleCreateBuild = async () => {
-  //await createBuild()
+const handleSaveBuild = async () => {
+  await createBuild({
+    name: 'Ma configuration',
+    price: '3999.99',
+    user_id: user.id,
+    items: selectedComponentsList.value.map((component) => ({
+      component_id: component.id,
+      quantity: 1,
+      price: '299.90',
+    })),
+  })
 }
 </script>
 
@@ -96,7 +119,15 @@ const handleCreateBuild = async () => {
     </div>
     <div class="w-full md:w-1/4 bg-white p-6 rounded-3xl shadow-md min-h-5rem">
       <h2 class="font-extrabold text-2xl mb-6">Récapitulatif</h2>
-      <button class="btn btn-secondary rounded-3xl w-full" @click="handleCreateBuild">
+      <ul>
+        <li v-for="component in selectedComponentsList" :key="component.id" class="mb-4">
+          <div class="flex justify-between">
+            <span class="font-medium w-3/4">{{ component.name }}</span>
+            <span class="">299 €</span>
+          </div>
+        </li>
+      </ul>
+      <button class="btn btn-secondary rounded-3xl w-full" @click="handleSaveBuild">
         Enregistrer la config
       </button>
     </div>

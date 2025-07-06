@@ -19,7 +19,7 @@ watchEffect(() => {
     <div class="container px-6 py-4 flex items-center justify-between mx-auto max-w-6xl">
       <router-link to="/" class="text-xl font-semibold text-secondary">Logo</router-link>
 
-      <!-- Desktop menu -->
+      <!-- Desktop  -->
       <ul class="hidden md:flex space-x-6 text-sm">
         <li>
           <router-link
@@ -30,7 +30,7 @@ watchEffect(() => {
         </li>
         <li>
           <router-link
-            to="/builder"
+            to="/compare"
             class="hover:text-secondary transition duration-300 font-medium"
             >Comparateur</router-link
           >
@@ -47,7 +47,6 @@ watchEffect(() => {
         </li>
       </ul>
 
-      <!-- Login Button (desktop only) -->
       <router-link
         to="/login"
         v-if="!user.email"
@@ -59,7 +58,6 @@ watchEffect(() => {
         >Bonjour, {{ user.email }}</router-link
       >
 
-      <!-- Mobile menu toggle button -->
       <button
         class="md:hidden text-white focus:outline-none"
         @click="toggleMenu"
@@ -76,7 +74,7 @@ watchEffect(() => {
       </button>
     </div>
 
-    <!-- Mobile menu -->
+    <!-- Mobile  -->
     <div v-if="isOpen" class="md:hidden border-t border-gray-700">
       <router-link
         to="/builder"
@@ -84,7 +82,7 @@ watchEffect(() => {
         >Configurateur</router-link
       >
       <router-link
-        to="/builder"
+        to="/compare"
         class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary transition duration-300 font-medium"
         >Comparateur</router-link
       >

@@ -6,10 +6,16 @@ import { buildSchema } from '../../prisma/validation'
 const router = Router()
 
 router.get('/', async (req: Request, res: Response) => {
+    const { user_id } = req.query
     try {
         const builds = await prisma.build.findMany({
+            where: user_id ? { user_id: String(user_id) } : {},
             include: {
-                items: true,
+                items: {
+                    include: {
+                        component: true,
+                    },
+                },
             },
         })
         res.json(builds)

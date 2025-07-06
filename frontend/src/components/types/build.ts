@@ -7,5 +7,5 @@ export interface Build {
   price: string
   user_id: string
   created_at: string
-  items: BuildItem[]
+  items: Partial<BuildItem>[]
 }
