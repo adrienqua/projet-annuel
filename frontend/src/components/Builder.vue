@@ -8,6 +8,7 @@ import Loader from './ui/Loader.vue'
 import Modal from './ui/Modal.vue'
 import { PlusIcon } from '@heroicons/vue/24/outline'
 import ComponentList from './ComponentList.vue'
+import { createBuild } from '@/services/BuildAPI'
 
 const modalRef = ref<{ open: () => void; close: () => void } | null>(null)
 const test = ref('test')
@@ -59,6 +60,10 @@ const handleRemoveComponent = (component: Component, type: string) => {
     selectedComponents[type].splice(index, 1)
   }
 }
+
+const handleCreateBuild = async () => {
+  //await createBuild()
+}
 </script>
 
 <template>
@@ -91,7 +96,9 @@ const handleRemoveComponent = (component: Component, type: string) => {
     </div>
     <div class="w-full md:w-1/4 bg-white p-6 rounded-3xl shadow-md min-h-5rem">
       <h2 class="font-extrabold text-2xl mb-6">Récapitulatif</h2>
-      <button class="btn btn-secondary rounded-3xl w-full">Enregistrer la config</button>
+      <button class="btn btn-secondary rounded-3xl w-full" @click="handleCreateBuild">
+        Enregistrer la config
+      </button>
     </div>
   </div>
 

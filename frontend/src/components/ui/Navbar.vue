@@ -55,7 +55,9 @@ watchEffect(() => {
       >
         Se connecter
       </router-link>
-      <div v-else class="px-6 py-3 text-sm text-gray-300">Bonjour, {{ user.email }}</div>
+      <router-link to="/profil" v-else class="px-6 py-3 text-sm text-gray-300"
+        >Bonjour, {{ user.email }}</router-link
+      >
 
       <!-- Mobile menu toggle button -->
       <button
@@ -103,7 +105,9 @@ watchEffect(() => {
       >
         Se connecter
       </router-link>
-      <div v-else class="px-6 py-3 text-sm text-gray-300">Bonjour, {{ user.email }}</div>
+      <router-link to="/profil" v-else class="px-6 py-3 text-sm text-gray-300"
+        >Bonjour, {{ user.email }}</router-link
+      >
     </div>
   </nav>
 </template>

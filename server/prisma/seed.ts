@@ -652,13 +652,13 @@ async function main() {
         data: [
             {
                 created_at: new Date(Date.now() - 1 * 24 * 3600 * 1000),
-                price: 2500,
+                price: 2500.9,
                 user_id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 name: 'Gaming Rig - Mai 2025',
             },
             {
                 created_at: new Date(Date.now() - 15 * 24 * 3600 * 1000),
-                price: 1500,
+                price: 1500.9,
                 user_id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 name: 'Workstation - Avril 2025',
             },
@@ -667,13 +667,13 @@ async function main() {
 
     await prisma.buildItem.createMany({
         data: [
-            { quantity: 1, price_each: 529.99, build_id: 1, component_id: 1 },
-            { quantity: 1, price_each: 719.99, build_id: 1, component_id: 3 },
-            { quantity: 2, price_each: 76.99, build_id: 1, component_id: 4 },
-            { quantity: 1, price_each: 289.99, build_id: 1, component_id: 5 },
-            { quantity: 1, price_each: 559.99, build_id: 2, component_id: 2 },
-            { quantity: 2, price_each: 75.99, build_id: 2, component_id: 4 },
-            { quantity: 1, price_each: 289.99, build_id: 2, component_id: 5 },
+            { quantity: 1, price: 529.99, build_id: 1, component_id: 1 },
+            { quantity: 1, price: 719.99, build_id: 1, component_id: 3 },
+            { quantity: 2, price: 76.99, build_id: 1, component_id: 4 },
+            { quantity: 1, price: 289.99, build_id: 1, component_id: 5 },
+            { quantity: 1, price: 559.99, build_id: 2, component_id: 2 },
+            { quantity: 2, price: 75.99, build_id: 2, component_id: 4 },
+            { quantity: 1, price: 289.99, build_id: 2, component_id: 5 },
         ],
     })
 }

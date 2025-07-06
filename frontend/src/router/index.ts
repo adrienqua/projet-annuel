@@ -4,6 +4,7 @@ import BuilderView from '@/views/BuilderView.vue'
 import HomeView from '@/views/HomeView.vue'
 import ComponentCompare from '@/pages/ComponentCompare.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import ProfileView from '@/views/ProfileView.vue'
 
 const routes = [
   {
@@ -15,6 +16,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/profil',
+    name: 'Profile',
+    component: ProfileView,
   },
   {
     path: '/component/:id',
