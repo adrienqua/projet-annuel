@@ -41,7 +41,7 @@ const selectedComponents = ref<Record<string, { maxQuantity: number; components:
     components: [],
   },
   storage: {
-    maxQuantity: 4,
+    maxQuantity: 3,
     components: [],
   },
   case: {
@@ -62,6 +62,7 @@ const selectedComponentsList = ref<Component[]>([])
 const selectedType = reactive({
   name: '' as string,
   type: '' as string,
+  activeIndex: 0 as number,
   components: [] as Component[],
 })
 
@@ -82,20 +83,23 @@ watch(selectedComponents.value, (selectedComponents) => {
   console.log('Selected components updated:', selectedComponentsList)
 })
 
-const handleSelectType = (type: ComponentType) => {
+const handleSelectType = (type: ComponentType, index?: number) => {
   selectedType.components = type.components || []
   selectedType.type = type.reference
   selectedType.name = type.name
+  if (index) {
+    selectedType.activeIndex = index
+  }
 
   modalRef.value?.open()
 }
 
-const handleSelectComponent = (component: Component, isEdit: boolean, componentId: number) => {
-  console.log('Selected component:', isEdit)
+const handleSelectComponent = (component: Component, isEdit: boolean) => {
+  console.log('Selected component:', isEdit, selectedType.activeIndex)
   if (isEdit) {
     selectedComponents.value[selectedType.type].components.splice(
-      0,
-      selectedComponents.value[selectedType.type].components.length,
+      selectedType.activeIndex,
+      1,
       component,
     )
   } else {
@@ -139,7 +143,8 @@ const isQuantityMaxxed = (type: string): boolean => {
       <h2 class="font-extrabold text-2xl mb-6">Composants</h2>
       <div v-for="type in componentTypes" :key="type.id">
         <div
-          class="bg-primary text-white px-6 py-4 text-xl font-semibold rounded-3xl group cursor-pointer"
+          class="bg-primary text-white px-6 py-4 text-xl font-semibold rounded-3xl group"
+          :class="`${!isQuantityMaxxed(type.reference) && 'cursor-pointer'}`"
           @click="isQuantityMaxxed(type.reference) ? null : handleSelectType(type)"
         >
           <div class="flex justify-between items-center">
