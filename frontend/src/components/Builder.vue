@@ -19,16 +19,43 @@ const modalRef = ref<{ open: () => void; close: () => void } | null>(null)
 const test = ref('test')
 
 const componentTypes = ref<ComponentType[]>([])
-const selectedComponents = reactive<Record<string, Component[]>>({
-  cpu: [],
-  gpu: [],
-  ram: [],
-  motherboard: [],
-  cpuCooler: [],
-  storage: [],
-  case: [],
-  powerSupply: [],
-  caseFans: [],
+const selectedComponents = ref<Record<string, { maxQuantity: number; components: Component[] }>>({
+  cpu: {
+    maxQuantity: 1,
+    components: [],
+  },
+  gpu: {
+    maxQuantity: 1,
+    components: [],
+  },
+  ram: {
+    maxQuantity: 1,
+    components: [],
+  },
+  motherboard: {
+    maxQuantity: 1,
+    components: [],
+  },
+  cpuCooler: {
+    maxQuantity: 1,
+    components: [],
+  },
+  storage: {
+    maxQuantity: 4,
+    components: [],
+  },
+  case: {
+    maxQuantity: 1,
+    components: [],
+  },
+  powerSupply: {
+    maxQuantity: 1,
+    components: [],
+  },
+  caseFans: {
+    maxQuantity: 7,
+    components: [],
+  },
 })
 const selectedComponentsList = ref<Component[]>([])
 
@@ -46,10 +73,10 @@ onMounted(() => {
   console.log('user', user)
 })
 
-watch(selectedComponents, (selectedComponents) => {
+watch(selectedComponents.value, (selectedComponents) => {
   selectedComponentsList.value = []
   Object.keys(selectedComponents).forEach((key) => {
-    selectedComponentsList.value.push(...selectedComponents[key])
+    selectedComponentsList.value.push(...selectedComponents[key].components)
   })
 
   console.log('Selected components updated:', selectedComponentsList)
@@ -63,15 +90,24 @@ const handleSelectType = (type: ComponentType) => {
   modalRef.value?.open()
 }
 
-const handleSelectComponent = (component: Component) => {
-  selectedComponents[selectedType.type].push(component)
+const handleSelectComponent = (component: Component, isEdit: boolean, componentId: number) => {
+  console.log('Selected component:', isEdit)
+  if (isEdit) {
+    selectedComponents.value[selectedType.type].components.splice(
+      0,
+      selectedComponents.value[selectedType.type].components.length,
+      component,
+    )
+  } else {
+    selectedComponents.value[selectedType.type].components.push(component)
+  }
   modalRef.value?.close()
 }
 
 const handleRemoveComponent = (component: Component, type: string) => {
-  const index = selectedComponents[type].indexOf(component)
+  const index = selectedComponents.value[type].components.indexOf(component)
   if (index > -1) {
-    selectedComponents[type].splice(index, 1)
+    selectedComponents.value[type].components.splice(index, 1)
   }
 }
 
@@ -87,6 +123,13 @@ const handleSaveBuild = async () => {
     })),
   })
 }
+
+const isQuantityMaxxed = (type: string): boolean => {
+  return (
+    selectedComponents.value[type]?.components?.length >=
+    selectedComponents.value[type]?.maxQuantity
+  )
+}
 </script>
 
 <template>
@@ -97,12 +140,13 @@ const handleSaveBuild = async () => {
       <div v-for="type in componentTypes" :key="type.id">
         <div
           class="bg-primary text-white px-6 py-4 text-xl font-semibold rounded-3xl group cursor-pointer"
-          @click="handleSelectType(type)"
+          @click="isQuantityMaxxed(type.reference) ? null : handleSelectType(type)"
         >
           <div class="flex justify-between items-center">
             <h2>{{ type.name }}</h2>
             <button
               class="text-secondary cursor-pointer transition-all duration-300 group-hover:translate-x-1"
+              v-if="!isQuantityMaxxed(type.reference)"
             >
               <PlusIcon class="w-8 h-8" />
             </button>
@@ -110,9 +154,11 @@ const handleSaveBuild = async () => {
         </div>
         <div class="flex flex-col gap-4 px-6 mt-2 font-medium">
           <ComponentList
-            :components="selectedComponents[type.reference]"
-            :type="type.reference"
+            :components="selectedComponents[type.reference].components"
+            :type="type"
             :handleRemoveComponent="handleRemoveComponent"
+            :handleSelectType="handleSelectType"
+            :isEdit="isQuantityMaxxed(type.reference) ? true : false"
           />
         </div>
       </div>
@@ -127,6 +173,12 @@ const handleSaveBuild = async () => {
           </div>
         </li>
       </ul>
+      <div>
+        <div class="flex justify-between items-center mb-4 text-lg">
+          <span class="font-extrabold">Total</span>
+          <span class="text-secondary font-extrabold">299 €</span>
+        </div>
+      </div>
       <button class="btn btn-secondary rounded-3xl w-full" @click="handleSaveBuild">
         Enregistrer la config
       </button>
@@ -137,6 +189,7 @@ const handleSaveBuild = async () => {
     <ComponentList
       :components="selectedType.components"
       :handleSelectComponent="handleSelectComponent"
+      :isEdit="isQuantityMaxxed(selectedType?.type) ? true : false"
     />
   </Modal>
 </template>
