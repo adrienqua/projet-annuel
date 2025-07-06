@@ -49,10 +49,15 @@ const handleSelectType = (type: ComponentType) => {
 }
 
 const handleSelectComponent = (component: Component) => {
-  console.log('push component:', component)
   selectedComponents[selectedType.type].push(component)
   modalRef.value?.close()
-  console.log('Selected components:', selectedComponents)
+}
+
+const handleRemoveComponent = (component: Component, type: string) => {
+  const index = selectedComponents[type].indexOf(component)
+  if (index > -1) {
+    selectedComponents[type].splice(index, 1)
+  }
 }
 </script>
 
@@ -61,13 +66,11 @@ const handleSelectComponent = (component: Component) => {
   <div v-else class="flex flex-col md:flex-row gap-8 items-start">
     <div class="w-full md:w-3/4 bg-white rounded-3xl shadow-md p-6">
       <h2 class="font-extrabold text-2xl mb-6">Composants</h2>
-      <div
-        v-for="type in componentTypes"
-        :key="type.id"
-        @click="handleSelectType(type)"
-        class="cursor-pointer"
-      >
-        <div class="bg-primary text-white px-6 py-4 text-xl font-semibold rounded-3xl group">
+      <div v-for="type in componentTypes" :key="type.id">
+        <div
+          class="bg-primary text-white px-6 py-4 text-xl font-semibold rounded-3xl group cursor-pointer"
+          @click="handleSelectType(type)"
+        >
           <div class="flex justify-between items-center">
             <h2>{{ type.name }}</h2>
             <button
@@ -78,7 +81,11 @@ const handleSelectComponent = (component: Component) => {
           </div>
         </div>
         <div class="flex flex-col gap-4 px-6 mt-2 font-medium">
-          <ComponentList :components="selectedComponents[type.reference]" />
+          <ComponentList
+            :components="selectedComponents[type.reference]"
+            :type="type.reference"
+            :handleRemoveComponent="handleRemoveComponent"
+          />
         </div>
       </div>
     </div>

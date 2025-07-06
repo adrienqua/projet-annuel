@@ -20,7 +20,7 @@ defineExpose({ open, close })
 
 <template>
   <dialog ref="modal" class="modal">
-    <div class="modal-box bg-white rounded-3xl relative">
+    <div class="modal-box bg-white rounded-3xl relative max-w-xl">
       <h3 class="text-xl font-bold mb-4">{{ title }}</h3>
       <slot />
       <form method="dialog">
