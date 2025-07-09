@@ -75,7 +75,6 @@ async function main() {
 
     await prisma.component.createMany({
         data: [
-            // CPUs
             {
                 release_date: new Date('2023-04-06'),
                 specs: { cores: 8, threads: 16, base_clock_GHz: 4.2, tdp_W: 120 },
@@ -84,6 +83,7 @@ async function main() {
                 type_id: 1,
                 manufacturer_id: 2,
                 img_url: '/img/components/amd_7800x3d.jpg',
+                price: 399.90,
             },
             {
                 release_date: new Date('2025-05-10'),
@@ -93,6 +93,7 @@ async function main() {
                 type_id: 1,
                 manufacturer_id: 2,
                 img_url: '/img/components/amd_9800x3d.jpg',
+                price: 519.90,
             },
             {
                 release_date: new Date('2023-10-17'),
@@ -102,9 +103,8 @@ async function main() {
                 type_id: 1,
                 manufacturer_id: 1,
                 img_url: '/img/components/intel_14900k.jpg',
+                price: 499.90,
             },
-
-            // GPUs
             {
                 release_date: new Date('2022-11-16'),
                 specs: { memory_GB: 16, base_clock_MHz: 2205, boost_clock_MHz: 2505 },
@@ -113,6 +113,7 @@ async function main() {
                 type_id: 2,
                 manufacturer_id: 3,
                 img_url: '/img/components/nvidia_rtx4080.jpg',
+                price: 1079.90,
             },
             {
                 release_date: new Date('2025-06-01'),
@@ -122,6 +123,7 @@ async function main() {
                 type_id: 2,
                 manufacturer_id: 3,
                 img_url: '/img/components/nvidia_rtx5090.jpg',
+                price: 1359.90,
             },
             {
                 release_date: new Date('2022-12-13'),
@@ -131,9 +133,8 @@ async function main() {
                 type_id: 2,
                 manufacturer_id: 2,
                 img_url: '/img/components/amd_rx7900xt.jpg',
+                price: 719.90,
             },
-
-            // RAM
             {
                 release_date: new Date('2023-03-15'),
                 specs: { capacity_GB: 64, speed_MHz: 6000, type: 'DDR5' },
@@ -144,6 +145,7 @@ async function main() {
                 type_id: 3,
                 manufacturer_id: 15,
                 img_url: '/img/components/gskill_tridentz5.jpg',
+                price: 239.90,
             },
             {
                 release_date: new Date('2024-02-01'),
@@ -155,6 +157,7 @@ async function main() {
                 type_id: 3,
                 manufacturer_id: 16,
                 img_url: '/img/components/corsair_vengeance_5600.jpg',
+                price: 119.90,
             },
             {
                 release_date: new Date('2022-05-10'),
@@ -164,9 +167,8 @@ async function main() {
                 type_id: 3,
                 manufacturer_id: 4,
                 img_url: '/img/components/crucial_ballistix3600.jpg',
+                price: 71.90,
             },
-
-            //AMD Motherboards
             {
                 release_date: new Date('2023-05-15'),
                 specs: {
@@ -181,6 +183,7 @@ async function main() {
                 type_id: 4,
                 manufacturer_id: 12,
                 img_url: '/img/components/asus_x670e_hero.jpg',
+                price: 399.90,
             },
             {
                 release_date: new Date('2023-02-20'),
@@ -196,6 +199,7 @@ async function main() {
                 type_id: 4,
                 manufacturer_id: 13,
                 img_url: '/img/components/msi_b650m_mortar.jpg',
+                price: 143.90,
             },
             {
                 release_date: new Date('2022-10-10'),
@@ -211,9 +215,8 @@ async function main() {
                 type_id: 4,
                 manufacturer_id: 14,
                 img_url: '/img/components/gigabyte_x670_aorus_elite.jpg',
+                price: 199.90,
             },
-
-            // Intel Motherboards
             {
                 release_date: new Date('2022-11-01'),
                 specs: {
@@ -228,6 +231,7 @@ async function main() {
                 type_id: 4,
                 manufacturer_id: 12,
                 img_url: '/img/components/asus_z790_hero.jpg',
+                price: 399.90,
             },
             {
                 release_date: new Date('2023-01-12'),
@@ -243,6 +247,7 @@ async function main() {
                 type_id: 4,
                 manufacturer_id: 13,
                 img_url: '/img/components/msi_b760m_mortar.jpg',
+                price: 127.90,
             },
             {
                 release_date: new Date('2022-12-05'),
@@ -258,9 +263,9 @@ async function main() {
                 type_id: 4,
                 manufacturer_id: 14,
                 img_url: '/img/components/gigabyte_z790_aorus_master.jpg',
+                price: 319.90,
             },
-
-            // CPU Coolers
+            // Ventirads / AIO
             {
                 release_date: new Date('2020-01-01'),
                 specs: { type: 'Air', height_mm: 165, tdp_W: 250 },
@@ -269,6 +274,7 @@ async function main() {
                 type_id: 5,
                 manufacturer_id: 6,
                 img_url: '/img/components/noctua_nh-d15.jpg',
+                price: 79.90,
             },
             {
                 release_date: new Date('2018-06-10'),
@@ -278,6 +284,7 @@ async function main() {
                 type_id: 5,
                 manufacturer_id: 7,
                 img_url: '/img/components/bequiet_dark_rock_pro_4.jpg',
+                price: 71.90,
             },
             {
                 release_date: new Date('2021-02-01'),
@@ -287,6 +294,7 @@ async function main() {
                 type_id: 5,
                 manufacturer_id: 6,
                 img_url: '/img/components/noctua_nh-u12a.jpg',
+                price: 95.90,
             },
             {
                 release_date: new Date('2023-10-01'),
@@ -296,6 +304,7 @@ async function main() {
                 type_id: 5,
                 manufacturer_id: 18,
                 img_url: '/img/components/arctic_liquid_freezer_iii_360.jpg',
+                price: 103.90,
             },
             {
                 release_date: new Date('2024-01-15'),
@@ -305,9 +314,8 @@ async function main() {
                 type_id: 5,
                 manufacturer_id: 19,
                 img_url: '/img/components/nzxt_kraken_240_rgb_blanc.jpg',
+                price: 111.90,
             },
-
-            // Storage
             {
                 release_date: new Date('2023-01-01'),
                 specs: { capacity_GB: 2048, type: 'NVMe', read_MBps: 7450, write_MBps: 6900 },
@@ -316,6 +324,7 @@ async function main() {
                 type_id: 6,
                 manufacturer_id: 5,
                 img_url: '/img/components/samsung_990_pro.jpg',
+                price: 143.90,
             },
             {
                 release_date: new Date('2022-03-15'),
@@ -325,6 +334,7 @@ async function main() {
                 type_id: 6,
                 manufacturer_id: 4,
                 img_url: '/img/components/crucial_p5_plus.jpg',
+                price: 87.90,
             },
             {
                 release_date: new Date('2021-04-01'),
@@ -334,9 +344,8 @@ async function main() {
                 type_id: 6,
                 manufacturer_id: 5,
                 img_url: '/img/components/samsung_980.jpg',
+                price: 71.90,
             },
-
-            // Case
             {
                 release_date: new Date('2022-03-01'),
                 specs: {
@@ -351,6 +360,7 @@ async function main() {
                 type_id: 7,
                 manufacturer_id: 8,
                 img_url: '/img/components/lian_li_o11_dynamic_evo.jpg',
+                price: 119.90,
             },
             {
                 release_date: new Date('2021-06-15'),
@@ -366,6 +376,7 @@ async function main() {
                 type_id: 7,
                 manufacturer_id: 10,
                 img_url: '/img/components/fractal_design_meshify_2.jpg',
+                price: 111.90,
             },
             {
                 release_date: new Date('2023-09-10'),
@@ -381,6 +392,7 @@ async function main() {
                 type_id: 7,
                 manufacturer_id: 11,
                 img_url: '/img/components/phanteks_eclipse_p500a.jpg',
+                price: 103.90,
             },
             {
                 release_date: new Date('2020-11-20'),
@@ -396,9 +408,8 @@ async function main() {
                 type_id: 7,
                 manufacturer_id: 8,
                 img_url: '/img/components/lian_li_o11_dynamic_mini.jpg',
+                price: 95.90,
             },
-
-            // Power Supplies
             {
                 release_date: new Date('2022-07-10'),
                 specs: {
@@ -412,6 +423,7 @@ async function main() {
                 type_id: 8,
                 manufacturer_id: 7,
                 img_url: '/img/components/bequiet_straight_power_11_850w.jpg',
+                price: 151.90,
             },
             {
                 release_date: new Date('2021-09-01'),
@@ -426,6 +438,7 @@ async function main() {
                 type_id: 8,
                 manufacturer_id: 9,
                 img_url: '/img/components/seasonic_prime_tx_1000.jpg',
+                price: 207.90,
             },
             {
                 release_date: new Date('2023-05-01'),
@@ -440,6 +453,7 @@ async function main() {
                 type_id: 8,
                 manufacturer_id: 7,
                 img_url: '/img/components/bequiet_pure_power_12_m_750w.jpg',
+                price: 103.90,
             },
             {
                 release_date: new Date('2022-01-10'),
@@ -454,9 +468,8 @@ async function main() {
                 type_id: 8,
                 manufacturer_id: 17,
                 img_url: '/img/components/fractal_design_ion_sfx_650g.jpg',
+                price: 87.90,
             },
-
-            // Case Fans
             {
                 release_date: new Date('2018-05-01'),
                 specs: { size_mm: 120, rpm: 2000, noise_dBA: 22.6 },
@@ -465,6 +478,7 @@ async function main() {
                 type_id: 9,
                 manufacturer_id: 6,
                 img_url: '/img/components/noctua_nf-a12x25_pwm.jpg',
+                price: 23.90,
             },
             {
                 release_date: new Date('2017-06-01'),
@@ -474,6 +488,7 @@ async function main() {
                 type_id: 9,
                 manufacturer_id: 6,
                 img_url: '/img/components/noctua_nf-f12_pwm.jpg',
+                price: 19.90,
             },
             {
                 release_date: new Date('2022-11-01'),
@@ -483,6 +498,7 @@ async function main() {
                 type_id: 9,
                 manufacturer_id: 7,
                 img_url: '/img/components/bequiet_silent_wings_4_120mm_pwm.jpg',
+                price: 22.90,
             },
         ],
     })

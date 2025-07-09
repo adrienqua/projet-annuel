@@ -5,6 +5,7 @@ export interface Component {
   specs: any
   oc_profiles: any
   name: string
+  price: string,
   type_id: number
   manufacturer_id: number
   manufacturer?: {

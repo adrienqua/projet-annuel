@@ -7,6 +7,7 @@ import type { ComponentType } from './types/componentType'
 import Loader from './ui/Loader.vue'
 import Modal from './ui/Modal.vue'
 import { PencilIcon, PlusIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { formatPrice } from '@/utils/formatPrice'
 
 const props = defineProps<{
   components: Component[]
@@ -36,8 +37,8 @@ const props = defineProps<{
           <span>{{ component.name }}</span>
           <span class="text-sm text-gray-600">({{ component?.manufacturer?.name }})</span>
         </div>
-        <div class="text-sm font-medium">299 €</div>
-        <div class="text-sm text-secondary">En stock</div>
+        <div class="text-sm font-medium">{{ formatPrice(component.price) }}</div>
+        <div class="text-sm text-secondary-400">En stock</div>
       </div>
       <div class="flex gap-4">
         <button

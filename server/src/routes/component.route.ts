@@ -81,11 +81,12 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     try {
-        const { name, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
+        const { name, price, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
 
         const component = await prisma.component.create({
             data: {
                 name,
+                price,
                 release_date: release_date ? new Date(release_date) : undefined,
                 specs,
                 oc_profiles,
@@ -103,12 +104,13 @@ router.post('/', async (req: Request, res: Response) => {
 router.put('/:id', async (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        const { name, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
+        const { name, price, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
 
         const component = await prisma.component.update({
             where: { id: Number(id) },
             data: {
                 name,
+                price,
                 release_date: release_date ? new Date(release_date) : undefined,
                 specs,
                 oc_profiles,

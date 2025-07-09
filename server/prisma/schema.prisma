@@ -39,6 +39,8 @@ model Component {
   specs           Json
   oc_profiles     Json
   name            String    @db.VarChar(150)
+  price           Decimal   @db.Decimal(10, 2)
+  description     String?   @db.Text
   type_id         Int
   manufacturer_id Int
 

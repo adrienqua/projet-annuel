@@ -17,31 +17,31 @@ watchEffect(() => {
 <template>
   <nav class="bg-black text-white w-full z-50 border-b border-gray-800">
     <div class="container px-6 py-4 flex items-center justify-between mx-auto max-w-6xl">
-      <router-link to="/" class="text-xl font-semibold text-secondary">Logo</router-link>
+      <router-link to="/" class="text-xl font-semibold text-secondary-400">Logo</router-link>
 
       <!-- Desktop  -->
       <ul class="hidden md:flex space-x-6 text-sm">
         <li>
           <router-link
             to="/builder"
-            class="hover:text-secondary transition duration-300 font-medium"
+            class="hover:text-secondary-400 transition duration-300 font-medium"
             >Configurateur</router-link
           >
         </li>
         <li>
           <router-link
             to="/compare"
-            class="hover:text-secondary transition duration-300 font-medium"
+            class="hover:text-secondary-400 transition duration-300 font-medium"
             >Comparateur</router-link
           >
         </li>
         <li>
-          <router-link to="/" class="hover:text-secondary transition duration-300 font-medium"
+          <router-link to="/" class="hover:text-secondary-400 transition duration-300 font-medium"
             >Services</router-link
           >
         </li>
         <li>
-          <router-link to="/" class="hover:text-secondary transition duration-300 font-medium"
+          <router-link to="/" class="hover:text-secondary-400 transition duration-300 font-medium"
             >Contact</router-link
           >
         </li>
@@ -50,7 +50,7 @@ watchEffect(() => {
       <router-link
         to="/login"
         v-if="!user.email"
-        class="bg-secondary hover:bg-secondary/90 text-white font-medium px-4 py-2 rounded-lg transition hidden md:block"
+        class="bg-secondary-400 hover:bg-secondary-400/90 text-white font-medium px-4 py-2 rounded-lg transition hidden md:block"
       >
         Se connecter
       </router-link>
@@ -78,22 +78,22 @@ watchEffect(() => {
     <div v-if="isOpen" class="md:hidden border-t border-gray-700">
       <router-link
         to="/builder"
-        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary transition duration-300 font-medium"
+        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
         >Configurateur</router-link
       >
       <router-link
         to="/compare"
-        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary transition duration-300 font-medium"
+        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
         >Comparateur</router-link
       >
       <router-link
         to="/"
-        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary transition duration-300 font-medium"
+        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
         >Services</router-link
       >
       <router-link
         to="/"
-        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary transition duration-300 font-medium"
+        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
         >Contact</router-link
       >
       <router-link

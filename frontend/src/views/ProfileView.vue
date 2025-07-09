@@ -38,7 +38,7 @@ onMounted(() => {
               <h3 class="text-gray-700 font-semibold">
                 {{ build.name }}
               </h3>
-              <span class="text-secondary font-semibold">{{ build.price }} €</span>
+              <span class="text-secondary-400 font-semibold">{{ build.price }} €</span>
             </div>
             <ul>
               <li v-for="component in build.items" :key="component.id">
