@@ -196,7 +196,7 @@ const isQuantityMaxxed = (type: string): boolean => {
           <span class="text-secondary-400 font-extrabold">{{ formatPrice(totalPrice) }}</span>
         </div>
       </div>
-      <button class="btn btn-secondary-400 rounded-3xl w-full" @click="handleSaveBuild">
+      <button class="btn btn-secondary rounded-3xl w-full" @click="handleSaveBuild">
         Enregistrer la config
       </button>
     </div>
