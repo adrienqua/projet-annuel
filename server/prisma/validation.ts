@@ -10,12 +10,12 @@ export const userSchema = z.object({
 export const buildItemSchema = z.object({
     quantity: z.number().int().min(1, 'La quantité doit être au moins 1'),
     price: z.string().regex(/^\d+(\.\d{1,2})?$/, 'Prix invalide (max 2 décimales)'),
-    component_id: z.number().int().positive('ID du composant invalide'),
+    componentId: z.number().int().positive('ID du composant invalide'),
 })
 
 export const buildSchema = z.object({
     name: z.string().min(2, 'Le nom est obligatoire'),
     price: z.string().regex(/^\d+(\.\d{1,2})?$/, 'Prix invalide (max 2 décimales)'),
-    user_id: z.string().min(1, 'Le client est obligatoire'),
+    userId: z.string().min(1, 'Le client est obligatoire'),
     items: z.array(buildItemSchema).optional(),
 })

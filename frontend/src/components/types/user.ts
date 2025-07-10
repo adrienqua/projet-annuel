@@ -5,7 +5,7 @@ export enum Role {
 
 export interface User {
   id: string
-  created_at: Date
+  createdAt: Date
   name: string
   email: string
   role: Role

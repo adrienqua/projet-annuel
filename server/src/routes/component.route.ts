@@ -54,10 +54,10 @@ router.get('/', async (_req, res) => {
 
 /* router.get('/', async (req: Request, res: Response) => {
     try {
-        const { manufacturer_id } = req.query
+        const { manufacturerId } = req.query
 
         const components = await prisma.component.findMany({
-            where: manufacturer_id ? { manufacturer_id: Number(manufacturer_id) } : {},
+            where: manufacturerId ? { manufacturerId: Number(manufacturerId) } : {},
         })
         res.json(components)
     } catch (error) {
@@ -81,17 +81,17 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     try {
-        const { name, price, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
+        const { name, price, releaseDate, specs, ocProfiles, typeId, manufacturerId } = req.body
 
         const component = await prisma.component.create({
             data: {
                 name,
                 price,
-                release_date: release_date ? new Date(release_date) : undefined,
+                releaseDate: releaseDate ? new Date(releaseDate) : undefined,
                 specs,
-                oc_profiles,
-                type_id,
-                manufacturer_id,
+                ocProfiles,
+                typeId,
+                manufacturerId,
             },
         })
 
@@ -104,18 +104,18 @@ router.post('/', async (req: Request, res: Response) => {
 router.put('/:id', async (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        const { name, price, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
+        const { name, price, releaseDate, specs, ocProfiles, typeId, manufacturerId } = req.body
 
         const component = await prisma.component.update({
             where: { id: Number(id) },
             data: {
                 name,
                 price,
-                release_date: release_date ? new Date(release_date) : undefined,
+                releaseDate: releaseDate ? new Date(releaseDate) : undefined,
                 specs,
-                oc_profiles,
-                type_id,
-                manufacturer_id,
+                ocProfiles,
+                typeId,
+                manufacturerId,
             },
         })
 
