@@ -19,8 +19,8 @@ export async function compareComponentsById(id1: number, id2: number) {
         throw new Error('Un ou deux composants sont introuvables.')
     }
 
-    // 1️⃣ Comparez les type_id au lieu de comp1.type
-    if (comp1.type_id !== comp2.type_id) {
+    // 1️⃣ Comparez les typeId au lieu de comp1.type
+    if (comp1.typeId !== comp2.typeId) {
         return {
             result: '❌ Les composants sont de types différents, comparaison impossible.',
             score1: null,
@@ -35,7 +35,7 @@ export async function compareComponentsById(id1: number, id2: number) {
     let score1 = 0
     let score2 = 0
 
-    switch (comp1.type_id) {
+    switch (comp1.typeId) {
         case 1: // CPU
             score1 = computeCPUScore(details1)
             score2 = computeCPUScore(details2)
@@ -54,7 +54,7 @@ export async function compareComponentsById(id1: number, id2: number) {
             break
         default:
             return {
-                result: `⚠️ Type ID ${comp1.type_id} non pris en charge.`,
+                result: `⚠️ Type ID ${comp1.typeId} non pris en charge.`,
                 score1: null,
                 score2: null,
             }

@@ -6,10 +6,10 @@ import { buildSchema } from '../../prisma/validation'
 const router = Router()
 
 router.get('/', async (req: Request, res: Response) => {
-    const { user_id } = req.query
+    const { userId } = req.query
     try {
         const builds = await prisma.build.findMany({
-            where: user_id ? { user_id: String(user_id) } : {},
+            where: userId ? { userId: String(userId) } : {},
             include: {
                 items: {
                     include: {
@@ -26,13 +26,13 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     try {
-        const { name, price, user_id, items } = buildSchema.parse(req.body)
+        const { name, price, userId, items } = buildSchema.parse(req.body)
 
         const newBuild = await prisma.build.create({
             data: {
                 name,
                 price,
-                user_id,
+                userId,
                 items: {
                     createMany: {
                         data: items || [],

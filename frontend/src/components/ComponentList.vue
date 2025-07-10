@@ -29,7 +29,7 @@ const props = defineProps<{
     >
       <div class="flex gap-2 items-center cursor-pointer">
         <img
-          :src="component.img_url || '/img/components/placeholder.jpg'"
+          :src="component.imgUrl || '/img/components/placeholder.jpg'"
           :alt="component.name"
           class="w-10 h-10 object-cover rounded-lg"
         />

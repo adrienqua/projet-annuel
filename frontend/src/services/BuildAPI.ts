@@ -3,9 +3,9 @@ import axios from 'axios'
 
 const API = import.meta.env.VITE_API_URL
 
-export const getBuilds = async (user_id: string): Promise<Build[]> => {
+export const getBuilds = async (userId: string): Promise<Build[]> => {
   try {
-    const res = await axios.get(`${API}/builds${user_id && `?user_id=${user_id}`}`)
+    const res = await axios.get(`${API}/builds${userId && `?userId=${userId}`}`)
     return res.data
   } catch (error) {
     console.error(error)

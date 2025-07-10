@@ -44,7 +44,7 @@ onMounted(() => {
               <li v-for="component in build.items" :key="component.id">
                 <div class="flex justify-between items-center gap-2">
                   <img
-                    :src="component?.component?.img_url || '/img/components/placeholder.jpg'"
+                    :src="component?.component?.imgUrl || '/img/components/placeholder.jpg'"
                     :alt="component?.component?.name"
                     class="w-10 h-10 object-cover rounded-lg"
                   />

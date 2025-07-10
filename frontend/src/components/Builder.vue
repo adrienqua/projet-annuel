@@ -129,9 +129,9 @@ const handleSaveBuild = async () => {
   await createBuild({
     name: 'Ma configuration',
     price: totalPrice.value.toString(),
-    user_id: user.id,
+    userId: user.id,
     items: selectedComponentsList.value.map((component) => ({
-      component_id: component.id,
+      componentId: component.id,
       quantity: 1,
       price: '299.90',
     })),
