@@ -18,6 +18,7 @@ watchEffect(() => {
       </li>
       <li><router-link to="/" class="hover:text-blue-300 transition">Services</router-link></li>
       <li><router-link to="/" class="hover:text-blue-300 transition">Contact</router-link></li>
+      <li><router-link to="/about" class="hover:text-blue-300 transition">À propos</router-link></li>
     </ul>
     <router-link
       to="/login"
