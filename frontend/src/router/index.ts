@@ -5,6 +5,7 @@ import HomeView from '@/views/HomeView.vue'
 import ComponentCompare from '@/pages/ComponentCompare.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import ProfileView from '@/views/ProfileView.vue'
+import AboutView from '@/views/AboutView.vue'
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     name: 'Builder',
     component: BuilderView,
   },
+  {
+    path: '/about',
+    name: 'About',
+    component: AboutView,
+  }
 ]
 
 const router = createRouter({
