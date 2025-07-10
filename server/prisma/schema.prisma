@@ -34,10 +34,13 @@ model ComponentType {
 
 model Component {
   id              Int       @id @default(autoincrement())
+  img_url         String?   @db.VarChar(500)
   release_date    DateTime? @db.Date
   specs           Json
   oc_profiles     Json
   name            String    @db.VarChar(150)
+  price           Decimal   @db.Decimal(10, 2)
+  description     String?   @db.Text
   type_id         Int
   manufacturer_id Int
 
@@ -115,7 +118,7 @@ model User {
 model Build {
   id         Int         @id @default(autoincrement())
   created_at DateTime    @default(now())
-  price      Int
+  price      Decimal     @db.Decimal(10, 2)
   name       String      @db.VarChar(150)
   user_id    String      @db.Uuid
   user       User        @relation(fields: [user_id], references: [id])
@@ -127,7 +130,7 @@ model Build {
 model BuildItem {
   id           Int     @id @default(autoincrement())
   quantity     Int
-  price_each   Decimal @db.Decimal(10, 2)
+  price        Decimal @db.Decimal(10, 2)
   build_id     Int
   component_id Int
 

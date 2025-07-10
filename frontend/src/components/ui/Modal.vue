@@ -1,26 +1,33 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, defineExpose } from 'vue'
 
-const modalRef = ref<HTMLDialogElement | null>(null)
+const props = defineProps<{
+  title: string
+}>()
 
-watch(modalRef, (newVal) => {
-  if (newVal) {
-    const dialog = newVal as HTMLDialogElement
-    dialog.addEventListener('cancel', () => {
-      dialog.close()
-    })
-  }
-})
+const modal = ref<HTMLDialogElement | null>(null)
+
+function open() {
+  modal.value?.showModal()
+}
+
+function close() {
+  modal.value?.close()
+}
+
+defineExpose({ open, close })
 </script>
 
 <template>
-  <button class="btn" @click="modalRef && modalRef.showModal()">open modal</button>
-  <dialog ref="modalRef" id="my_modal_2" class="modal">
-    <div class="modal-box bg-white">
-      <h3 class="text-lg font-bold">Hello!</h3>
-      <p class="py-4">Press ESC key or click outside to close</p>
+  <dialog ref="modal" class="modal">
+    <div class="modal-box bg-white rounded-3xl relative max-w-xl">
+      <h3 class="text-xl font-bold mb-4">{{ title }}</h3>
+      <slot />
+      <form method="dialog">
+        <button class="btn btn-md btn-circle btn-ghost absolute right-4 top-4">✕</button>
+      </form>
     </div>
-    <form method="dialog" class="modal-backdrop">
+    <form method="dialog" className="modal-backdrop">
       <button>close</button>
     </form>
   </dialog>

@@ -1,8 +1,8 @@
-import express from 'express'
-import { PrismaClient } from '@prisma/client'
+import { Router } from 'express'
+import { Request, Response } from 'express'
+import { prisma } from '../../lib/prisma'
 
-const prisma = new PrismaClient()
-const router = express.Router()
+const router = Router()
 
 router.get('/:id', async (req, res) => {
     const id = Number(req.params.id)
@@ -49,14 +49,10 @@ router.get('/', async (_req, res) => {
         res.status(200).json(components)
     } catch (error: any) {
         res.status(500).json({ message: 'Erreur serveur', error: error.message })
-=======
-import { Router } from 'express'
-import { Request, Response } from 'express'
-import { prisma } from '../../lib/prisma'
+    }
+})
 
-const router = Router()
-
-router.get('/', async (req: Request, res: Response) => {
+/* router.get('/', async (req: Request, res: Response) => {
     try {
         const { manufacturer_id } = req.query
 
@@ -64,27 +60,6 @@ router.get('/', async (req: Request, res: Response) => {
             where: manufacturer_id ? { manufacturer_id: Number(manufacturer_id) } : {},
         })
         res.json(components)
-    } catch (error) {
-        res.status(500).json({ error })
-    }
-})
-
-router.post('/', async (req: Request, res: Response) => {
-    try {
-        const { name, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
-
-        const component = await prisma.component.create({
-            data: {
-                name,
-                release_date: release_date ? new Date(release_date) : undefined,
-                specs,
-                oc_profiles,
-                type_id,
-                manufacturer_id,
-            },
-        })
-
-        res.status(201).json(component)
     } catch (error) {
         res.status(500).json({ error })
     }
@@ -102,17 +77,40 @@ router.get('/:id', async (req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json({ error })
     }
+}) */
+
+router.post('/', async (req: Request, res: Response) => {
+    try {
+        const { name, price, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
+
+        const component = await prisma.component.create({
+            data: {
+                name,
+                price,
+                release_date: release_date ? new Date(release_date) : undefined,
+                specs,
+                oc_profiles,
+                type_id,
+                manufacturer_id,
+            },
+        })
+
+        res.status(201).json(component)
+    } catch (error) {
+        res.status(500).json({ error })
+    }
 })
 
 router.put('/:id', async (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        const { name, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
+        const { name, price, release_date, specs, oc_profiles, type_id, manufacturer_id } = req.body
 
         const component = await prisma.component.update({
             where: { id: Number(id) },
             data: {
                 name,
+                price,
                 release_date: release_date ? new Date(release_date) : undefined,
                 specs,
                 oc_profiles,

@@ -19,6 +19,9 @@ export const getComponentById = async (id: number) => {
     return response.data
   } catch (error) {
     console.error(`Erreur lors de la récupération du composant avec l'ID ${id}`, error)
+  }
+}
+
 export const getComponents = async (manufacturer_id?: number): Promise<Component[]> => {
   try {
     const res = await axios.get(`${API}/components`, {
