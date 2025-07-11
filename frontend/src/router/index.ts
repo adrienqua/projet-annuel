@@ -6,6 +6,8 @@ import ComponentCompare from '@/pages/ComponentCompare.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import ProfileView from '@/views/ProfileView.vue'
 import AboutView from '@/views/AboutView.vue'
+import CheckoutSuccess from '@/views/CheckoutSuccess.vue'
+import CartView from '@/views/CartView.vue'
 
 const routes = [
   {
@@ -19,8 +21,8 @@ const routes = [
     component: Login,
   },
   {
-    path: '/profil',
-    name: 'Profile',
+    path: '/account',
+    name: 'Account',
     component: ProfileView,
   },
   {
@@ -34,15 +36,26 @@ const routes = [
     component: ComponentCompare,
   },
   {
+    path: '/checkout/success',
+    name: 'checkoutSuccess',
+    component: CheckoutSuccess,
+  },
+  {
     path: '/builder',
     name: 'Builder',
     component: BuilderView,
   },
   {
+    path: '/cart',
+    name: 'Cart',
+    component: CartView,
+  },
+
+  {
     path: '/about',
     name: 'About',
     component: AboutView,
-  }
+  },
 ]
 
 const router = createRouter({

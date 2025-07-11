@@ -33,14 +33,14 @@ model ComponentType {
 }
 
 model Component {
-  id              Int       @id @default(autoincrement())
+  id             Int       @id @default(autoincrement())
   imgUrl         String?   @db.VarChar(500)
   releaseDate    DateTime? @db.Date
-  specs           Json
+  specs          Json
   ocProfiles     Json
-  name            String    @db.VarChar(150)
-  price           Decimal   @db.Decimal(10, 2)
-  description     String?   @db.Text
+  name           String    @db.VarChar(150)
+  price          Decimal   @db.Decimal(10, 2)
+  description    String?   @db.Text
   typeId         Int
   manufacturerId Int
 
@@ -59,7 +59,7 @@ model Component {
 model Compatibility {
   componentAId Int
   componentBId Int
-  compatible     Boolean
+  compatible   Boolean
 
   componentA Component @relation("compatA", fields: [componentAId], references: [id])
   componentB Component @relation("compatB", fields: [componentBId], references: [id])
@@ -78,7 +78,7 @@ model Vendor {
 }
 
 model VendorComponent {
-  id           Int      @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   inStock     Boolean
   lastChecked DateTime
   productUrl  String   @db.VarChar(500)
@@ -93,9 +93,9 @@ model VendorComponent {
 }
 
 model PriceHistory {
-  id                  Int      @id @default(autoincrement())
-  recorded_at         DateTime
-  price               Decimal  @db.Decimal(10, 2)
+  id                Int      @id @default(autoincrement())
+  recorded_at       DateTime
+  price             Decimal  @db.Decimal(10, 2)
   vendorComponentId Int
 
   vendorComponent VendorComponent @relation(fields: [vendorComponentId], references: [id])
@@ -104,55 +104,56 @@ model PriceHistory {
 }
 
 model User {
-  id         String   @id @default(uuid()) @db.Uuid
-  createdAt DateTime @default(now())
-  name       String   @db.VarChar(150)
-  email      String   @unique @db.VarChar(255)
-  password   String   @db.VarChar(255)
-  role       Role
-  builds     Build[]
-  orders     Order[]
-  addresses  Address[]
+  id        String    @id @default(uuid()) @db.Uuid
+  createdAt DateTime  @default(now())
+  name      String    @db.VarChar(150)
+  email     String    @unique @db.VarChar(255)
+  password  String    @db.VarChar(255)
+  role      Role
+  builds    Build[]
+  orders    Order[]
+  addresses Address[]
 
   @@map("User")
 }
 
 model Build {
-  id         Int         @id @default(autoincrement())
+  id        Int         @id @default(autoincrement())
   createdAt DateTime    @default(now())
-  price      Decimal     @db.Decimal(10, 2)
-  name       String      @db.VarChar(150)
+  price     Decimal     @db.Decimal(10, 2)
+  name      String      @db.VarChar(150)
   userId    String      @db.Uuid
-  user       User        @relation(fields: [userId], references: [id])
-  items      BuildItem[]
+  user      User        @relation(fields: [userId], references: [id])
+  items     BuildItem[]
 
   @@map("Build")
 }
 
 model BuildItem {
-  id           Int     @id @default(autoincrement())
-  quantity     Int
-  price        Decimal @db.Decimal(10, 2)
+  id          Int     @id @default(autoincrement())
+  quantity    Int
+  price       Decimal @db.Decimal(10, 2)
   buildId     Int
   componentId Int
 
-  build     Build     @relation(fields: [buildId], references: [id] , onDelete: Cascade)
+  build     Build     @relation(fields: [buildId], references: [id], onDelete: Cascade)
   component Component @relation(fields: [componentId], references: [id])
 
   @@map("BuildItem")
 }
 
 model Address {
-  id         Int    @id @default(autoincrement())
-  label      String
-  name       String
-  phone      String
-  address    String
-  postalCode String
-  city       String
-  country    String
-  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String @db.Uuid
+  id                Int     @id @default(autoincrement())
+  label             String
+  name              String
+  phone             String
+  address           String
+  addressComplement String?
+  postalCode        String
+  city              String
+  country           String
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String  @db.Uuid
 }
 
 model Carrier {
@@ -167,7 +168,7 @@ model Order {
   status       String
   orderNumber  String?      @unique
   user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String       @db.Uuid
+  userId       String       @db.Uuid
   address      String
   carrierName  String
   carrierPrice Decimal      @db.Decimal(10, 2)
@@ -178,12 +179,12 @@ model Order {
 }
 
 model OrderItems {
+  id       String  @id @default(cuid())
   order    Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId  String
-  component String
+  product  String
   price    Decimal @db.Decimal(10, 2)
   quantity Int
-  id       String  @id @default(cuid())
 }
 
 enum Role {

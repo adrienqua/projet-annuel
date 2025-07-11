@@ -36,18 +36,17 @@ watchEffect(() => {
           >
         </li>
         <li>
-          <router-link to="/" class="hover:text-secondary-400 transition duration-300 font-medium"
-            >Services</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/" class="hover:text-secondary-400 transition duration-300 font-medium"
-            >Contact</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/about" class="hover:text-secondary-400 transition duration-300 font-medium"
+          <router-link
+            to="/about"
+            class="hover:text-secondary-400 transition duration-300 font-medium"
             >À propos</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            to="/cart"
+            class="hover:text-secondary-400 transition duration-300 font-medium"
+            >Panier</router-link
           >
         </li>
       </ul>
@@ -59,7 +58,7 @@ watchEffect(() => {
       >
         Se connecter
       </router-link>
-      <router-link to="/profil" v-else class="px-6 py-3 text-sm text-gray-300"
+      <router-link to="/account" v-else class="px-6 py-3 text-sm text-gray-300"
         >Bonjour, {{ user.email }}</router-link
       >
 
@@ -92,15 +91,16 @@ watchEffect(() => {
         >Comparateur</router-link
       >
       <router-link
-        to="/"
+        to="/about"
         class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
-        >Services</router-link
+        >À propos</router-link
       >
       <router-link
-        to="/"
+        to="/cart"
         class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
-        >Contact</router-link
+        >Panier</router-link
       >
+
       <router-link
         to="/login"
         v-if="!user.email"
@@ -108,7 +108,7 @@ watchEffect(() => {
       >
         Se connecter
       </router-link>
-      <router-link to="/profil" v-else class="px-6 py-3 text-sm text-gray-300"
+      <router-link to="/account" v-else class="px-6 py-3 text-sm text-gray-300"
         >Bonjour, {{ user.email }}</router-link
       >
     </div>

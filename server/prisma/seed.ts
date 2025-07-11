@@ -83,7 +83,7 @@ async function main() {
                 typeId: 1,
                 manufacturerId: 2,
                 imgUrl: '/img/components/amd_7800x3d.jpg',
-                price: 399.90,
+                price: 399.9,
             },
             {
                 releaseDate: new Date('2025-05-10'),
@@ -93,7 +93,7 @@ async function main() {
                 typeId: 1,
                 manufacturerId: 2,
                 imgUrl: '/img/components/amd_9800x3d.jpg',
-                price: 519.90,
+                price: 519.9,
             },
             {
                 releaseDate: new Date('2023-10-17'),
@@ -103,7 +103,7 @@ async function main() {
                 typeId: 1,
                 manufacturerId: 1,
                 imgUrl: '/img/components/intel_14900k.jpg',
-                price: 499.90,
+                price: 499.9,
             },
             {
                 releaseDate: new Date('2022-11-16'),
@@ -113,7 +113,7 @@ async function main() {
                 typeId: 2,
                 manufacturerId: 3,
                 imgUrl: '/img/components/nvidia_rtx4080.jpg',
-                price: 1079.90,
+                price: 1079.9,
             },
             {
                 releaseDate: new Date('2025-06-01'),
@@ -123,7 +123,7 @@ async function main() {
                 typeId: 2,
                 manufacturerId: 3,
                 imgUrl: '/img/components/nvidia_rtx5090.jpg',
-                price: 1359.90,
+                price: 1359.9,
             },
             {
                 releaseDate: new Date('2022-12-13'),
@@ -133,7 +133,7 @@ async function main() {
                 typeId: 2,
                 manufacturerId: 2,
                 imgUrl: '/img/components/amd_rx7900xt.jpg',
-                price: 719.90,
+                price: 719.9,
             },
             {
                 releaseDate: new Date('2023-03-15'),
@@ -145,7 +145,7 @@ async function main() {
                 typeId: 3,
                 manufacturerId: 15,
                 imgUrl: '/img/components/gskill_tridentz5.jpg',
-                price: 239.90,
+                price: 239.9,
             },
             {
                 releaseDate: new Date('2024-02-01'),
@@ -157,7 +157,7 @@ async function main() {
                 typeId: 3,
                 manufacturerId: 16,
                 imgUrl: '/img/components/corsair_vengeance_5600.jpg',
-                price: 119.90,
+                price: 119.9,
             },
             {
                 releaseDate: new Date('2022-05-10'),
@@ -167,7 +167,7 @@ async function main() {
                 typeId: 3,
                 manufacturerId: 4,
                 imgUrl: '/img/components/crucial_ballistix3600.jpg',
-                price: 71.90,
+                price: 71.9,
             },
             {
                 releaseDate: new Date('2023-05-15'),
@@ -183,7 +183,7 @@ async function main() {
                 typeId: 4,
                 manufacturerId: 12,
                 imgUrl: '/img/components/asus_x670e_hero.jpg',
-                price: 399.90,
+                price: 178.9,
             },
             {
                 releaseDate: new Date('2023-02-20'),
@@ -199,7 +199,7 @@ async function main() {
                 typeId: 4,
                 manufacturerId: 13,
                 imgUrl: '/img/components/msi_b650m_mortar.jpg',
-                price: 143.90,
+                price: 143.9,
             },
             {
                 releaseDate: new Date('2022-10-10'),
@@ -215,7 +215,7 @@ async function main() {
                 typeId: 4,
                 manufacturerId: 14,
                 imgUrl: '/img/components/gigabyte_x670_aorus_elite.jpg',
-                price: 199.90,
+                price: 199.9,
             },
             {
                 releaseDate: new Date('2022-11-01'),
@@ -231,7 +231,7 @@ async function main() {
                 typeId: 4,
                 manufacturerId: 12,
                 imgUrl: '/img/components/asus_z790_hero.jpg',
-                price: 399.90,
+                price: 189.9,
             },
             {
                 releaseDate: new Date('2023-01-12'),
@@ -247,7 +247,7 @@ async function main() {
                 typeId: 4,
                 manufacturerId: 13,
                 imgUrl: '/img/components/msi_b760m_mortar.jpg',
-                price: 127.90,
+                price: 127.9,
             },
             {
                 releaseDate: new Date('2022-12-05'),
@@ -263,7 +263,7 @@ async function main() {
                 typeId: 4,
                 manufacturerId: 14,
                 imgUrl: '/img/components/gigabyte_z790_aorus_master.jpg',
-                price: 319.90,
+                price: 184.9,
             },
             // Ventirads / AIO
             {
@@ -274,7 +274,7 @@ async function main() {
                 typeId: 5,
                 manufacturerId: 6,
                 imgUrl: '/img/components/noctua_nh-d15.jpg',
-                price: 79.90,
+                price: 79.9,
             },
             {
                 releaseDate: new Date('2018-06-10'),
@@ -284,7 +284,7 @@ async function main() {
                 typeId: 5,
                 manufacturerId: 7,
                 imgUrl: '/img/components/bequiet_dark_rock_pro_4.jpg',
-                price: 71.90,
+                price: 71.9,
             },
             {
                 releaseDate: new Date('2021-02-01'),
@@ -294,7 +294,7 @@ async function main() {
                 typeId: 5,
                 manufacturerId: 6,
                 imgUrl: '/img/components/noctua_nh-u12a.jpg',
-                price: 95.90,
+                price: 95.9,
             },
             {
                 releaseDate: new Date('2023-10-01'),
@@ -304,7 +304,7 @@ async function main() {
                 typeId: 5,
                 manufacturerId: 18,
                 imgUrl: '/img/components/arctic_liquid_freezer_iii_360.jpg',
-                price: 103.90,
+                price: 103.9,
             },
             {
                 releaseDate: new Date('2024-01-15'),
@@ -314,7 +314,7 @@ async function main() {
                 typeId: 5,
                 manufacturerId: 19,
                 imgUrl: '/img/components/nzxt_kraken_240_rgb_blanc.jpg',
-                price: 111.90,
+                price: 111.9,
             },
             {
                 releaseDate: new Date('2023-01-01'),
@@ -324,7 +324,7 @@ async function main() {
                 typeId: 6,
                 manufacturerId: 5,
                 imgUrl: '/img/components/samsung_990_pro.jpg',
-                price: 143.90,
+                price: 143.9,
             },
             {
                 releaseDate: new Date('2022-03-15'),
@@ -334,7 +334,7 @@ async function main() {
                 typeId: 6,
                 manufacturerId: 4,
                 imgUrl: '/img/components/crucial_p5_plus.jpg',
-                price: 87.90,
+                price: 87.9,
             },
             {
                 releaseDate: new Date('2021-04-01'),
@@ -344,7 +344,7 @@ async function main() {
                 typeId: 6,
                 manufacturerId: 5,
                 imgUrl: '/img/components/samsung_980.jpg',
-                price: 71.90,
+                price: 71.9,
             },
             {
                 releaseDate: new Date('2022-03-01'),
@@ -360,7 +360,7 @@ async function main() {
                 typeId: 7,
                 manufacturerId: 8,
                 imgUrl: '/img/components/lian_li_o11_dynamic_evo.jpg',
-                price: 119.90,
+                price: 119.9,
             },
             {
                 releaseDate: new Date('2021-06-15'),
@@ -376,7 +376,7 @@ async function main() {
                 typeId: 7,
                 manufacturerId: 10,
                 imgUrl: '/img/components/fractal_design_meshify_2.jpg',
-                price: 111.90,
+                price: 111.9,
             },
             {
                 releaseDate: new Date('2023-09-10'),
@@ -392,7 +392,7 @@ async function main() {
                 typeId: 7,
                 manufacturerId: 11,
                 imgUrl: '/img/components/phanteks_eclipse_p500a.jpg',
-                price: 103.90,
+                price: 103.9,
             },
             {
                 releaseDate: new Date('2020-11-20'),
@@ -408,7 +408,7 @@ async function main() {
                 typeId: 7,
                 manufacturerId: 8,
                 imgUrl: '/img/components/lian_li_o11_dynamic_mini.jpg',
-                price: 95.90,
+                price: 95.9,
             },
             {
                 releaseDate: new Date('2022-07-10'),
@@ -423,7 +423,7 @@ async function main() {
                 typeId: 8,
                 manufacturerId: 7,
                 imgUrl: '/img/components/bequiet_straight_power_11_850w.jpg',
-                price: 151.90,
+                price: 151.9,
             },
             {
                 releaseDate: new Date('2021-09-01'),
@@ -438,7 +438,7 @@ async function main() {
                 typeId: 8,
                 manufacturerId: 9,
                 imgUrl: '/img/components/seasonic_prime_tx_1000.jpg',
-                price: 207.90,
+                price: 207.9,
             },
             {
                 releaseDate: new Date('2023-05-01'),
@@ -453,7 +453,7 @@ async function main() {
                 typeId: 8,
                 manufacturerId: 7,
                 imgUrl: '/img/components/bequiet_pure_power_12_m_750w.jpg',
-                price: 103.90,
+                price: 103.9,
             },
             {
                 releaseDate: new Date('2022-01-10'),
@@ -468,7 +468,7 @@ async function main() {
                 typeId: 8,
                 manufacturerId: 17,
                 imgUrl: '/img/components/fractal_design_ion_sfx_650g.jpg',
-                price: 87.90,
+                price: 87.9,
             },
             {
                 releaseDate: new Date('2018-05-01'),
@@ -478,7 +478,7 @@ async function main() {
                 typeId: 9,
                 manufacturerId: 6,
                 imgUrl: '/img/components/noctua_nf-a12x25_pwm.jpg',
-                price: 23.90,
+                price: 23.9,
             },
             {
                 releaseDate: new Date('2017-06-01'),
@@ -488,7 +488,7 @@ async function main() {
                 typeId: 9,
                 manufacturerId: 6,
                 imgUrl: '/img/components/noctua_nf-f12_pwm.jpg',
-                price: 19.90,
+                price: 19.9,
             },
             {
                 releaseDate: new Date('2022-11-01'),
@@ -498,7 +498,7 @@ async function main() {
                 typeId: 9,
                 manufacturerId: 7,
                 imgUrl: '/img/components/bequiet_silent_wings_4_120mm_pwm.jpg',
-                price: 22.90,
+                price: 22.9,
             },
         ],
     })
@@ -591,8 +591,7 @@ async function main() {
             {
                 inStock: false,
                 lastChecked: new Date(),
-                productUrl:
-                    'https://www.newegg.com/asus-rog-strix-z590-e-gaming/p/N82E16813119214',
+                productUrl: 'https://www.newegg.com/asus-rog-strix-z590-e-gaming/p/N82E16813119214',
                 vendorId: 2,
                 componentId: 5,
             },
@@ -691,6 +690,40 @@ async function main() {
             { quantity: 2, price: 75.99, buildId: 2, componentId: 4 },
             { quantity: 1, price: 289.99, buildId: 2, componentId: 5 },
         ],
+    })
+
+    await prisma.carrier.createMany({
+        data: [
+            {
+                name: 'Colissimo',
+                description: 'Livraison à domicile sous 2 jours avec suivi',
+                price: 5.9,
+            },
+            {
+                name: 'Chronopost',
+                description: 'Livraison express en 24h',
+                price: 9.9,
+            },
+            {
+                name: 'DHL',
+                description: 'Livraison internationale rapide avec suivi',
+                price: 14.9,
+            },
+        ],
+    })
+
+    await prisma.address.create({
+        data: {
+            label: 'Adresse principale',
+            name: 'Admin Istrator',
+            phone: '+33 6 12 34 56 78',
+            address: '12 Rue de Vaugirard',
+            addressComplement: 'Bâtiment B, 3ᵉ étage',
+            postalCode: '75015',
+            city: 'Paris',
+            country: 'France',
+            userId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        },
     })
 }
 

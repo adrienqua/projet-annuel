@@ -1,5 +1,4 @@
 import type { BuildItem } from './buildItem'
-import type { Component } from './component'
 
 export interface Build {
   id: number
@@ -9,3 +8,5 @@ export interface Build {
   createdAt: string
   items: Partial<BuildItem>[]
 }
+
+

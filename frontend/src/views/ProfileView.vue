@@ -3,6 +3,7 @@ import type { Build } from '@/components/types/build'
 import type { User } from '@/components/types/User'
 import { getBuilds } from '@/services/BuildAPI'
 import { useAuth } from '@/stores/auth'
+import { formatPrice } from '@/utils/formatPrice'
 import { onMounted, ref } from 'vue'
 
 const auth = useAuth()
@@ -22,7 +23,7 @@ onMounted(() => {
 </script>
 <template>
   <main>
-    <h1 class="font-extrabold text-4xl">Profil</h1>
+    <h1 class="font-extrabold text-4xl">Mon compte</h1>
     <div class="mt-6">
       <h2 class="text-2xl font-extrabold mb-4">Mes configurations</h2>
       <div v-if="builds.length === 0"><Loader /></div>
@@ -38,7 +39,7 @@ onMounted(() => {
               <h3 class="text-gray-700 font-semibold">
                 {{ build.name }}
               </h3>
-              <span class="text-secondary-400 font-semibold">{{ build.price }} €</span>
+              <span class="text-secondary-400 font-semibold">{{ formatPrice(build.price) }}</span>
             </div>
             <ul>
               <li v-for="component in build.items" :key="component.id">
