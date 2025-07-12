@@ -4,7 +4,7 @@ import { prisma } from '../../lib/prisma'
 
 const router = Router()
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req: Request, res: Response) => {
     const id = Number(req.params.id)
 
     if (isNaN(id)) {
@@ -38,14 +38,9 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.get('/', async (_req, res) => {
+router.get('/', async (req: Request, res: Response) => {
     try {
-        const components = await prisma.component.findMany({
-            select: {
-                id: true,
-                name: true,
-            },
-        })
+        const components = await prisma.component.findMany()
         res.status(200).json(components)
     } catch (error: any) {
         res.status(500).json({ message: 'Erreur serveur', error: error.message })

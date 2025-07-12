@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import 'tailwindcss';
 
 @plugin "daisyui" {
@@ -40,6 +41,7 @@
 }
 
 @theme {
+  --font-poppins: 'Poppins', sans-serif;
   --color-primary: #061a40;
   --color-primary-50: #ebf8ff;
   --color-primary-100: #d3eeff;
@@ -66,4 +68,18 @@
   --color-secondary-950: #003521;
   --color-background: #f5f5f5;
   --color-black: #161616;
+}
+
+:root {
+  --toastify-color-success: #31f9a9;
+  --toastify-text-color-success: #095e3f;
+  --toastify-color-error: oklch(80.8% 0.114 19.571);
+  --toastify-text-color-error: oklch(39.6% 0.141 25.723);
+  --toastify-color-info: oklch(80% 0.105 251.813);
+  --toastify-text-color-info: oklch(29% 0.066 243.157);
+  --toastify-color-warning: oklch(92.4% 0.12 95.746);
+  --toastify-text-color-warning: oklch(47.3% 0.137 46.201);
+}
+.Toastify__toast-theme--colored {
+  border-radius: 1rem;
 }

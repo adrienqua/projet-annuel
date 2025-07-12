@@ -8,6 +8,7 @@ import ProfileView from '@/views/ProfileView.vue'
 import AboutView from '@/views/AboutView.vue'
 import CheckoutSuccess from '@/views/CheckoutSuccess.vue'
 import CartView from '@/views/CartView.vue'
+import CheckoutView from '@/views/CheckoutView.vue'
 
 const routes = [
   {
@@ -50,7 +51,11 @@ const routes = [
     name: 'Cart',
     component: CartView,
   },
-
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: CheckoutView,
+  },
   {
     path: '/about',
     name: 'About',

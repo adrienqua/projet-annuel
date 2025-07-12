@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useAuth } from '@/stores/auth'
+import { useCartStore } from '@/stores/cart'
+import { ShoppingCartIcon, UserIcon } from '@heroicons/vue/24/solid'
 import { ref, watchEffect } from 'vue'
 
 const { user } = useAuth() as any
+const { cartProducts } = useCartStore()
 const isOpen = ref(false)
 
 const toggleMenu = () => {
@@ -42,25 +45,27 @@ watchEffect(() => {
             >À propos</router-link
           >
         </li>
-        <li>
-          <router-link
-            to="/cart"
-            class="hover:text-secondary-400 transition duration-300 font-medium"
-            >Panier</router-link
-          >
-        </li>
       </ul>
 
-      <router-link
-        to="/login"
-        v-if="!user.email"
-        class="bg-secondary-400 hover:bg-secondary-400/90 text-white font-medium px-4 py-2 rounded-lg transition hidden md:block"
-      >
-        Se connecter
-      </router-link>
-      <router-link to="/account" v-else class="px-6 py-3 text-sm text-gray-300"
-        >Bonjour, {{ user.email }}</router-link
-      >
+      <div class="hidden md:flex text-sm">
+        <router-link
+          to="/cart"
+          class="hover:text-secondary-400 transition duration-300 font-medium flex gap-2 items-center"
+          ><ShoppingCartIcon class="w-5 h-5" />
+          <span class="text-gray-300">({{ cartProducts?.length }})</span></router-link
+        >
+        <router-link
+          to="/login"
+          v-if="!user.email"
+          class="bg-secondary-400 hover:bg-secondary-400/90 text-white font-medium px-4 py-2 rounded-lg transition hidden md:block"
+        >
+          Se connecter
+        </router-link>
+        <router-link to="/account" v-else class="px-6 py-3 text-sm flex gap-2 items-center">
+          <UserIcon class="w-5 h-5" />
+          <span class="text-gray-300">{{ user.name }}</span></router-link
+        >
+      </div>
 
       <button
         class="md:hidden text-white focus:outline-none"
@@ -79,7 +84,35 @@ watchEffect(() => {
     </div>
 
     <!-- Mobile  -->
-    <div v-if="isOpen" class="md:hidden border-t border-gray-700">
+    <div v-if="isOpen" class="md:hidden border-t border-gray-700 py-3">
+      <div class="flex items-between justify-between">
+        <div class="w-3/4">
+          <router-link
+            to="/login"
+            v-if="!user.email"
+            class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
+          >
+            Se connecter
+          </router-link>
+
+          <router-link
+            to="/account"
+            v-else
+            class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-2 items-center"
+          >
+            <UserIcon class="w-5 h-5" />
+            <span class="text-gray-300">{{ user.name }}</span></router-link
+          >
+        </div>
+        <div class="">
+          <router-link
+            to="/cart"
+            class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-2 items-center justify-end"
+            ><ShoppingCartIcon class="w-5 h-5" />
+            <span class="text-gray-300">({{ cartProducts?.length }})</span></router-link
+          >
+        </div>
+      </div>
       <router-link
         to="/builder"
         class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
@@ -94,22 +127,6 @@ watchEffect(() => {
         to="/about"
         class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
         >À propos</router-link
-      >
-      <router-link
-        to="/cart"
-        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
-        >Panier</router-link
-      >
-
-      <router-link
-        to="/login"
-        v-if="!user.email"
-        class="block px-6 py-3 text-white bg-blue-700 hover:bg-blue-600"
-      >
-        Se connecter
-      </router-link>
-      <router-link to="/account" v-else class="px-6 py-3 text-sm text-gray-300"
-        >Bonjour, {{ user.email }}</router-link
       >
     </div>
   </nav>

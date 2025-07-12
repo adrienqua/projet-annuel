@@ -22,11 +22,9 @@ export const getComponentById = async (id: number) => {
   }
 }
 
-export const getComponents = async (manufacturerId?: number): Promise<Component[]> => {
+export const getComponents = async (): Promise<Component[]> => {
   try {
-    const res = await axios.get(`${API}/components`, {
-      params: manufacturerId ? { manufacturerId } : {},
-    })
+    const res = await axios.get(`${API}/components`)
     return res.data
   } catch (error) {
     console.error(error)

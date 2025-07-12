@@ -7,6 +7,7 @@ import componentTypeRoute from './routes/componentType.route'
 import buildRoute from './routes/build.route'
 import checkoutRoute from './routes/checkout.route'
 import orderRoute from './routes/order.route'
+import cartRoute from './routes/cart.route'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -25,6 +26,7 @@ app.use('/api/builds', buildRoute)
 app.use('/api/compare', compareRoute)
 app.use('/api/checkout', checkoutRoute)
 app.use('/api/orders', orderRoute)
+app.use('/api/cart', cartRoute)
 
 app.get('/', (req, res) => {
     res.send('Hello from TypeScript!')

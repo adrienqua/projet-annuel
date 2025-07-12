@@ -13,9 +13,14 @@ import { useAuth } from '@/stores/auth'
 import type { User } from './types/User'
 import { formatPrice } from '@/utils/formatPrice'
 import { toast } from 'vue3-toastify'
+import { useCartStore } from '@/stores/cart'
+import { useRouter } from 'vue-router'
 
 const auth = useAuth()
+const cart = useCartStore()
 const user = auth.user as User
+
+const router = useRouter()
 
 const modalRef = ref<{ open: () => void; close: () => void } | null>(null)
 const test = ref('test')
@@ -137,7 +142,11 @@ const handleSaveBuild = async () => {
     })),
   })
 
-  toast('Configuration sauvegardée avec succès !')
+  cart.handleAddToCart(selectedComponentsList.value.map((c) => c.id))
+
+  router.push('/cart').then(() => {
+    toast.success('Configuration ajoutée au panier avec succès !')
+  })
 }
 
 const isQuantityMaxxed = (type: string): boolean => {
@@ -180,13 +189,13 @@ const isQuantityMaxxed = (type: string): boolean => {
         </div>
       </div>
     </div>
-    <div class="w-full md:w-1/4 bg-white p-6 rounded-3xl shadow-md min-h-5rem">
+    <div class="w-full md:w-80 bg-white p-6 rounded-3xl shadow-md min-h-5rem">
       <h2 class="font-extrabold text-2xl mb-6">Récapitulatif</h2>
       <ul>
         <li v-for="component in selectedComponentsList" :key="component.id" class="mb-4">
           <div class="flex justify-between">
-            <span class="font-medium w-3/4">{{ component.name }}</span>
-            <span class="">{{ formatPrice(component.price) }}</span>
+            <span class="font-medium">{{ component.name }}</span>
+            <span class="min-w-20">{{ formatPrice(component.price) }}</span>
           </div>
         </li>
       </ul>
@@ -196,8 +205,12 @@ const isQuantityMaxxed = (type: string): boolean => {
           <span class="text-secondary-400 font-extrabold">{{ formatPrice(totalPrice) }}</span>
         </div>
       </div>
-      <button class="btn btn-secondary rounded-3xl w-full" @click="handleSaveBuild">
-        Enregistrer la config
+      <button
+        class="btn btn-secondary rounded-3xl w-full"
+        @click="handleSaveBuild"
+        :disabled="selectedComponentsList.length === 0"
+      >
+        Ajouter au panier
       </button>
     </div>
   </div>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { checkoutSuccess } from '@/services/CheckoutAPI'
+import { useCartStore } from '@/stores/cart'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -7,7 +8,7 @@ const route = useRoute()
 const orderId = ref<string>(route.query.orderId as string)
 const sessionId = ref<string>(route.query.sessionId as string)
 
-//const { handleEmptyCart } = useCartContext()
+const { handleEmptyCart } = useCartStore()
 
 const handleSuccess = async () => {
   const res = await checkoutSuccess({
@@ -16,7 +17,7 @@ const handleSuccess = async () => {
   })
 
   if (res?.data?.orderStatus === 'PAID') {
-    //handleEmptyCart()
+    handleEmptyCart()
   }
 }
 

@@ -36,7 +36,7 @@ onMounted(() => {
             class="mb-2 bg-white rounded-3xl p-6 shadow-md"
           >
             <div class="flex justify-between">
-              <h3 class="text-gray-700 font-semibold">
+              <h3 class="text-gray-700 font-semibold mb-4">
                 {{ build.name }}
               </h3>
               <span class="text-secondary-400 font-semibold">{{ formatPrice(build.price) }}</span>
