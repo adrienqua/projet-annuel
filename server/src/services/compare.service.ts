@@ -9,7 +9,6 @@ import {
 } from '../utils/scoring'
 
 export async function compareComponentsById(id1: number, id2: number) {
-    // Récupération des deux composants, en incluant leur type si besoin
     const [comp1, comp2] = await Promise.all([
         prisma.component.findUnique({ where: { id: id1 } }),
         prisma.component.findUnique({ where: { id: id2 } }),
@@ -19,16 +18,14 @@ export async function compareComponentsById(id1: number, id2: number) {
         throw new Error('Un ou deux composants sont introuvables.')
     }
 
-    // 1️⃣ Comparez les typeId au lieu de comp1.type
     if (comp1.typeId !== comp2.typeId) {
         return {
-            result: '❌ Les composants sont de types différents, comparaison impossible.',
+            result: 'Les composants sont de types différents, comparaison impossible.',
             score1: null,
             score2: null,
         }
     }
 
-    // 2️⃣ On considère que vos specs JSON contiennent les détails
     const details1 = comp1.specs as any
     const details2 = comp2.specs as any
 
@@ -36,33 +33,33 @@ export async function compareComponentsById(id1: number, id2: number) {
     let score2 = 0
 
     switch (comp1.typeId) {
-        case 1: // CPU
+        case 1:
             score1 = computeCPUScore(details1)
             score2 = computeCPUScore(details2)
             break
-        case 2: // GPU
+        case 2:
             score1 = computeGPUScore(details1)
             score2 = computeGPUScore(details2)
             break
-        case 3: // RAM
+        case 3:
             score1 = computeRAMScore(details1)
             score2 = computeRAMScore(details2)
             break
-        case 4: // STORAGE
+        case 4:
             score1 = computeStorageScore(details1)
             score2 = computeStorageScore(details2)
             break
         default:
             return {
-                result: `⚠️ Type ID ${comp1.typeId} non pris en charge.`,
+                result: `Type ID ${comp1.typeId} non pris en charge.`,
                 score1: null,
                 score2: null,
             }
     }
 
-    let verdict = '⚖️ Les deux composants sont équivalents.'
-    if (score1 > score2) verdict = `✅ ${comp1.name} est meilleur (score ${score1.toFixed(1)} vs ${score2.toFixed(1)}).`
-    else if (score2 > score1) verdict = `✅ ${comp2.name} est meilleur (score ${score2.toFixed(1)} vs ${score1.toFixed(1)}).`
+    let verdict = 'Les deux composants sont équivalents.'
+    if (score1 > score2) verdict = `${comp1.name} est meilleur (score ${score1.toFixed(1)} vs ${score2.toFixed(1)}).`
+    else if (score2 > score1) verdict = `${comp2.name} est meilleur (score ${score2.toFixed(1)} vs ${score1.toFixed(1)}).`
 
     return {
         result: verdict,
