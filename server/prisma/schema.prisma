@@ -113,6 +113,8 @@ model User {
   builds    Build[]
   orders    Order[]
   addresses Address[]
+  twoFaSecret String?
+  asTwoFA Boolean
 
   @@map("User")
 }

@@ -12,6 +12,8 @@ async function main() {
                 email: 'admin1@test.com',
                 role: 'ADMIN',
                 password: await bcrypt.hash('admin', 12),
+                twoFaSecret: null,
+                asTwoFA: false,
             },
             {
                 createdAt: new Date(Date.now() - 60 * 24 * 3600 * 1000),
@@ -19,6 +21,8 @@ async function main() {
                 email: 'admin2@test.com',
                 role: 'ADMIN',
                 password: await bcrypt.hash('admin', 12),
+                twoFaSecret: null,
+                asTwoFA: false,
             },
             {
                 createdAt: new Date(Date.now() - 45 * 24 * 3600 * 1000),
@@ -26,6 +30,8 @@ async function main() {
                 email: 'admin3@test.com',
                 role: 'ADMIN',
                 password: await bcrypt.hash('admin', 12),
+                twoFaSecret: null,
+                asTwoFA: false,
             },
         ],
     })
