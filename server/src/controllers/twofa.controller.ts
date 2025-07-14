@@ -6,7 +6,12 @@ import QRCode from 'qrcode'
 export const setup2FA = async (req: Request, res: Response) => {
     const { userId } = req.body
 
-    const secret = speakeasy.generateSecret({ name: `TonApp (${userId})` })
+    const secret = speakeasy.generateSecret({ name: `projetAnnuel (${userId})` })
+
+    // Vérification de sécurité
+    if (!secret.otpauth_url) {
+        return res.status(500).json({ message: "Impossible de générer l'URL OTP" })
+    }
 
     await prisma.user.update({
         where: { id: userId },

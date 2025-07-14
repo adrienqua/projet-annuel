@@ -20,7 +20,7 @@ router.post('/', async (req: Request, res: Response) => {
         const { name, email, password, role } = userSchema.parse(req.body)
 
         const user = await prisma.user.create({
-            data: { name, email, password, role },
+            data: { name, email, password, role, asTwoFA: false },
         })
         res.status(201).json(user)
     } catch (error) {
@@ -44,17 +44,18 @@ router.get('/:id', async (req: Request, res: Response) => {
 router.put('/:id', async (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        const { name, email, password, role } = userSchema.parse(req.body)
+        const { name, email, password, role, asTwoFA = false } = req.body
 
         const user = await prisma.user.update({
             where: { id },
-            data: { name, email, password, role },
+            data: { name, email, password, role, asTwoFA },
         })
         res.json(user)
     } catch (error) {
         res.status(500).json({ error })
     }
 })
+
 
 router.delete('/:id', async (req: Request, res: Response) => {
     try {
