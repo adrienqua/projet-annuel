@@ -32,7 +32,7 @@ app.use('/api/compare', compareRoute)
 app.use('/api/checkout', checkoutRoute)
 app.use('/api/orders', orderRoute)
 app.use('/api/cart', cartRoute)
-app.use('/twofa', twofaRoute)
+app.use('/api/twofa', twofaRoute)
 
 app.get('/', (req, res) => {
     res.send('Hello from TypeScript!')
