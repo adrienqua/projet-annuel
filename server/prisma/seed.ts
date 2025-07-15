@@ -13,7 +13,7 @@ async function main() {
                 role: 'ADMIN',
                 password: await bcrypt.hash('admin', 12),
                 twoFaSecret: null,
-                asTwoFA: false,
+                isTwoFA: false,
             },
             {
                 createdAt: new Date(Date.now() - 60 * 24 * 3600 * 1000),
@@ -22,7 +22,7 @@ async function main() {
                 role: 'ADMIN',
                 password: await bcrypt.hash('admin', 12),
                 twoFaSecret: null,
-                asTwoFA: false,
+                isTwoFA: false,
             },
             {
                 createdAt: new Date(Date.now() - 45 * 24 * 3600 * 1000),
@@ -31,7 +31,7 @@ async function main() {
                 role: 'ADMIN',
                 password: await bcrypt.hash('admin', 12),
                 twoFaSecret: null,
-                asTwoFA: false,
+                isTwoFA: false,
             },
         ],
     })

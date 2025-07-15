@@ -41,7 +41,7 @@ export const verify2FA = async (req: Request, res: Response) => {
     if (verified) {
         await prisma.user.update({
             where: { id: userId },
-            data: { asTwoFA: true },
+            data: { isTwoFA: true },
         })
     }
 

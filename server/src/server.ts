@@ -15,13 +15,14 @@ import cors from 'cors'
 dotenv.config()
 
 const app = express()
-const PORT = Number(process.env.PORT) || 5000;
+const PORT = Number(process.env.PORT) || 5000
 
-
-app.use(cors({
-    origin: ['http://localhost:3010', 'http://localhost:5173'],
-    credentials: true,
-}))
+app.use(
+    cors({
+        origin: ['http://localhost:3010', 'http://localhost:5173', 'http://localhost:5174'],
+        credentials: true,
+    })
+)
 app.use(express.json())
 app.use('/api/auth', userAuth)
 app.use('/api/users', userRoute)

@@ -15,9 +15,9 @@ const requires2FA = ref(false)
 const handleLogin = async () => {
   try {
     const res = await login(email.value, password.value)
-    const { token, userId: id, asTwoFA } = res.data
+    const { token, userId: id, isTwoFA } = res?.data
 
-    if (asTwoFA) {
+    if (isTwoFA) {
       userId.value = id
       requires2FA.value = true
       localStorage.setItem('temp_token', token)
@@ -25,7 +25,7 @@ const handleLogin = async () => {
       localStorage.setItem('token', token)
       router.push('/')
     }
-  } catch {
+  } catch (e) {
     alert('Email ou mot de passe invalide')
   }
 }

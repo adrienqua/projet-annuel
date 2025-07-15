@@ -104,17 +104,17 @@ model PriceHistory {
 }
 
 model User {
-  id        String    @id @default(uuid()) @db.Uuid
-  createdAt DateTime  @default(now())
-  name      String    @db.VarChar(150)
-  email     String    @unique @db.VarChar(255)
-  password  String    @db.VarChar(255)
-  role      Role
-  builds    Build[]
-  orders    Order[]
-  addresses Address[]
+  id          String    @id @default(uuid()) @db.Uuid
+  createdAt   DateTime  @default(now())
+  name        String    @db.VarChar(150)
+  email       String    @unique @db.VarChar(255)
+  password    String    @db.VarChar(255)
+  role        Role
+  builds      Build[]
+  orders      Order[]
+  addresses   Address[]
   twoFaSecret String?
-  asTwoFA Boolean
+  isTwoFA     Boolean
 
   @@map("User")
 }
