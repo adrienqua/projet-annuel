@@ -8,6 +8,8 @@ import buildRoute from './routes/build.route'
 import checkoutRoute from './routes/checkout.route'
 import orderRoute from './routes/order.route'
 import cartRoute from './routes/cart.route'
+import carrierRoute from './routes/carrier.route'
+import addressRoute from './routes/address.route'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -27,6 +29,8 @@ app.use('/api/compare', compareRoute)
 app.use('/api/checkout', checkoutRoute)
 app.use('/api/orders', orderRoute)
 app.use('/api/cart', cartRoute)
+app.use('/api/carriers', carrierRoute)
+app.use('/api/addresses', addressRoute)
 
 app.get('/', (req, res) => {
     res.send('Hello from TypeScript!')

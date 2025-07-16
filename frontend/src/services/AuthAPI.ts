@@ -1,4 +1,4 @@
-import type { User } from '@/components/types/User'
+import type { User } from '@/components/types/user'
 import axios from 'axios'
 
 const API = import.meta.env.VITE_API_URL

@@ -52,6 +52,7 @@ model Component {
 
   vendorComponents VendorComponent[]
   buildItems       BuildItem[]
+  orderItems       OrderItems[]
 
   @@map("Component")
 }
@@ -179,12 +180,14 @@ model Order {
 }
 
 model OrderItems {
-  id       String  @id @default(cuid())
-  order    Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  orderId  String
-  product  String
-  price    Decimal @db.Decimal(10, 2)
-  quantity Int
+  id          String     @id @default(cuid())
+  order       Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId     String
+  product     String
+  price       Decimal    @db.Decimal(10, 2)
+  quantity    Int
+  componentId Int?
+  component   Component? @relation(fields: [componentId], references: [id])
 }
 
 enum Role {

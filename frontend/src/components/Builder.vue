@@ -10,7 +10,7 @@ import { PlusIcon } from '@heroicons/vue/24/outline'
 import ComponentList from './ComponentList.vue'
 import { createBuild } from '@/services/BuildAPI'
 import { useAuth } from '@/stores/auth'
-import type { User } from './types/User'
+import type { User } from './types/user'
 import { formatPrice } from '@/utils/formatPrice'
 import { toast } from 'vue3-toastify'
 import { useCartStore } from '@/stores/cart'
@@ -161,10 +161,10 @@ const isQuantityMaxxed = (type: string): boolean => {
   <div v-if="componentTypes.length === 0"><Loader /></div>
   <div v-else class="flex flex-col md:flex-row gap-8 items-start">
     <div class="w-full md:w-3/4 bg-white rounded-3xl shadow-md p-6">
-      <h2 class="font-extrabold text-2xl mb-6">Composants</h2>
+      <h2 class="font-montserrat font-black text-xl mb-6">Composants</h2>
       <div v-for="type in componentTypes" :key="type.id">
         <div
-          class="bg-primary-950 text-white px-6 py-4 text-xl font-semibold rounded-3xl group"
+          class="bg-primary-950 text-white px-6 py-3.5 text-md font-montserrat font-semibold rounded-3xl group"
           :class="`${!isQuantityMaxxed(type.reference) && 'cursor-pointer'}`"
           @click="isQuantityMaxxed(type.reference) ? null : handleSelectType(type)"
         >
@@ -174,7 +174,7 @@ const isQuantityMaxxed = (type: string): boolean => {
               class="text-secondary-400 cursor-pointer transition-all duration-300 group-hover:translate-x-1"
               v-if="!isQuantityMaxxed(type.reference)"
             >
-              <PlusIcon class="w-8 h-8" />
+              <PlusIcon class="w-7 h-7" />
             </button>
           </div>
         </div>
@@ -190,7 +190,7 @@ const isQuantityMaxxed = (type: string): boolean => {
       </div>
     </div>
     <div class="w-full md:w-80 bg-white p-6 rounded-3xl shadow-md min-h-5rem">
-      <h2 class="font-extrabold text-2xl mb-6">Récapitulatif</h2>
+      <h2 class="font-montserrat font-black text-xl mb-4">Récapitulatif</h2>
       <ul>
         <li v-for="component in selectedComponentsList" :key="component.id" class="mb-4">
           <div class="flex justify-between">
@@ -200,9 +200,11 @@ const isQuantityMaxxed = (type: string): boolean => {
         </li>
       </ul>
       <div>
-        <div class="flex justify-between items-center mb-4 text-lg">
-          <span class="font-extrabold">Total</span>
-          <span class="text-secondary-400 font-extrabold">{{ formatPrice(totalPrice) }}</span>
+        <div class="flex justify-between items-center mb-4 text-md">
+          <span class="font-montserrat font-extrabold">Total</span>
+          <span class="text-secondary-400 font-montserrat font-extrabold">{{
+            formatPrice(totalPrice)
+          }}</span>
         </div>
       </div>
       <button
@@ -215,7 +217,7 @@ const isQuantityMaxxed = (type: string): boolean => {
     </div>
   </div>
 
-  <Modal ref="modalRef" title="Sélectionner un composant">
+  <Modal ref="modalRef" title="Sélectionner un composant" class="font-medium">
     <ComponentList
       :components="selectedType.components"
       :handleSelectComponent="handleSelectComponent"

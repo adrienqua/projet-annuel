@@ -56,6 +56,7 @@ router.post('/', async (req: Request, res: Response) => {
                 quantity,
                 price: product.price,
                 product: product.name,
+                componentId: product.id,
             })
         }
 
