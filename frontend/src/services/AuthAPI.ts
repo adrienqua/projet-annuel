@@ -28,3 +28,10 @@ export const getUser = async (email: string): Promise<User> => {
     throw error
   }
 }
+
+export const get2FAQrCode = async (userId: string) => {
+  const res = await axios.get(`${API}/twofa/setup`, {
+    params: { userId },
+  })
+  return res.data
+}

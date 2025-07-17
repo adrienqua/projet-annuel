@@ -14,7 +14,6 @@ export function computeGPUScore(details: any): number {
         (details.tdp_W || 0) * 0.3
     )
 }
-
 export function computeRAMScore(details: any): number {
     return (
         (details.capacity_GB || 0) * 2 +
@@ -22,7 +21,6 @@ export function computeRAMScore(details: any): number {
         (details.latency_CL || 0) * 0.5
     )
 }
-
 export function computeStorageScore(details: any): number {
     return (
         (details.capacity_GB || 0) * 0.5 +

@@ -40,7 +40,12 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.get('/', async (req: Request, res: Response) => {
     try {
-        const components = await prisma.component.findMany()
+        const components = await prisma.component.findMany({
+            include: {
+                type: true,
+                manufacturer: true,
+            }
+        })
         res.status(200).json(components)
     } catch (error: any) {
         res.status(500).json({ message: 'Erreur serveur', error: error.message })
