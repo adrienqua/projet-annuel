@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { setup2FA, verify2FA } from '@/services/TwoFAAPI'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 const userId = localStorage.getItem('userId') || ''
 const qrCodeUrl = ref<string | null>(null)
@@ -22,18 +23,27 @@ const handleSetup = async () => {
 
 const handleVerify = async () => {
   try {
-    const res = await verify2FA(userId, code.value)
-    if (res.verified) {
-      message.value = '✅ 2FA activé avec succès'
-      setTimeout(() => router.push('/'), 1500)
-    } else {
-      message.value = '❌ Code incorrect'
-    }
+    await verify2FA(userId, code.value)
+    message.value = '2FA activé avec succès'
+    setTimeout(() => router.push('/'), 1500)
   } catch (e) {
-    message.value = 'Erreur lors de la vérification'
+    message.value = 'Code incorrect'
     console.error(e)
   }
 }
+
+const handleReset = async () => {
+  try {
+    await axios.post(`${import.meta.env.VITE_API_URL}/twofa/reset`, { userId })
+    message.value = '2FA réinitialisé avec succès'
+    qrCodeUrl.value = null
+    code.value = ''
+  } catch (err) {
+    console.error('Erreur reset 2FA', err)
+    message.value = '❌ Échec de la réinitialisation'
+  }
+}
+
 </script>
 
 <template>
@@ -61,4 +71,12 @@ const handleVerify = async () => {
 
     <p class="mt-4 text-red-600">{{ message }}</p>
   </div>
+
+  <button
+    @click="handleReset"
+    class="bg-red-500 text-white px-4 py-2 rounded mt-2"
+  >
+    Réinitialiser le 2FA
+  </button>
+
 </template>

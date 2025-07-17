@@ -3,13 +3,14 @@ import { jwtDecode } from 'jwt-decode'
 import { getUser } from '@/services/AuthAPI'
 
 const token = ref(localStorage.getItem('token'))
-
 let user = reactive({})
 
 if (token.value) {
-  const decodedToken: any = reactive(jwtDecode(token.value))
-
+  const decodedToken: any = jwtDecode(token.value)
   user = await getUser(decodedToken.email)
+  if (user?.id) {
+    localStorage.setItem('userId', user.id)
+  }
 
   console.log(user, 'user')
 }
@@ -24,6 +25,7 @@ export function useAuth() {
     clearToken() {
       token.value = null
       localStorage.removeItem('token')
+      localStorage.removeItem('userId')
     },
   }
 }

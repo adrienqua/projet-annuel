@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { login } from '@/services/AuthAPI'
-import { verify2FA } from '@/services/TwoFAAPI'
+import { verifyLogin2FA } from '@/services/TwoFAAPI'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
@@ -32,9 +32,10 @@ const handleLogin = async () => {
 
 const handle2FAVerification = async () => {
   try {
-    const res = await verify2FA(userId.value, twoFAToken.value)
-    if (res.verified) {
-      localStorage.setItem('token', localStorage.getItem('temp_token')!)
+    const res = await verifyLogin2FA(userId.value, twoFAToken.value)
+
+    if (res.token) {
+      localStorage.setItem('token', res.token)
       localStorage.removeItem('temp_token')
       router.push('/')
     } else {
