@@ -677,6 +677,12 @@ async function main() {
                 userId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
                 name: 'Workstation - Avril 2025',
             },
+            {
+                createdAt: new Date(Date.now() - 30 * 24 * 3600 * 1000),
+                price: 1200.5,
+                userId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+                name: 'Budget Build - Mars 2025',
+            },
         ],
     })
 
@@ -689,6 +695,10 @@ async function main() {
             { quantity: 1, price: 559.99, buildId: 2, componentId: 2 },
             { quantity: 2, price: 75.99, buildId: 2, componentId: 4 },
             { quantity: 1, price: 289.99, buildId: 2, componentId: 5 },
+            { quantity: 1, price: 309.99, buildId: 2, componentId: 6 },
+            { quantity: 1, price: 75.99, buildId: 3, componentId: 4 },
+            { quantity: 1, price: 289.99, buildId: 3, componentId: 5 },
+            { quantity: 1, price: 76.99, buildId: 3, componentId: 7 },
         ],
     })
 

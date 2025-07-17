@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ProfileBuilds from '@/components/profile/profileBuilds.vue'
+import ProfileBuilds from '@/components/profile/ProfileBuilds.vue'
 import ProfileOrders from '@/components/profile/ProfileOrders.vue'
 import type { Build } from '@/components/types/build'
 import type { Order } from '@/components/types/order'
