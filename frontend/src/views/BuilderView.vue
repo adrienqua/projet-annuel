@@ -4,7 +4,7 @@ import Builder from '@/components/Builder.vue'
 
 <template>
   <main>
-    <h1 class="font-extrabold text-4xl mb-6">Configurateur</h1>
+    <h1 class="font-montserrat font-black text-3xl mb-6">Configurateur</h1>
     <Builder />
   </main>
 </template>

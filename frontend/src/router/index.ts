@@ -6,9 +6,10 @@ import ComponentCompare from '@/pages/ComponentCompare.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import ProfileView from '@/views/ProfileView.vue'
 import AboutView from '@/views/AboutView.vue'
-import CheckoutSuccess from '@/views/CheckoutSuccess.vue'
 import CartView from '@/views/CartView.vue'
 import CheckoutView from '@/views/CheckoutView.vue'
+import CheckoutSuccessView from '@/views/CheckoutSuccessView.vue'
+import CheckoutCancelView from '@/views/CheckoutCancelView.vue'
 
 const routes = [
   {
@@ -43,7 +44,12 @@ const routes = [
   {
     path: '/checkout/success',
     name: 'checkoutSuccess',
-    component: CheckoutSuccess,
+    component: CheckoutSuccessView,
+  },
+  {
+    path: '/checkout/canceled',
+    name: 'checkoutCancel',
+    component: CheckoutCancelView,
   },
   {
     path: '/builder',

@@ -50,9 +50,9 @@ watchEffect(() => {
       <div class="hidden md:flex text-sm">
         <router-link
           to="/cart"
-          class="hover:text-secondary-400 transition duration-300 font-medium flex gap-2 items-center"
+          class="hover:text-secondary-400 transition duration-300 font-medium flex gap-1 items-center"
           ><ShoppingCartIcon class="w-5 h-5" />
-          <span class="text-gray-300">({{ cartProducts?.length }})</span></router-link
+          <span class="text-gray-300 text-xs">({{ cartProducts?.length }})</span></router-link
         >
         <router-link
           to="/login"
@@ -61,7 +61,7 @@ watchEffect(() => {
         >
           Se connecter
         </router-link>
-        <router-link to="/account" v-else class="px-6 py-3 text-sm flex gap-2 items-center">
+        <router-link to="/account" v-else class="px-6 py-3 text-sm flex gap-1 items-center">
           <UserIcon class="w-5 h-5" />
           <span class="text-gray-300">{{ user.name }}</span></router-link
         >
@@ -98,7 +98,7 @@ watchEffect(() => {
           <router-link
             to="/account"
             v-else
-            class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-2 items-center"
+            class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-1 items-center"
           >
             <UserIcon class="w-5 h-5" />
             <span class="text-gray-300">{{ user.name }}</span></router-link
@@ -107,9 +107,9 @@ watchEffect(() => {
         <div class="">
           <router-link
             to="/cart"
-            class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-2 items-center justify-end"
+            class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-1 items-center justify-end"
             ><ShoppingCartIcon class="w-5 h-5" />
-            <span class="text-gray-300">({{ cartProducts?.length }})</span></router-link
+            <span class="text-gray-300 text-xs">({{ cartProducts?.length }})</span></router-link
           >
         </div>
       </div>

@@ -29,7 +29,9 @@ onMounted(() => {
 </script>
 <template>
   <div class="text-center">
-    <div class="bg-secondary-200 text-secondary-800 shadow-sm rounded-xl p-5 mb-5">
+    <div
+      class="bg-secondary-200 text-secondary-800 shadow-sm rounded-xl p-5 mb-5 max-w-3xl mx-auto"
+    >
       Votre commande {{ orderId }} a bien été effectuée !
     </div>
     <RouterLink to="/account" class="btn rounded-3xl"> Voir les détails sur mon compte </RouterLink>

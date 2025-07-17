@@ -69,4 +69,36 @@ router.delete('/:id', async (req: Request, res: Response) => {
     }
 })
 
+router.get('/:id/addresses', async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+
+        const user = await prisma.address.findMany({
+            where: { userId: id },
+        })
+        res.json(user)
+    } catch (error) {
+        res.status(500).json({ error })
+    }
+})
+
+router.get('/:id/orders', async (req: Request, res: Response) => {
+    const { id } = req.params
+    try {
+        const orders = await prisma.order.findMany({
+            where: id ? { userId: String(id) } : {},
+            include: {
+                orderItems: {
+                    include: {
+                        component: true,
+                    },
+                },
+            },
+        })
+        res.json(orders)
+    } catch (error) {
+        res.status(500).json({ error })
+    }
+})
+
 export default router
