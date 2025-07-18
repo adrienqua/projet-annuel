@@ -43,11 +43,10 @@ const handleReset = async () => {
     message.value = '❌ Échec de la réinitialisation'
   }
 }
-
 </script>
 
 <template>
-  <div class="p-8 max-w-md mx-auto">
+  <div class="p-8 max-w-md mx-aut container px-4 pt-12">
     <h1 class="text-2xl font-bold mb-4">Configurer 2FA</h1>
 
     <button @click="handleSetup" class="bg-green-500 text-white px-4 py-2 rounded mb-4">
@@ -72,11 +71,7 @@ const handleReset = async () => {
     <p class="mt-4 text-red-600">{{ message }}</p>
   </div>
 
-  <button
-    @click="handleReset"
-    class="bg-red-500 text-white px-4 py-2 rounded mt-2"
-  >
+  <button @click="handleReset" class="bg-red-500 text-white px-4 py-2 rounded mt-2">
     Réinitialiser le 2FA
   </button>
-
 </template>

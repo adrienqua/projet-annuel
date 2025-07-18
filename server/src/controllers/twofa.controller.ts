@@ -27,7 +27,6 @@ export const setup2FA = async (req: Request, res: Response) => {
     res.json({ qrCodeDataUrl, secret: secret.base32 })
 }
 
-
 export const verify2FA = async (req: Request, res: Response) => {
     const { userId, token } = req.body
 
@@ -76,10 +75,12 @@ export const verifyLogin2FA = async (req: Request, res: Response) => {
         encoding: 'base32',
         token,
         window: 2,
+    })
 
     if (!verified) {
         return res.status(401).json({ message: 'Code incorrect', verified: false })
     }
+
     const tokenJwt = generateToken(user.email)
 
     return res.status(200).json({

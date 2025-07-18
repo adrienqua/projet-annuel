@@ -2,6 +2,7 @@
 import { formatPrice } from '@/utils/formatPrice'
 import type { Order } from '../types/order'
 import { formatDate } from '@/utils/formatDate'
+import Loader from '../ui/Loader.vue';
 
 const props = defineProps<{
   orders: Order[]
@@ -10,7 +11,9 @@ const props = defineProps<{
 <template>
   <div class="mt-6">
     <h2 class="text-xl font-montserrat font-black mb-4">Mes commandes</h2>
-    <div v-if="orders.length === 0"><Loader /></div>
+    <div v-if="orders.length === 0">
+      <p>Vous n'avez pas de commandes.</p>
+    </div>
     <div v-else>
       <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <li

@@ -11,7 +11,7 @@ const comparisonResult = ref<any | null>(null)
 const filteredRight = computed(() => {
   if (!leftSelected.value) return []
   return allComponents.value.filter(
-    (comp) => comp.id !== leftSelected.value.id && comp.typeId === leftSelected.value.typeId
+    (comp) => comp.id !== leftSelected.value.id && comp.typeId === leftSelected.value.typeId,
   )
 })
 
@@ -26,10 +26,7 @@ const compare = async () => {
 }
 
 watch(leftSelected, () => {
-  if (
-    rightSelected.value &&
-    rightSelected.value.typeId !== leftSelected.value?.typeId
-  ) {
+  if (rightSelected.value && rightSelected.value.typeId !== leftSelected.value?.typeId) {
     rightSelected.value = null
   }
   comparisonResult.value = null
@@ -41,7 +38,9 @@ watch(rightSelected, () => {
 
 function formatSpecs(specs: Record<string, any>) {
   if (!specs) return []
-  return Object.entries(specs).map(([key, val]) => `${key} : ${Array.isArray(val) ? val.join(', ') : val}`)
+  return Object.entries(specs).map(
+    ([key, val]) => `${key} : ${Array.isArray(val) ? val.join(', ') : val}`,
+  )
 }
 
 function formatPrice(price: any) {
@@ -51,7 +50,7 @@ function formatPrice(price: any) {
 </script>
 
 <template>
-  <div class="p-8">
+  <div class="p-8 mx-auto container max-w-6xl px-4 pt-12">
     <h1 class="text-3xl font-bold mb-6">Comparateur de composants</h1>
 
     <div class="flex flex-col lg:flex-row gap-6">
@@ -73,7 +72,9 @@ function formatPrice(price: any) {
             />
             <div class="flex-1">
               <p class="font-bold">{{ leftSelected.name }}</p>
-              <p class="text-gray-600">{{ leftSelected.manufacturer?.name || 'Fabricant inconnu' }}</p>
+              <p class="text-gray-600">
+                {{ leftSelected.manufacturer?.name || 'Fabricant inconnu' }}
+              </p>
               <ul class="mt-2 list-disc list-inside text-gray-700">
                 <li v-for="(line, i) in formatSpecs(leftSelected.specs)" :key="i">{{ line }}</li>
               </ul>
@@ -100,11 +101,15 @@ function formatPrice(price: any) {
             />
             <div class="flex-1">
               <p class="font-bold">{{ rightSelected.name }}</p>
-              <p class="text-gray-600">{{ rightSelected.manufacturer?.name || 'Fabricant inconnu' }}</p>
+              <p class="text-gray-600">
+                {{ rightSelected.manufacturer?.name || 'Fabricant inconnu' }}
+              </p>
               <ul class="mt-2 list-disc list-inside text-gray-700">
                 <li v-for="(line, i) in formatSpecs(rightSelected.specs)" :key="i">{{ line }}</li>
               </ul>
-              <p class="mt-2 font-semibold text-green-600">{{ formatPrice(rightSelected.price) }}</p>
+              <p class="mt-2 font-semibold text-green-600">
+                {{ formatPrice(rightSelected.price) }}
+              </p>
             </div>
           </div>
         </div>
@@ -121,8 +126,13 @@ function formatPrice(price: any) {
       </button>
     </div>
 
-    <div v-if="comparisonResult" class="mt-10 bg-white rounded-lg shadow-lg p-6 border border-gray-200">
-      <h2 class="text-2xl font-semibold mb-4 text-center text-gray-800">Résultat de la comparaison</h2>
+    <div
+      v-if="comparisonResult"
+      class="mt-10 bg-white rounded-lg shadow-lg p-6 border border-gray-200"
+    >
+      <h2 class="text-2xl font-semibold mb-4 text-center text-gray-800">
+        Résultat de la comparaison
+      </h2>
 
       <div class="grid grid-cols-2 gap-4 items-center">
         <!-- Composant A -->
@@ -133,7 +143,9 @@ function formatPrice(price: any) {
             class="mx-auto w-24 h-24 object-contain mb-2"
             alt="image A"
           />
-          <p class="text-center text-green-600 text-lg font-semibold">{{ comparisonResult.score1 }}</p>
+          <p class="text-center text-green-600 text-lg font-semibold">
+            {{ comparisonResult.score1 }}
+          </p>
           <div
             v-if="comparisonResult.score1 > comparisonResult.score2"
             class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full shadow"
@@ -148,7 +160,9 @@ function formatPrice(price: any) {
             class="mx-auto w-24 h-24 object-contain mb-2"
             alt="image B"
           />
-          <p class="text-center text-green-600 text-lg font-semibold">{{ comparisonResult.score2 }}</p>
+          <p class="text-center text-green-600 text-lg font-semibold">
+            {{ comparisonResult.score2 }}
+          </p>
           <div
             v-if="comparisonResult.score2 > comparisonResult.score1"
             class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full shadow"
