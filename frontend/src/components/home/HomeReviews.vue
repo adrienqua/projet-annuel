@@ -25,14 +25,10 @@ const reviews = ref([
 </script>
 
 <template>
-  <div class="mt-16 px-4 pb-12">
+  <div class="mt-16 px-4">
     <h2 class="font-montserrat text-2xl font-black text-center mb-6">Avis clients</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div
-        v-for="review in reviews"
-        :key="review.id"
-        class="card bg-base-200 shadow-md rounded-3xl"
-      >
+      <div v-for="review in reviews" :key="review.id" class="card bg-white shadow-md rounded-3xl">
         <div class="card-body">
           <h3 class="text-xl font-bold text-yellow-400 text-center">
             {{ '★ '.repeat(review.stars).trim() }}

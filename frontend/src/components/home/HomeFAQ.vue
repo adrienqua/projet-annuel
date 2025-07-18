@@ -26,7 +26,7 @@ const faqs = ref([
 </script>
 
 <template>
-  <div class="mt-16 px-4">
+  <div class="mt-16 px-4 pb-12">
     <h2 class="font-montserrat text-2xl font-black text-center mb-6">FAQ</h2>
     <div
       v-for="(faq, index) in faqs"

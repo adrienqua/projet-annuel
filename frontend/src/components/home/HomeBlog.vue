@@ -34,7 +34,7 @@ const blogPosts = ref([
   <div class="mt-16 px-4">
     <h2 class="font-montserrat text-2xl font-black text-center mb-6">Blog</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div v-for="post in blogPosts" :key="post.id" class="card bg-base-200 shadow-md rounded-3xl">
+      <div v-for="post in blogPosts" :key="post.id" class="card bg-white shadow-md rounded-3xl">
         <figure>
           <img :src="post.image" :alt="post.title" class="h-48 object-cover w-full" />
         </figure>
