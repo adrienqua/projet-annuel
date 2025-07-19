@@ -75,7 +75,7 @@ export const verifyLogin2FA = async (req: Request, res: Response) => {
         secret: user.twoFaSecret,
         encoding: 'base32',
         token,
-        window: 2,
+        window: 2,})
 
     if (!verified) {
         return res.status(401).json({ message: 'Code incorrect', verified: false })
