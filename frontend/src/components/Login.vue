@@ -48,7 +48,7 @@ const handle2FAVerification = async () => {
 }
 
 let chainToRegister = false
-const handleRegister = (element: HTMLElement) => {
+const handleRegister = (event: MouseEvent) => {
   const loginBoard = document.getElementById('login-board')
   loginBoard && loginBoard.classList.add('page-exit')
 
@@ -108,7 +108,7 @@ const handleRegister = (element: HTMLElement) => {
 <template>
   <div class="min-h-screen flex items-center justify-center">
     <div id="login-board" class="w-full max-w-sm bg-white p-6 rounded-lg shadow-md page-entry">
-      <h1 class="text-2xl font-bold text-center mb-6">Login</h1>
+      <h1 class="text-2xl font-bold text-center mb-6">Se connecter</h1>
       <form v-if="!requires2FA" @submit.prevent="handleLogin" class="space-y-4">
         <input
           v-model="email"
@@ -122,7 +122,13 @@ const handleRegister = (element: HTMLElement) => {
           placeholder="Mot de passe"
           class="w-full px-4 py-2 border border-secondary-300 rounded-lg"
         />
-        <a @click="handleRegister" class="inline-block w-full text-end">S'inscrire</a>
+        <button
+          @click="handleRegister"
+          type="button"
+          class="inline-block w-full text-end text-gray-800 hover:text-secondary cursor-pointer transition-all duration-200"
+        >
+          S'inscrire
+        </button>
         <button
           type="submit"
           class="w-full btn bg-secondary-500 text-white py-2 rounded-lg hover:bg-secondary-600"
@@ -138,10 +144,16 @@ const handleRegister = (element: HTMLElement) => {
           placeholder="Code à 6 chiffres"
           class="w-full px-4 py-2 border border-blue-300 rounded-lg"
         />
-        <a @click="handleRegister" class="inline-block w-full text-end">S'inscrire</a>
+        <button
+          @click="handleRegister"
+          type="button"
+          class="inline-block w-full text-end text-gray-800 hover:text-secondary cursor-pointer transition-all duration-200"
+        >
+          S'inscrire
+        </button>
         <button
           type="submit"
-          class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+          class="w-full btn bg-secondary-500 text-white py-2 rounded-lg hover:bg-secondary-600"
         >
           Se connecter
         </button>

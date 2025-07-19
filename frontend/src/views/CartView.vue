@@ -9,6 +9,7 @@ import TableList from '@/components/ui/TableList.vue'
 import { getCart } from '@/services/CartAPI'
 import Cart from '@/components/cart/Cart.vue'
 import CartSummary from '@/components/cart/CartSummary.vue'
+import { TrashIcon } from '@heroicons/vue/24/outline'
 
 const { cartProducts } = useCartStore()
 
@@ -33,14 +34,25 @@ const subTotal = computed(() => {
     }, 0) || 0
   )
 })
+
+const handleResetCart = () => {
+  useCartStore().handleEmptyCart()
+  products.value = []
+}
 </script>
 
 <template>
   <main class="mx-auto container max-w-6xl px-4 pt-12">
-    <h1 class="font-montserrat font-black text-3xl mb-6">
-      Panier
-      <span class="text-gray-700 text-xl font-bold">({{ cartProducts.length }})</span>
-    </h1>
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="font-montserrat font-black text-3xl">
+        Panier
+        <span class="text-gray-700 text-xl font-bold">({{ cartProducts.length }})</span>
+      </h1>
+      <button type="button" class="btn btn-sm bg-gray-200" @click="handleResetCart">
+        <TrashIcon class="w-4 h-4" />
+        Vider le panier
+      </button>
+    </div>
     <div class="flex flex-col md:flex-row gap-6 items-start">
       <div class="w-full md:w-3/4">
         <Cart :products="products" :isEditQuantity="true" />
