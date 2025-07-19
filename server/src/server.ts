@@ -25,6 +25,7 @@ app.use(
         credentials: true,
     })
 )
+
 app.use(express.json())
 app.use('/api/auth', userAuth)
 app.use('/api/users', userRoute)

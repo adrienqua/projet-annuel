@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { login } from '@/services/AuthAPI'
+import { useAuth } from '@/stores/auth'
+import { onMounted, ref } from 'vue'
 import { verifyLogin2FA } from '@/services/TwoFAAPI'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
@@ -45,11 +47,68 @@ const handle2FAVerification = async () => {
     alert('Erreur lors de la vérification du code')
   }
 }
+
+let chainToRegister = false
+const handleRegister = (element: HTMLElement) => {
+  const loginBoard = document.getElementById('login-board')
+  loginBoard && loginBoard.classList.add('page-exit')
+
+  chainToRegister = true
+  setTimeout(() => {
+    router.push('/register')
+  }, 380)
+}
 </script>
+
+<style scoped>
+#login-board {
+  transition: all 0.4s;
+}
+
+.page-entry {
+  animation: rotateAndFade 0.4s ease-in-out forwards;
+  transform: rotateY(0deg);
+}
+
+@keyframes rotateAndFade {
+  0% {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.page-exit {
+  animation: rotateAndFadeExit 0.4s ease-in-out forwards;
+  transform: rotateY(0deg);
+}
+
+@keyframes rotateAndFadeExit {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateY(90deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+}
+</style>
 
 <template>
   <div class="min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-sm bg-white p-6 rounded-lg shadow-md">
+    <div id="login-board" class="w-full max-w-sm bg-white p-6 rounded-lg shadow-md page-entry">
       <h1 class="text-2xl font-bold text-center mb-6">Login</h1>
       <form v-if="!requires2FA" @submit.prevent="handleLogin" class="space-y-4">
         <input
@@ -79,11 +138,12 @@ const handle2FAVerification = async () => {
           placeholder="Code à 6 chiffres"
           class="w-full px-4 py-2 border border-blue-300 rounded-lg"
         />
+        <a @click="handleRegister" class="inline-block w-full text-end">S'inscrire</a>
         <button
           type="submit"
           class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
         >
-          Vérifier le code
+          Se connecter
         </button>
       </form>
     </div>

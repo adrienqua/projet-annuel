@@ -2,11 +2,24 @@
 import { useAuth } from '@/stores/auth'
 import { useCartStore } from '@/stores/cart'
 import { ShoppingCartIcon, UserIcon } from '@heroicons/vue/24/solid'
-import { ref, watchEffect } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 
 const { user } = useAuth() as any
 const { cartProducts } = useCartStore()
 const isOpen = ref(false)
+const token = ref<string | null>(null)
+
+onMounted(() => {
+  token.value = localStorage.getItem('token')
+})
+
+const isAuthenticated = computed(() => !!token.value)
+
+const logout = () => {
+  localStorage.removeItem('token')
+  token.value = null
+   window.location.href = '/login'
+}
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
@@ -65,7 +78,17 @@ watchEffect(() => {
           <UserIcon class="w-5 h-5" />
           <span class="text-gray-300">{{ user.name }}</span></router-link
         >
+        <div v-if="isAuthenticated" class="flex items-center gap-3">
+          <button
+            @click="logout"
+            class="text-gray-300 cursor-pointer"
+          >
+            Logout
+          </button>
+        </div>
       </div>
+
+      
 
       <button
         class="md:hidden text-white focus:outline-none cursor-pointer"
@@ -101,8 +124,17 @@ watchEffect(() => {
             class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-1 items-center"
           >
             <UserIcon class="w-5 h-5" />
-            <span class="text-gray-300">{{ user.name }}</span></router-link
-          >
+            <span class="text-gray-300">{{ user.name }}</span>
+          </router-link>
+
+          <div v-if="isAuthenticated" class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-1 items-center">
+            <button
+              @click="logout"
+              class="text-gray-300 cursor-pointer"
+            >
+              Logout
+          </button>
+        </div>
         </div>
         <div class="">
           <router-link
