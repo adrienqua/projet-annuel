@@ -5,9 +5,9 @@ import Footer from './components/ui/Footer.vue'
 </script>
 
 <template>
-  <div class="bg-background min-h-screen font-poppins">
+  <div class="bg-background min-h-screen flex flex-col font-poppins">
     <Navbar />
-    <div class="mx-auto container max-w-6xl px-4 pt-12">
+    <div class="flex-1">
       <RouterView />
     </div>
     <Footer />

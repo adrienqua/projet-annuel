@@ -34,7 +34,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <main>
+  <main class="mx-auto container max-w-6xl px-4 pt-12">
     <h1 class="font-montserrat font-black text-3xl">Mon compte</h1>
     <ProfileOrders :orders="orders" />
     <ProfileBuilds :builds="builds" />

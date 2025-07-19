@@ -56,17 +56,17 @@ const handle2FAVerification = async () => {
           v-model="email"
           type="email"
           placeholder="Email"
-          class="w-full px-4 py-2 border border-green-300 rounded-lg"
+          class="w-full px-4 py-2 border border-secondary-300 rounded-lg"
         />
         <input
           v-model="password"
           type="password"
           placeholder="Mot de passe"
-          class="w-full px-4 py-2 border border-green-300 rounded-lg"
+          class="w-full px-4 py-2 border border-secondary-300 rounded-lg"
         />
         <button
           type="submit"
-          class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600"
+          class="w-full btn bg-secondary-500 text-white py-2 rounded-lg hover:bg-secondary-600"
         >
           Connexion
         </button>
