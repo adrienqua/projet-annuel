@@ -4,7 +4,6 @@ import { useAuth } from '@/stores/auth'
 import { onMounted, ref } from 'vue'
 import { verifyLogin2FA } from '@/services/TwoFAAPI'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
 
 const router = useRouter()
 

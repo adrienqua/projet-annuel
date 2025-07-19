@@ -81,10 +81,19 @@ async function main() {
 
     await prisma.component.createMany({
         data: [
+            //CPU
             {
                 releaseDate: new Date('2023-04-06'),
-                specs: { cores: 8, threads: 16, base_clock_GHz: 4.2, tdp_W: 120 },
-                ocProfiles: { boost_clock_GHz: 5.0 },
+                specs: {
+                    cores: 8,
+                    threads: 16,
+                    base_clock_GHz: 4.2,
+                    tdp_W: 120,
+                    socket: 'AM5',
+                },
+                ocProfiles: {
+                    boost_clock_GHz: 5.0,
+                },
                 name: 'AMD Ryzen 7 7800X3D',
                 typeId: 1,
                 manufacturerId: 2,
@@ -93,8 +102,16 @@ async function main() {
             },
             {
                 releaseDate: new Date('2025-05-10'),
-                specs: { cores: 12, threads: 24, base_clock_GHz: 4.4, tdp_W: 125 },
-                ocProfiles: { boost_clock_GHz: 5.4 },
+                specs: {
+                    cores: 12,
+                    threads: 24,
+                    base_clock_GHz: 4.4,
+                    tdp_W: 125,
+                    socket: 'AM5',
+                },
+                ocProfiles: {
+                    boost_clock_GHz: 5.4,
+                },
                 name: 'AMD Ryzen 9 9800X3D',
                 typeId: 1,
                 manufacturerId: 2,
@@ -103,14 +120,23 @@ async function main() {
             },
             {
                 releaseDate: new Date('2023-10-17'),
-                specs: { cores: 24, threads: 32, base_clock_GHz: 3.2, tdp_W: 125 },
-                ocProfiles: { turbo_clock_GHz: 6.0 },
+                specs: {
+                    cores: 24,
+                    threads: 32,
+                    base_clock_GHz: 3.2,
+                    tdp_W: 125,
+                    socket: 'LGA1700',
+                },
+                ocProfiles: {
+                    turbo_clock_GHz: 6.0,
+                },
                 name: 'Intel Core i9-14900K',
                 typeId: 1,
                 manufacturerId: 1,
                 imgUrl: '/img/components/intel_14900k.jpg',
                 price: 499.9,
             },
+            //GPU
             {
                 releaseDate: new Date('2022-11-16'),
                 specs: { memory_GB: 16, base_clock_MHz: 2205, boost_clock_MHz: 2505 },
@@ -141,6 +167,7 @@ async function main() {
                 imgUrl: '/img/components/amd_rx7900xt.jpg',
                 price: 719.9,
             },
+            //RAM
             {
                 releaseDate: new Date('2023-03-15'),
                 specs: { capacity_GB: 64, speed_MHz: 6000, type: 'DDR5' },
@@ -175,6 +202,7 @@ async function main() {
                 imgUrl: '/img/components/crucial_ballistix3600.jpg',
                 price: 71.9,
             },
+            //Motherboard
             {
                 releaseDate: new Date('2023-05-15'),
                 specs: {
@@ -322,6 +350,7 @@ async function main() {
                 imgUrl: '/img/components/nzxt_kraken_240_rgb_blanc.jpg',
                 price: 111.9,
             },
+            //Storage
             {
                 releaseDate: new Date('2023-01-01'),
                 specs: { capacity_GB: 2048, type: 'NVMe', read_MBps: 7450, write_MBps: 6900 },
@@ -352,6 +381,7 @@ async function main() {
                 imgUrl: '/img/components/samsung_980.jpg',
                 price: 71.9,
             },
+            //Case
             {
                 releaseDate: new Date('2022-03-01'),
                 specs: {
@@ -360,6 +390,8 @@ async function main() {
                     fan_support: 'Top/Side/Bottom',
                     compatible_psu_form_factors: ['ATX', 'SFX', 'SFX-L'],
                     compatible_motherboard_form_factors: ['Mini-ITX', 'Micro-ATX', 'ATX', 'E-ATX'],
+                    cooler_clearance: 167,
+                    aio_max_format: 360,
                 },
                 ocProfiles: {},
                 name: 'Lian Li O11 Dynamic EVO',
@@ -376,6 +408,8 @@ async function main() {
                     fan_support: 'Front/Top/Rear',
                     compatible_psu_form_factors: ['ATX', 'SFX', 'SFX-L'],
                     compatible_motherboard_form_factors: ['Mini-ITX', 'Micro-ATX', 'ATX', 'E-ATX'],
+                    cooler_clearance: 185,
+                    aio_max_format: 360,
                 },
                 ocProfiles: {},
                 name: 'Fractal Design Meshify 2',
@@ -392,6 +426,8 @@ async function main() {
                     fan_support: 'Top/Front/Rear',
                     compatible_psu_form_factors: ['ATX', 'SFX', 'SFX-L'],
                     compatible_motherboard_form_factors: ['Mini-ITX', 'Micro-ATX', 'ATX', 'E-ATX'],
+                    cooler_clearance: 190,
+                    aio_max_format: 360,
                 },
                 ocProfiles: {},
                 name: 'Phanteks Eclipse P500A',
@@ -408,6 +444,8 @@ async function main() {
                     fan_support: 'Top/Bottom/Side/Rear',
                     compatible_psu_form_factors: ['SFX', 'SFX-L'],
                     compatible_motherboard_form_factors: ['Mini-ITX', 'Micro-ATX', 'ATX'],
+                    cooler_clearance_mm: 170,
+                    aio_max_format_mm: 280,
                 },
                 ocProfiles: {},
                 name: 'Lian Li O11 Dynamic Mini Blanc',
@@ -416,6 +454,7 @@ async function main() {
                 imgUrl: '/img/components/lian_li_o11_dynamic_mini.jpg',
                 price: 95.9,
             },
+            //Power Supply
             {
                 releaseDate: new Date('2022-07-10'),
                 specs: {
@@ -446,6 +485,7 @@ async function main() {
                 imgUrl: '/img/components/seasonic_prime_tx_1000.jpg',
                 price: 207.9,
             },
+            //Case Fans
             {
                 releaseDate: new Date('2023-05-01'),
                 specs: {

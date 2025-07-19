@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getComponents } from '@/services/ComponentAPI'
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 import type { Component } from './types/component'
 import { getComponentTypes } from '@/services/ComponentTypeAPI'
 import type { ComponentType } from './types/componentType'
@@ -16,18 +16,130 @@ const props = defineProps<{
   handleRemoveComponent?: (component: Component, type: string) => void
   handleSelectType?: (type: ComponentType, index: number) => void
   isEdit?: boolean
+  isSelect?: boolean
+  selectedComponents?: Record<string, { maxQuantity: number; components: Component[] }>
+  selectedType?: string
 }>()
+
+const componentsList = ref<Component[]>([])
+
+// Check components compatibility
+watch(
+  () => props.components,
+  (components) => {
+    if (!props.isSelect) return
+    const selectedCpu = props?.selectedComponents?.cpu?.components?.[0]
+    const selectedMotherboard = props?.selectedComponents?.motherboard?.components?.[0]
+    const selectedRam = props?.selectedComponents?.ram?.components?.[0]
+    const selectedCase = props?.selectedComponents?.case?.components?.[0]
+    const selectedPsu = props?.selectedComponents?.powerSupply?.components?.[0]
+    const selectedCpuCooler = props?.selectedComponents?.cpuCooler?.components?.[0]
+
+    componentsList.value = components.map((component) => {
+      component.disabled = false
+      // CPU and motherboard socket compatibility check
+      if (
+        (props.selectedType === 'motherboard' || props.selectedType === 'cpu') &&
+        ((selectedCpu &&
+          component.specs?.socket &&
+          selectedCpu.specs?.socket !== component.specs?.socket) ||
+          (selectedMotherboard &&
+            component.specs?.socket &&
+            selectedMotherboard.specs?.socket !== component.specs?.socket))
+      ) {
+        component.disabled = true
+      }
+
+      // RAM compatibility check - only check when motherboard is selected
+      if (
+        props.selectedType === 'ram' &&
+        selectedMotherboard &&
+        component.specs?.type &&
+        selectedMotherboard.specs?.memory_support !== component.specs?.type
+      ) {
+        component.disabled = true
+      }
+
+      // Motherboard RAM compatibility check - only check when RAM is selected
+      if (
+        props.selectedType === 'motherboard' &&
+        selectedRam &&
+        component.specs?.memory_support &&
+        selectedRam.specs?.type !== component.specs?.memory_support
+      ) {
+        component.disabled = true
+      }
+
+      // Case PSU compatibility check - only check when PSU is selected
+      if (
+        props.selectedType === 'case' &&
+        selectedPsu &&
+        component.specs?.compatible_psu_form_factors &&
+        !component.specs.compatible_psu_form_factors.includes(selectedPsu.specs?.form_factor)
+      ) {
+        component.disabled = true
+      }
+
+      // PSU case compatibility check - only check when case is selected
+      if (
+        props.selectedType === 'powerSupply' &&
+        selectedCase &&
+        selectedCase.specs?.compatible_psu_form_factors &&
+        !selectedCase.specs.compatible_psu_form_factors.includes(component.specs?.form_factor)
+      ) {
+        component.disabled = true
+      }
+
+      /*       // CPU Cooler radiator size and Case compatibility check
+      if (
+        props.selectedType === 'cpuCooler' &&
+        selectedCase &&
+        component.specs?.tdp_W &&
+        parseInt(component.specs.tdp_W) > parseInt(selectedCase.specs.aio_max_format_mm)
+      ) {
+        console.log('cooler', component.specs.tdp_W, '>', selectedCase.specs.aio_max_format_mm)
+        component.disabled = true
+      }
+      console.log('coolerno', component.specs.tdp_W, '>', selectedCase?.specs.aio_max_format_mm)
+
+      // Case CPU Cooler compatibility check - only check when CPU Cooler is selected
+      if (
+        props.selectedType === 'case' &&
+        selectedCpuCooler &&
+        component.specs?.aio_max_format_mm &&
+        parseInt(selectedCpuCooler.specs.tdp_W) > parseInt(component.specs.aio_max_format_mm)
+      ) {
+        component.disabled = true
+      }
+ */
+      return component
+    })
+
+    console.log('Components updated:', componentsList.value)
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
   <ul class="flex flex-col mb-3 gap-2">
     <li
-      v-for="(component, index) in components"
+      v-for="(component, index) in isSelect ? componentsList : components"
       :key="component.id"
       class="flex justify-between items-center"
-      @click="handleSelectComponent && handleSelectComponent(component, isEdit ? true : false)"
+      :class="{
+        'opacity-50 cursor-not-allowed': component.disabled,
+      }"
+      @click="
+        handleSelectComponent &&
+        !component.disabled &&
+        handleSelectComponent(component, isEdit ? true : false)
+      "
     >
-      <div class="flex gap-2 items-center cursor-pointer">
+      <div
+        class="flex gap-2 items-center"
+        :class="{ 'cursor-not-allowed': component.disabled, 'cursor-pointer': !component.disabled }"
+      >
         <img
           :src="component.imgUrl || '/img/components/placeholder.jpg'"
           :alt="component.name"

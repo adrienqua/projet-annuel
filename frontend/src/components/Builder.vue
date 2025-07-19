@@ -138,7 +138,7 @@ const handleSaveBuild = async () => {
     items: selectedComponentsList.value.map((component) => ({
       componentId: component.id,
       quantity: 1,
-      price: '299.90',
+      price: component.price,
     })),
   })
 
@@ -222,6 +222,9 @@ const isQuantityMaxxed = (type: string): boolean => {
       :components="selectedType.components"
       :handleSelectComponent="handleSelectComponent"
       :isEdit="isQuantityMaxxed(selectedType?.type) ? true : false"
+      :selectedComponents="selectedComponents"
+      :selectedType="selectedType.type"
+      :isSelect="true"
     />
   </Modal>
 </template>
