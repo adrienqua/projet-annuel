@@ -4,7 +4,6 @@ import { useAuth } from '@/stores/auth'
 import { onMounted, ref } from 'vue'
 import { verifyLogin2FA } from '@/services/TwoFAAPI'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
 
 const router = useRouter()
 
@@ -25,7 +24,7 @@ const handleLogin = async () => {
       localStorage.setItem('temp_token', token)
     } else {
       localStorage.setItem('token', token)
-      router.push('/')
+      window.location.href = '/'
     }
   } catch (e) {
     alert('Email ou mot de passe invalide')
@@ -123,6 +122,7 @@ const handleRegister = (element: HTMLElement) => {
           placeholder="Mot de passe"
           class="w-full px-4 py-2 border border-secondary-300 rounded-lg"
         />
+        <a @click="handleRegister" class="inline-block w-full text-end">S'inscrire</a>
         <button
           type="submit"
           class="w-full btn bg-secondary-500 text-white py-2 rounded-lg hover:bg-secondary-600"
