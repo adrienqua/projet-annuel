@@ -36,7 +36,7 @@ const subTotal = computed(() => {
 </script>
 
 <template>
-  <main>
+  <main class="mx-auto container max-w-6xl px-4 pt-12">
     <h1 class="font-montserrat font-black text-3xl mb-6">
       Panier
       <span class="text-gray-700 text-xl font-bold">({{ cartProducts.length }})</span>

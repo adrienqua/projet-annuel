@@ -74,7 +74,7 @@ router.post('/login', async (req: Request, res: Response) => {
         }
 
         const token = generateToken(email)
-        res.status(200).json({ token })
+        res.status(200).json({ token, userId: user.id, isTwoFA: user.isTwoFA })
     } catch (error) {
         res.status(500).json({ error })
     }

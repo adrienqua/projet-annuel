@@ -70,7 +70,7 @@ watchEffect(() => {
         <router-link
           to="/login"
           v-if="!user.email"
-          class="bg-secondary-400 hover:bg-secondary-400/90 text-white font-medium px-4 py-2 rounded-lg transition hidden md:block"
+          class="bg-secondary-400 hover:bg-secondary-400/90 text-secondary-900 font-medium px-4 py-2 rounded-lg transition hidden md:block ml-4"
         >
           Se connecter
         </router-link>
@@ -91,7 +91,7 @@ watchEffect(() => {
       
 
       <button
-        class="md:hidden text-white focus:outline-none"
+        class="md:hidden text-white focus:outline-none cursor-pointer"
         @click="toggleMenu"
         aria-label="Toggle menu"
       >
@@ -113,7 +113,7 @@ watchEffect(() => {
           <router-link
             to="/login"
             v-if="!user.email"
-            class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
+            class="block ml-4 bg-secondary-400 hover:bg-secondary-400/90 text-secondary-900 font-medium px-4 py-2 rounded-lg transition max-w-[150px]"
           >
             Se connecter
           </router-link>

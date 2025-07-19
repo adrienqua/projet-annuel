@@ -39,6 +39,10 @@ const routes = [
     component: ComponentDetail,
   },
   {
+    path: '/2fa/setup',
+    component: () => import('@/pages/SetupTwoFa.vue'),
+  },
+  {
     path: '/compare',
     name: 'ComponentCompare',
     component: ComponentCompare,

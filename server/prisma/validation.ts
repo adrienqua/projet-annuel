@@ -5,6 +5,7 @@ export const userSchema = z.object({
     email: z.string().email('Adresse email invalide'),
     password: z.string().min(6, 'Le mot de passe doit contenir au moins 6 caractères'),
     role: z.enum(['USER', 'ADMIN']).optional().default('USER'),
+    isTwoFA: z.boolean().optional().default(false),
 })
 
 export const buildItemSchema = z.object({

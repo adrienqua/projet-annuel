@@ -22,7 +22,7 @@ useHead({
 </script>
 
 <template>
-  <main class="max-w-3xl mx-auto p-6 bg-white rounded-3xl shadow-md">
+  <main class="max-w-3xl mx-auto p-6 bg-white rounded-3xl shadow-md px-4 mt-12">
     <article aria-labelledby="about-title" class="mb-10">
       <h1 id="about-title" class="text-3xl font-bold mb-4 text-primary">
         À propos de notre configurateur PC

@@ -8,7 +8,7 @@
 {{ JSON.stringify(component.specs, null, 2) }}
     </pre>
   </div>
-</template>
+</template>22
 
 <script setup lang="ts">
 defineProps<{ component: any }>()
