@@ -19,14 +19,12 @@ const generateQRCode = async () => {
     }
     userId.value = id
 
-  try {
     const { data } = await axios.get(`${API}/twofa/setup`, {
       params: { userId: userId.value },
     })
 
     qrCodeUrl.value = data.qrCodeDataUrl
     errorMsg.value = ''
-
   } catch (err) {
     console.error('Erreur QR Code 2FA', err)
     errorMsg.value = 'Impossible de générer le QR code.'
