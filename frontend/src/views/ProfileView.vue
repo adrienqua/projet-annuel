@@ -39,7 +39,6 @@ const router = useRouter()
 const auth = useAuth()
 const authUser = auth.user as User
 
-const modalRef = ref<InstanceType<typeof TwoFAModal> | null>(null)
 const user = ref<User | null>(null)
 const builds = ref<Build[]>([])
 const orders = ref<Order[]>([])
@@ -85,12 +84,5 @@ onMounted(() => {
     <div class="flex items-center justify-center mt-8">
       <button @click="handleLogout" type="button" class="btn bg-gray-200">Se déconnecter</button>
     </div>
-    <div v-if="!authUser.isTwoFA" class="flex items-center justify-center mt-6">
-      <button @click="modalRef?.open()" class="btn bg-secondary-400 text-white">
-        Activer la double authentification
-      </button>
-    </div>
-
-    <TwoFAModal ref="modalRef" />
   </main>
 </template>
