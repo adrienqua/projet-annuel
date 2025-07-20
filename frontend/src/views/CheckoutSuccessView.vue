@@ -39,9 +39,9 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div class="text-center">
+  <div class="text-center px-4 pt-12">
     <div
-      class="bg-secondary-200 text-secondary-800 shadow-sm rounded-xl p-5 mb-5 container max-w-3xl mx-auto px-4 pt-12"
+      class="bg-secondary-200 text-secondary-800 shadow-sm rounded-xl p-5 mb-5 container max-w-3xl mx-auto"
     >
       Votre commande {{ orderId }} a bien été effectuée !
     </div>
