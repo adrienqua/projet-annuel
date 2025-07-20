@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { Request, Response } from 'express'
 import { prisma } from '../../lib/prisma'
 import { userSchema } from '../../prisma/validation'
+import bcrypt from 'bcrypt'
 
 const router = Router()
 
@@ -19,11 +20,14 @@ router.post('/', async (req: Request, res: Response) => {
     try {
         const { name, email, password, role } = userSchema.parse(req.body)
 
+        const hashedPassword = await bcrypt.hash(password, 12)
+
         const user = await prisma.user.create({
-            data: { name, email, password, role, isTwoFA: false },
+            data: { name, email, password: hashedPassword, role, isTwoFA: false },
         })
         res.status(201).json(user)
     } catch (error) {
+        console.error('Error creating user:', error)
         res.status(500).json({ error })
     }
 })
@@ -46,9 +50,15 @@ router.put('/:id', async (req: Request, res: Response) => {
         const { id } = req.params
         const { name, email, password, role, isTwoFA = false } = req.body
 
+        const dataToUpdate: any = { name, email, role, isTwoFA }
+
+        if (password && password.trim() !== '') {
+            dataToUpdate.password = await bcrypt.hash(password, 12)
+        }
+
         const user = await prisma.user.update({
             where: { id },
-            data: { name, email, password, role, isTwoFA },
+            data: dataToUpdate,
         })
         res.json(user)
     } catch (error) {
