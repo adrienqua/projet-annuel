@@ -73,7 +73,7 @@ router.get('/', async (req: Request, res: Response) => {
             include: {
                 type: true,
                 manufacturer: true,
-            },
+            }
         })
         res.status(200).json(components)
     } catch (error: any) {
@@ -121,8 +121,8 @@ router.post('/', async (req: Request, res: Response) => {
                 releaseDate: releaseDate ? new Date(releaseDate) : undefined,
                 specs,
                 ocProfiles,
-                typeId,
-                manufacturerId,
+                typeId: typeof typeId === 'object' ? typeId.value : typeId,
+                manufacturerId: typeof manufacturerId === 'object' ? manufacturerId.value : manufacturerId,
             },
         })
 

@@ -1,11 +1,14 @@
 import 'vue3-toastify/dist/index.css'
 import './assets/main.css'
+import 'vuestic-ui/styles/essential.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createVuestic } from 'vuestic-ui'
 import { initMatomo, trackPageView, trackSessionStart, trackSessionEnd } from './utils/matomo'
 
 import App from './App.vue'
+
 import router from './router'
 import Vue3Toastify, { type ToastContainerOptions } from 'vue3-toastify'
 import * as Sentry from '@sentry/vue'
@@ -20,7 +23,7 @@ Sentry.init({
   tracesSampleRate: 1.0,
   tracePropagationTargets: ['localhost', /^http:\/\/localhost:5000\/api/],
 })
-
+app.use(createVuestic())
 app.use(createPinia())
 app.use(router)
 

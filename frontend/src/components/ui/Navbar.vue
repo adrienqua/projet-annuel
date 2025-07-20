@@ -59,6 +59,15 @@ watchEffect(() => {
             >À propos</router-link
           >
         </li>
+        <li v-if="user.role === 'ADMIN'">
+          <router-link
+            to="/admin"
+            class="hover:text-secondary-400 transition duration-300 font-medium"
+          >
+            Admin
+          </router-link>
+        </li>
+
       </ul>
 
       <div class="hidden md:flex text-sm">
@@ -151,6 +160,14 @@ watchEffect(() => {
         class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
         >À propos</router-link
       >
+      <router-link
+        v-if="user.role === 'ADMIN'"
+        to="/admin"
+        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
+      >
+        Admin
+      </router-link>
+
     </div>
   </nav>
 </template>

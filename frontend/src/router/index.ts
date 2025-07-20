@@ -77,6 +77,27 @@ const routes = [
     name: 'About',
     component: AboutView,
   },
+  {
+    path: '/admin',
+    component: () => import('@/layouts/AdminLayout.vue'),
+    meta: { requiresAuth: true, requiresAdmin: true },
+    children: [
+      {
+        path: 'users',
+        component: () => import('@/views/admin/Users.vue'),
+      },
+      {
+        path: 'components',
+        component: () => import('@/views/admin/Components.vue'),
+      },
+      {
+        path: 'orders',
+        component: () => import('@/views/admin/Orders.vue'),
+      },
+    ]
+  }
+
+
 ]
 
 const router = createRouter({
