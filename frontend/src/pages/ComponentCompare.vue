@@ -2,6 +2,27 @@
 import { ref, watch, computed, onMounted } from 'vue'
 import { getAllComponents } from '@/services/ComponentAPI'
 import { compareComponents } from '@/services/CompareAPI'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Comparateur de composants | BuildMyPC ',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Comparez facilement des composants PC (CPU, GPU, RAM...) pour trouver les meilleurs rapports qualité/prix.',
+    },
+    { property: 'og:title', content: 'Comparateur de composants | BuildMyPC ' },
+    {
+      property: 'og:description',
+      content:
+        'Comparez facilement des composants PC (CPU, GPU, RAM...) pour trouver les meilleurs rapports qualité/prix.',
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'fr_FR' },
+    { name: 'robots', content: 'index, follow' },
+  ],
+})
 
 const allComponents = ref<any[]>([])
 const leftSelected = ref<any | null>(null)

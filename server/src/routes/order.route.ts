@@ -12,6 +12,12 @@ router.get('/', async (req: Request, res: Response) => {
             where: userId ? { userId: String(userId) } : {},
             include: {
                 orderItems: true,
+                user: {
+                    select: {
+                        name: true,
+                        email: true,
+                    },
+                },
             },
         })
         res.json(orders)

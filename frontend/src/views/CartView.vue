@@ -10,6 +10,34 @@ import { getCart } from '@/services/CartAPI'
 import Cart from '@/components/cart/Cart.vue'
 import CartSummary from '@/components/cart/CartSummary.vue'
 import { TrashIcon } from '@heroicons/vue/24/outline'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Panier | BuildMyPC',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Consultez le récapitulatif de votre configuration PC sur mesure. Modifiez vos composants, vérifiez les prix et passez à la commande en toute simplicité.',
+    },
+    { property: 'og:title', content: 'Panier | BuildMyPC' },
+    {
+      property: 'og:description',
+      content:
+        'Votre panier contient votre configuration PC complète. Finalisez votre commande ou continuez votre assemblage avec BuildMyPC.',
+    },
+    { property: 'og:type', content: 'product' },
+    { property: 'og:locale', content: 'fr_FR' },
+    { property: 'og:url', content: 'https://buildmypc.fr/panier' },
+    { property: 'og:image', content: 'https://buildmypc.fr/images/meta-panier.jpg' },
+    { name: 'robots', content: 'index, follow' },
+    {
+      name: 'keywords',
+      content: 'panier PC, configuration PC, commande PC, composants PC, build my pc, config gamer',
+    },
+    { name: 'author', content: 'BuildMyPC' },
+  ],
+})
 
 const { cartProducts } = useCartStore()
 

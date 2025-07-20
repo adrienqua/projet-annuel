@@ -1,8 +1,19 @@
 <script setup lang="ts">
 import { checkoutSuccess } from '@/services/CheckoutAPI'
 import { useCartStore } from '@/stores/cart'
+import { useHead } from '@vueuse/head'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+
+useHead({
+  title: 'Commande effectuée | BuildMyPC',
+  meta: [
+    {
+      name: 'robots',
+      content: 'noindex, nofollow',
+    },
+  ],
+})
 
 const route = useRoute()
 const orderId = ref<string>(route.query.orderId as string)

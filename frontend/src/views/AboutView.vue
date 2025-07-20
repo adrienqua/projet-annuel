@@ -2,14 +2,14 @@
 import { useHead } from '@vueuse/head'
 
 useHead({
-  title: 'À propos - Configurateur PC en ligne | Projet ESGI',
+  title: 'À propos | BuildMyPC ',
   meta: [
     {
       name: 'description',
       content:
         "Apprenez-en plus sur notre configurateur de PC en ligne développé par quatre étudiants de l'ESGI. Créez facilement une configuration personnalisée selon vos besoins et votre budget grâce à une interface moderne et intelligente.",
     },
-    { property: 'og:title', content: 'À propos - Configurateur PC en ligne | Projet ESGI' },
+    { property: 'og:title', content: 'À propos | BuildMyPC ' },
     {
       property: 'og:description',
       content:
@@ -17,6 +17,7 @@ useHead({
     },
     { property: 'og:type', content: 'website' },
     { property: 'og:locale', content: 'fr_FR' },
+    { name: 'robots', content: 'index, follow' },
   ],
 })
 </script>
