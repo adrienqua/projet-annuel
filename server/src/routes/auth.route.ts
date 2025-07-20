@@ -11,48 +11,45 @@ router.post('/register', async (req: Request, res: Response) => {
     try {
         const { email, password, name } = req.body
 
-        if (! email || !password) {
-            return res.status(400).json({ 
-              message: 'Email et mot de passe sont requis' 
+        if (!email || !password) {
+            return res.status(400).json({
+                message: 'Email et mot de passe sont requis',
             })
-          }
+        }
 
         const user = await prisma.user.findUnique({
             where: { email },
         })
-
 
         if (user) {
             return res.status(400).json({ message: 'Email utilisé' })
         }
 
         const passwordValidation = validatePassword(password)
-        if (! passwordValidation.isValid) {
-            return res.status(400).json({ 
+        if (!passwordValidation.isValid) {
+            return res.status(400).json({
                 message: 'Mot de passe invalide',
-                errors: passwordValidation.errors
+                errors: passwordValidation.errors,
             })
         }
 
         const hashedPassword = await hashPassword(password)
 
-        const role = "USER";
+        const role = 'USER'
 
         const newUser = await prisma.user.create({
             data: {
-              email,
-              password: hashedPassword,
-              name,
-              role
+                email,
+                password: hashedPassword,
+                name,
+                role,
             },
             select: {
-              id: true,
-              email: true,
-              createdAt: true,
-            }
-          })
-
-        
+                id: true,
+                email: true,
+                createdAt: true,
+            },
+        })
 
         return res.status(201).json({ message: 'User created' })
     } catch (error) {
@@ -96,6 +93,7 @@ router.get('/user', async (req: Request, res: Response) => {
                 name: true,
                 email: true,
                 role: true,
+                isTwoFA: true,
             },
         })
 
@@ -112,22 +110,22 @@ router.get('/user', async (req: Request, res: Response) => {
 
 const validatePassword = (password: string): { isValid: boolean; errors: string[] } => {
     const errors: string[] = []
-    
+
     if (password.length < 8) {
-      errors.push('Le mot de passe doit contenir au moins 8 caractères')
+        errors.push('Le mot de passe doit contenir au moins 8 caractères')
     }
-    
+
     if (!/\d/.test(password)) {
-      errors.push('Le mot de passe doit contenir au moins 1 chiffre')
+        errors.push('Le mot de passe doit contenir au moins 1 chiffre')
     }
-    
+
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      errors.push('Le mot de passe doit contenir au moins 1 caractère spécial')
+        errors.push('Le mot de passe doit contenir au moins 1 caractère spécial')
     }
-    
+
     return {
-      isValid: errors.length === 0,
-      errors
+        isValid: errors.length === 0,
+        errors,
     }
 }
 

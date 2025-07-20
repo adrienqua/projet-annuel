@@ -10,11 +10,9 @@ import { useAuth } from '@/stores/auth'
 import { useHead } from '@vueuse/head'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import TwoFAModal from '@/components/modals/TwoFAModal.vue'
-const modalRef = ref<InstanceType<typeof TwoFAModal> | null>(null)
+import ProfileSecurity from '@/components/profile/ProfileSecurity.vue'
+import { getUser } from '@/services/AuthAPI'
 
-
-const router = useRouter()
 useHead({
   title: 'Mon compte | BuildMyPC',
   meta: [
@@ -37,20 +35,29 @@ useHead({
   ],
 })
 
+const router = useRouter()
 const auth = useAuth()
-const user = auth.user as User
+const authUser = auth.user as User
 
+const modalRef = ref<InstanceType<typeof TwoFAModal> | null>(null)
+const user = ref<User | null>(null)
 const builds = ref<Build[]>([])
 const orders = ref<Order[]>([])
 
 const fetchBuilds = async () => {
-  await getBuilds(user.id).then((res: Build[]) => {
+  await getBuilds(authUser.id).then((res: Build[]) => {
     builds.value = res
   })
 }
 
+const fetchUser = async () => {
+  await getUser(authUser.email).then((res: User) => {
+    user.value = res
+  })
+}
+
 const fetchOrders = async () => {
-  await getUserOrders(user.id).then((res: Order[]) => {
+  await getUserOrders(authUser.id).then((res: Order[]) => {
     orders.value = res
   })
 }
@@ -64,6 +71,7 @@ const setupTwoFa = () => {
   router.push('/2fa/setup')
 }
 onMounted(() => {
+  fetchUser()
   fetchBuilds()
   fetchOrders()
 })
@@ -71,18 +79,18 @@ onMounted(() => {
 <template>
   <main class="mx-auto container max-w-6xl px-4 pt-12">
     <h1 class="font-montserrat font-black text-3xl">Mon compte</h1>
+    <ProfileSecurity :user="user" @user-updated="fetchUser" />
     <ProfileOrders :orders="orders" />
     <ProfileBuilds :builds="builds" />
     <div class="flex items-center justify-center mt-8">
       <button @click="handleLogout" type="button" class="btn bg-gray-200">Se déconnecter</button>
     </div>
-    <div v-if="!user.isTwoFA" class="flex items-center justify-center mt-6">
+    <div v-if="!authUser.isTwoFA" class="flex items-center justify-center mt-6">
       <button @click="modalRef?.open()" class="btn bg-secondary-400 text-white">
         Activer la double authentification
       </button>
     </div>
 
     <TwoFAModal ref="modalRef" />
-
   </main>
 </template>

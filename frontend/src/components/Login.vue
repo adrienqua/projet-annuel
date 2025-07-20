@@ -38,7 +38,7 @@ const handle2FAVerification = async () => {
     if (res.token) {
       localStorage.setItem('token', res.token)
       localStorage.removeItem('temp_token')
-      router.push('/')
+      window.location.href = '/'
     } else {
       alert('Code incorrect')
     }
