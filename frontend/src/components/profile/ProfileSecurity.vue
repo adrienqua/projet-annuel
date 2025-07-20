@@ -30,7 +30,7 @@ const handleReset = async () => {
     qrCodeUrl.value = null
     code.value = ''
     emit('user-updated')
-    toast.success('Double authentification désactivée avec succès')
+    toast.success('Double authentification désactivée avec succès !')
   } catch (err) {
     console.error('Erreur reset 2FA', err)
     message.value = 'Échec de la réinitialisation'
@@ -44,8 +44,9 @@ const handleVerify = async () => {
     //setTimeout(() => router.push('/'), 1500)
     emit('user-updated')
     modalRef.value?.close()
-    toast.success('Double authentification activée avec succès')
+    toast.success('Double authentification activée avec succès !')
   } catch (e) {
+    
     message.value = 'Code incorrect'
     console.error(e)
   }

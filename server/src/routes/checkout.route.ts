@@ -60,13 +60,14 @@ router.post('/', async (req: Request, res: Response) => {
             })
         }
 
-        let shipping
-        if (subTotal >= 60) {
+/*         let shipping
+        if (subTotal >= 600) {
             shipping = 0
         } else {
             shipping = carrierPrice
-        }
-
+        } */
+        let shipping = carrierPrice
+        
         const total = subTotal + shipping
 
         const order = await prisma.order

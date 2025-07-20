@@ -34,7 +34,10 @@ watchEffect(() => {
 <template>
   <nav class="bg-black text-white w-full z-50 border-b border-gray-800">
     <div class="container px-6 py-4 flex items-center justify-between mx-auto max-w-6xl">
-      <router-link to="/" class="text-xl font-semibold text-secondary-400">BuildMyPC</router-link>
+      <router-link to="/" class="text-xl font-semibold text-secondary-400 flex gap-2 items-center">
+        <img src="/logo.png" alt="Logo" class="w-8 h-8" />
+        <span>BuildMyPC</span>
+      </router-link>
 
       <!-- Desktop  -->
       <ul class="hidden md:flex space-x-6 text-sm">
