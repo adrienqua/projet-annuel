@@ -21,10 +21,11 @@ dotenv.config()
 
 const app = express()
 const PORT = Number(process.env.PORT) || 5000
+const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost'
 
 app.use(
     cors({
-        origin: ['http://localhost:3010', 'http://localhost:5173', 'http://localhost:5174'],
+        origin: corsOrigin,
         credentials: true,
     })
 )

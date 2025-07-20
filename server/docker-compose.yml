@@ -6,8 +6,6 @@ services:
             POSTGRES_USER: ${DOCKER_POSTGRES_USER}
             POSTGRES_PASSWORD: ${DOCKER_POSTGRES_PASSWORD}
             POSTGRES_DB: ${DOCKER_POSTGRES_DB}
-        ports:
-            - '${DOCKER_POSTGRES_PORT}:5432'
         volumes:
             - db:/var/lib/postgresql/data
 
@@ -26,8 +24,6 @@ services:
     matomo:
         image: matomo:latest
         restart: unless-stopped
-        ports:
-            - '${MATOMO_PORT:-8081}:80'
         environment:
             - MATOMO_DATABASE_HOST=matomo_db
             - MATOMO_DATABASE_ADAPTER=mysql
@@ -42,8 +38,6 @@ services:
 
     adminer:
         image: adminer:latest
-        ports:
-            - 8080:8080
     server:
         build:
             context: .
@@ -54,8 +48,6 @@ services:
             - /app/node_modules
             - /etc/timezone:/etc/timezone:ro
             - /etc/localtime:/etc/localtime:ro
-        ports:
-            - '${DOCKER_SERVER_PORT}:5000'
         environment:
             - NODE_ENV=development
             - PORT=5000
@@ -73,16 +65,26 @@ services:
         volumes:
             - ../frontend:/app
             - /app/node_modules
-        ports:
-            - '${DOCKER_FRONTEND_PORT}:5174'
         environment:
             - NODE_ENV=development
-            - VITE_API_URL=http://localhost:${DOCKER_SERVER_PORT}/api
-            - VITE_MATOMO_URL=http://localhost:${MATOMO_PORT:-8081}
+            - VITE_API_URL=/api
+            - VITE_MATOMO_URL=/matomo
             - VITE_MATOMO_SITE_ID=${MATOMO_SITE_ID:-1}
             - VITE_SENTRY_DSN=${VITE_SENTRY_DSN:-""}
         depends_on:
             - server
+
+    reverse-proxy:
+        build:
+            context: ../reverse-proxy
+        ports:
+            - "80:80"
+        depends_on:
+            - frontend
+            - server
+            - matomo
+            - adminer
+
 
 volumes:
     db:
