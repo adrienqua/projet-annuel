@@ -1,4 +1,5 @@
 import Login from '@/components/Login.vue'
+import Register from '@/components/Register.vue'
 import ComponentDetail from '@/pages/ComponentDetail.vue'
 import BuilderView from '@/views/BuilderView.vue'
 import HomeView from '@/views/HomeView.vue'
@@ -23,12 +24,17 @@ const routes = [
     component: Login,
   },
   {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+  },
+  {
     path: '/account',
     name: 'Account',
     component: ProfileView,
   },
   {
-    path: '/component/:id',
+    path: '/component/:slug',
     name: 'ComponentDetail',
     component: ComponentDetail,
   },

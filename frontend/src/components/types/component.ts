@@ -5,11 +5,13 @@ export interface Component {
   specs: any
   ocProfiles: any
   name: string
-  price: string,
+  slug: string
+  price: string
   typeId: number
   manufacturerId: number
   manufacturer?: {
     id: number
     name: string
   }
+  disabled?: boolean
 }

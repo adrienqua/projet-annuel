@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useCartStore } from '@/stores/cart'
 import { formatPrice } from '@/utils/formatPrice'
 
 const props = defineProps<{
   subTotal: number
 }>()
+
+const cartStore = useCartStore()
 </script>
 <template>
   <div class="w-full md:w-1/4 bg-white rounded-3xl shadow-md p-6">
@@ -13,7 +16,12 @@ const props = defineProps<{
         <span class="font-medium text-gray-800">Sous total : </span>
         <span class="font-medium">{{ formatPrice(subTotal) }}</span>
       </div>
-      <router-link to="/checkout" class="btn btn-secondary w-full">Commander</router-link>
+      <router-link
+        to="/checkout"
+        class="btn btn-secondary w-full"
+        :class="{ 'btn-disabled': cartStore.cartProducts.length === 0 }"
+        >Commander</router-link
+      >
     </div>
   </div>
 </template>

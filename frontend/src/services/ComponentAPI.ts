@@ -22,6 +22,15 @@ export const getComponentById = async (id: number) => {
   }
 }
 
+export const getComponentBySlug = async (slug: string) => {
+  try {
+    const response = await axios.get(`${API}/components/slug/${slug}`)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export const getComponents = async (): Promise<Component[]> => {
   try {
     const res = await axios.get(`${API}/components`)

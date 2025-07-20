@@ -1,3 +1,5 @@
+import '../lib/instrument'
+import * as Sentry from '@sentry/node'
 import express from 'express'
 import userRoute from './routes/user.route'
 import userAuth from './routes/auth.route'
@@ -26,6 +28,7 @@ app.use(
         credentials: true,
     })
 )
+
 app.use(express.json())
 app.use('/api/auth', userAuth)
 app.use('/api/users', userRoute)
@@ -44,6 +47,11 @@ app.use('/api/manufacturers', manufacturerRoute)
 app.get('/', (req, res) => {
     res.send('Hello from TypeScript!')
 })
+app.get('/debug-sentry', function mainHandler(req, res) {
+    throw new Error('My first Sentry error!')
+})
+
+Sentry.setupExpressErrorHandler(app)
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running at http://localhost:${PORT}`)

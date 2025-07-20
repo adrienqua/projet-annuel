@@ -6,7 +6,7 @@ import { getComponentTypes } from '@/services/ComponentTypeAPI'
 import type { ComponentType } from './types/componentType'
 import Loader from './ui/Loader.vue'
 import Modal from './ui/Modal.vue'
-import { PlusIcon } from '@heroicons/vue/24/outline'
+import { PlusIcon, ShoppingCartIcon } from '@heroicons/vue/24/outline'
 import ComponentList from './ComponentList.vue'
 import { createBuild } from '@/services/BuildAPI'
 import { useAuth } from '@/stores/auth'
@@ -15,6 +15,7 @@ import { formatPrice } from '@/utils/formatPrice'
 import { toast } from 'vue3-toastify'
 import { useCartStore } from '@/stores/cart'
 import { useRouter } from 'vue-router'
+import { ArrowPathIcon, ServerStackIcon } from '@heroicons/vue/24/outline'
 
 const auth = useAuth()
 const cart = useCartStore()
@@ -23,7 +24,6 @@ const user = auth.user as User
 const router = useRouter()
 
 const modalRef = ref<{ open: () => void; close: () => void } | null>(null)
-const test = ref('test')
 
 const componentTypes = ref<ComponentType[]>([])
 const selectedComponents = ref<Record<string, { maxQuantity: number; components: Component[] }>>({
@@ -68,12 +68,12 @@ const selectedComponentsList = ref<Component[]>([])
 
 const totalPrice = ref(
   computed(() => {
-    return selectedComponentsList.value.reduce((total, component) => {
-      return (total * 100 + parseFloat(component.price) * 100) / 100
+    const total = selectedComponentsList.value.reduce((total, component) => {
+      return total + parseFloat(component.price) * 100
     }, 0)
+    return total / 100
   }),
 )
-
 const selectedType = reactive({
   name: '' as string,
   type: '' as string,
@@ -83,20 +83,32 @@ const selectedType = reactive({
 
 onMounted(async () => {
   componentTypes.value = await getComponentTypes()
+
+  const parseSelectedComponents = JSON.parse(localStorage.getItem('selectedComponents') || 'null')
+  if (parseSelectedComponents) {
+    selectedComponents.value = parseSelectedComponents
+  }
+  console.log('fes', parseSelectedComponents)
 })
 
 onMounted(() => {
   console.log('user', user)
 })
 
-watch(selectedComponents.value, (selectedComponents) => {
-  selectedComponentsList.value = []
-  Object.keys(selectedComponents).forEach((key) => {
-    selectedComponentsList.value.push(...selectedComponents[key].components)
-  })
+watch(
+  () => selectedComponents.value,
+  (selectedComponents) => {
+    selectedComponentsList.value = []
+    Object.keys(selectedComponents).forEach((key) => {
+      selectedComponentsList.value.push(...selectedComponents[key].components)
+    })
 
-  console.log('Selected components updated:', selectedComponentsList)
-})
+    localStorage.setItem('selectedComponents', JSON.stringify(selectedComponents))
+
+    console.log('Selected components updated:', selectedComponentsList)
+  },
+  { deep: true },
+)
 
 const handleSelectType = (type: ComponentType, index?: number) => {
   selectedType.components = type.components || []
@@ -130,7 +142,7 @@ const handleRemoveComponent = (component: Component, type: string) => {
   }
 }
 
-const handleSaveBuild = async () => {
+const handleSaveBuild = async (type = 'save') => {
   await createBuild({
     name: 'Ma configuration',
     price: totalPrice.value.toString(),
@@ -138,15 +150,33 @@ const handleSaveBuild = async () => {
     items: selectedComponentsList.value.map((component) => ({
       componentId: component.id,
       quantity: 1,
-      price: '299.90',
+      price: component.price,
     })),
   })
 
-  cart.handleAddToCart(selectedComponentsList.value.map((c) => c.id))
+  for (const key in selectedComponents.value) {
+    selectedComponents.value[key].components = []
+  }
 
-  router.push('/cart').then(() => {
-    toast.success('Configuration ajoutée au panier avec succès !')
-  })
+  if (type === 'save') {
+    router.push('/account').then(() => {
+      toast.success('Configuration enregistrée avec succès !')
+    })
+  } else if (type === 'addToCart') {
+    cart.handleAddToCart(selectedComponentsList.value.map((c) => c.id))
+
+    router.push('/cart').then(() => {
+      toast.success('Configuration ajoutée au panier avec succès !')
+    })
+  }
+}
+
+const handleResetBuild = () => {
+  for (const key in selectedComponents.value) {
+    selectedComponents.value[key].components = []
+  }
+
+  toast.success('La configuration a bien été réinitialisée !')
 }
 
 const isQuantityMaxxed = (type: string): boolean => {
@@ -158,6 +188,13 @@ const isQuantityMaxxed = (type: string): boolean => {
 </script>
 
 <template>
+  <div class="flex justify-between items-center">
+    <h1 class="font-montserrat font-black text-3xl mb-6">Configurateur</h1>
+    <button type="button" class="btn btn-sm bg-gray-200" @click="handleResetBuild">
+      <ArrowPathIcon class="w-5 h-5" />
+      Réinitialiser
+    </button>
+  </div>
   <div v-if="componentTypes.length === 0"><Loader /></div>
   <div v-else class="flex flex-col md:flex-row gap-8 items-start">
     <div class="w-full md:w-3/4 bg-white rounded-3xl shadow-md p-6">
@@ -208,10 +245,19 @@ const isQuantityMaxxed = (type: string): boolean => {
         </div>
       </div>
       <button
-        class="btn btn-secondary rounded-3xl w-full"
-        @click="handleSaveBuild"
+        class="btn rounded-3xl w-full mb-3"
+        @click="handleSaveBuild('save')"
         :disabled="selectedComponentsList.length === 0"
       >
+        <ServerStackIcon class="w-5 h-5 mr-2" />
+        Enregistrer la config
+      </button>
+      <button
+        class="btn btn-secondary rounded-3xl w-full"
+        @click="handleSaveBuild('addToCart')"
+        :disabled="selectedComponentsList.length === 0"
+      >
+        <ShoppingCartIcon class="w-5 h-5 mr-2" />
         Ajouter au panier
       </button>
     </div>
@@ -222,6 +268,9 @@ const isQuantityMaxxed = (type: string): boolean => {
       :components="selectedType.components"
       :handleSelectComponent="handleSelectComponent"
       :isEdit="isQuantityMaxxed(selectedType?.type) ? true : false"
+      :selectedComponents="selectedComponents"
+      :selectedType="selectedType.type"
+      :isSelect="true"
     />
   </Modal>
 </template>

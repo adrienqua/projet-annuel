@@ -28,6 +28,11 @@ const fetchOrders = async () => {
   })
 }
 
+const handleLogout = () => {
+  localStorage.removeItem('token')
+  window.location.href = '/login'
+}
+
 onMounted(() => {
   fetchBuilds()
   fetchOrders()
@@ -38,5 +43,8 @@ onMounted(() => {
     <h1 class="font-montserrat font-black text-3xl">Mon compte</h1>
     <ProfileOrders :orders="orders" />
     <ProfileBuilds :builds="builds" />
+    <div class="flex items-center justify-center mt-8">
+      <button @click="handleLogout" type="button" class="btn bg-gray-200">Se déconnecter</button>
+    </div>
   </main>
 </template>

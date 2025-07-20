@@ -1,58 +1,22 @@
-<template>
-  <div class="mx-auto container max-w-6xl px-4 pt-12">
-    <div v-if="component">
-      <router-link to="/builder" class="text-white bg-gray-400 hover:text-black inline-block mb-6">
-        ← Retour au configurateur
-      </router-link>
-
-      <h1 class="text-4xl font-bold mb-6">{{ component.name }}</h1>
-
-      <div class="flex flex-col md:flex-row shadow-md rounded-lg p-6">
-        <div class="md:w-1/2 flex justify-center bg-white items-center mb-6 md:mb-0">
-          <img
-            :src="component.imgUrl || 'https://via.placeholder.com/250'"
-            alt="Image du composant"
-            class="max-w-xs"
-          />
-        </div>
-        <div class="md:w-1/2 md:pl-10 space-y-4">
-          <p class="text-gray-700">
-            {{ component.description || 'Description indisponible.' }}
-          </p>
-
-          <ul class="list-disc list-inside text-gray-800">
-            <li v-for="(line, i) in formattedSpecs" :key="i">{{ line }}</li>
-          </ul>
-
-          <div class="mt-6">
-            <button
-              class="bg-green-500 hover:bg-green-600 text-white text-xl font-semibold px-6 py-3 rounded-full"
-            >
-              {{ formatPrice(component.price) }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div v-else>
-      <p>Chargement...</p>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { getComponentById } from '@/services/ComponentAPI.ts'
+import { getComponentById, getComponentBySlug } from '@/services/ComponentAPI.ts'
+import { ShoppingCartIcon } from '@heroicons/vue/24/outline'
+import { useCartStore } from '@/stores/cart'
+import { formatPrice } from '@/utils/formatPrice'
+import type { Component } from '@/components/types/component'
+import { toast } from 'vue3-toastify'
+import Loader from '@/components/ui/Loader.vue'
 
 const route = useRoute()
+const cartStore = useCartStore()
 const component = ref<any>(null)
 
 onMounted(async () => {
   try {
-    const id = Number(route.params.id)
-    const data = await getComponentById(id)
+    const slug = route.params.slug
+    const data = await getComponentBySlug(slug as string)
 
     if (!data) {
       console.error('Aucun composant trouvé')
@@ -65,15 +29,58 @@ onMounted(async () => {
   }
 })
 
-const formattedSpecs = computed(() => {
-  if (!component.value?.specs) return []
-  return Object.entries(component.value.specs).map(
-    ([key, value]) => `${key} : ${Array.isArray(value) ? value.join(', ') : value}`,
-  )
-})
+const handleAddToCart = (component: Component) => {
+  cartStore.handleAddToCart([component.id])
 
-function formatPrice(price: any) {
-  const p = typeof price === 'string' ? parseFloat(price) : price
-  return p ? `${p.toFixed(2)} €` : 'Prix indisponible'
+  toast.success(`${component.name} ajouté au panier`)
 }
 </script>
+
+<template>
+  <div class="mx-auto container max-w-6xl px-4 pt-12">
+    <div v-if="component">
+      <div class="flex flex-col md:flex-row gap-6">
+        <div class="md:w-1/2 flex justify-center items-center mb-6 md:mb-0">
+          <img
+            :src="component.imgUrl || '/components/placeholder.jpg'"
+            :alt="component.name"
+            class="rounded-3xl shadow-md"
+          />
+        </div>
+        <div class="md:w-1/2 md:pl-10 space-y-4 rounded-3xl p-8 bg-white shadow-md">
+          <h1 class="font-montserrat text-3xl font-black mb-3">{{ component.name }}</h1>
+          <p class="text-gray-700 mb-3">
+            {{ component.description || 'Description indisponible.' }}
+          </p>
+
+          <span class="text-lg text-secondary font-bold mb-6">
+            {{ formatPrice(component.price) }}
+          </span>
+
+          <div class="mt-6">
+            <button @click="handleAddToCart(component)" class="btn btn-secondary rounded-3xl">
+              <ShoppingCartIcon class="w-5 h-5 mr-2" />
+
+              Ajouter au panier
+            </button>
+          </div>
+          <h3 class="font-montserrat text-xl font-black mt-12 text-gray-800">Spécifications</h3>
+          <div class="overflow-x-auto bg-gray-100 rounded-3xl">
+            <table class="table">
+              <tbody>
+                <tr v-for="(value, key) in component.specs" :key="key">
+                  <th>{{ key }}</th>
+                  <td>{{ Array.isArray(value) ? value.join(', ') : value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-else>
+      <Loader />
+    </div>
+  </div>
+</template>

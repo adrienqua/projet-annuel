@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { formatPrice } from '@/utils/formatPrice'
 import type { Build } from '../types/build'
 
 const props = defineProps<{
@@ -10,7 +11,7 @@ const props = defineProps<{
   <div class="mt-16 px-4">
     <h2 class="font-montserrat text-2xl font-black text-center mb-6">Configuration vedettes</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div v-for="build in builds" :key="build.id" class="card rounded-3xlbg-base-200 shadow-md">
+      <div v-for="build in builds" :key="build.id" class="card rounded-3xl bg-base-200 shadow-md">
         <figure>
           <img
             :src="`/img/builds/${build.id}.jpg`"
@@ -20,7 +21,7 @@ const props = defineProps<{
         </figure>
         <div class="card-body">
           <h3 class="card-title text-lg font-bold">{{ build.name }}</h3>
-          <p class="text-sm text-secondary font-bold">{{ build.price }} €</p>
+          <p class="text-sm text-secondary font-bold">{{ formatPrice(build.price) }}</p>
         </div>
       </div>
     </div>

@@ -1,12 +1,26 @@
 <script setup lang="ts">
 import { useAuth } from '@/stores/auth'
 import { useCartStore } from '@/stores/cart'
+import { ArrowLeftStartOnRectangleIcon } from '@heroicons/vue/24/outline'
 import { ShoppingCartIcon, UserIcon } from '@heroicons/vue/24/solid'
-import { ref, watchEffect } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 
 const { user } = useAuth() as any
 const { cartProducts } = useCartStore()
 const isOpen = ref(false)
+const token = ref<string | null>(null)
+
+onMounted(() => {
+  token.value = localStorage.getItem('token')
+})
+
+const isAuthenticated = computed(() => !!token.value)
+
+const logout = () => {
+  localStorage.removeItem('token')
+  token.value = null
+  window.location.href = '/login'
+}
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
@@ -72,8 +86,12 @@ watchEffect(() => {
         </router-link>
         <router-link to="/account" v-else class="px-6 py-3 text-sm flex gap-1 items-center">
           <UserIcon class="w-5 h-5" />
-          <span class="text-gray-300">{{ user.name }}</span></router-link
-        >
+          <span class="text-gray-300">{{ user.name }}</span>
+
+          <button @click="logout" class="text-gray-300 cursor-pointer">
+            <ArrowLeftStartOnRectangleIcon class="w-5 h-5 ml-2" />
+          </button>
+        </router-link>
       </div>
 
       <button
@@ -107,11 +125,16 @@ watchEffect(() => {
           <router-link
             to="/account"
             v-else
-            class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-1 items-center"
+            class="px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium flex gap-4 items-center"
           >
-            <UserIcon class="w-5 h-5" />
-            <span class="text-gray-300">{{ user.name }}</span></router-link
-          >
+            <div class="flex gap-1">
+              <UserIcon class="w-5 h-5" />
+              <span class="text-gray-300">{{ user.name }}</span>
+            </div>
+            <button @click="logout" class="text-gray-300 cursor-pointer">
+              <ArrowLeftStartOnRectangleIcon class="w-5 h-5" />
+            </button>
+          </router-link>
         </div>
         <div class="">
           <router-link

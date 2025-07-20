@@ -36,6 +36,7 @@ model Component {
   id             Int       @id @default(autoincrement())
   imgUrl         String?   @db.VarChar(500)
   releaseDate    DateTime? @db.Date
+  slug           String    @unique @db.VarChar(150)
   specs          Json
   ocProfiles     Json
   name           String    @db.VarChar(150)
