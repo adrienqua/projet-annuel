@@ -8,8 +8,18 @@ import { initMatomo, trackPageView, trackSessionStart, trackSessionEnd } from '.
 import App from './App.vue'
 import router from './router'
 import Vue3Toastify, { type ToastContainerOptions } from 'vue3-toastify'
+import * as Sentry from '@sentry/vue'
 
 const app = createApp(App)
+
+Sentry.init({
+  app,
+  dsn: import.meta.env.VITE_SENTRY_DSN,
+  sendDefaultPii: true,
+  integrations: [Sentry.browserTracingIntegration({ router })],
+  tracesSampleRate: 1.0,
+  tracePropagationTargets: ['localhost', /^http:\/\/localhost:5000\/api/],
+})
 
 app.use(createPinia())
 app.use(router)
@@ -20,9 +30,13 @@ window.addEventListener('beforeunload', () => {
   trackSessionEnd()
 })
 
-router.afterEach((to, from) => {
+router.afterEach((to) => {
   setTimeout(() => {
-    trackPageView(to.meta.title || to.name || document.title)
+    const pageTitle =
+      (typeof to.meta.title === 'string' && to.meta.title) ||
+      (typeof to.name === 'string' && to.name) ||
+      document.title
+    trackPageView(pageTitle)
   }, 100)
 })
 

@@ -39,15 +39,15 @@ const props = defineProps<{
           :key="build.id"
           class="mb-2 bg-white rounded-3xl p-6 shadow-md"
         >
-          <div class="flex justify-between items-center mb-3">
+          <div class="flex justify-between items-start mb-3">
             <div class="flex flex-col items-start">
               <h3 class="text-gray-800 font-semibold">
                 {{ build.name }}
               </h3>
               <span class="text-secondary-400 font-semibold">{{ formatPrice(build.price) }}</span>
             </div>
-            <button class="btn btn-sm btn-primary" @click="handleAddBuildToCart(build)">
-              <ShoppingCartIcon class="w-5 h-5 ml-1" />
+            <button class="btn btn-xs btn-primary p-3 px-2.5" @click="handleAddBuildToCart(build)">
+              <ShoppingCartIcon class="w-4 h-4" />
             </button>
           </div>
           <ul class="flex flex-col gap-1">

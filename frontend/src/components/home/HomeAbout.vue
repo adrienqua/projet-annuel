@@ -45,7 +45,7 @@ onMounted(() => {
     <div class="flex justify-center mt-8">
       <router-link
         to="/builder"
-        class="btn btn-secondary text-secondary-900 btn-md rounded-3xl hover:scale-105 duration-300 transition-all"
+        class="btn btn-secondary text-secondary-900 btn-lg p-7.5 rounded-3xl hover:scale-105 duration-300 transition-all"
       >
         Commencer à configurer mon PC
       </router-link>

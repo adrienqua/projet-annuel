@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { formatPrice } from '@/utils/formatPrice'
 import type { Build } from '../types/build'
 
 const props = defineProps<{
@@ -20,7 +21,7 @@ const props = defineProps<{
         </figure>
         <div class="card-body">
           <h3 class="card-title text-lg font-bold">{{ build.name }}</h3>
-          <p class="text-sm text-secondary font-bold">{{ build.price }} €</p>
+          <p class="text-sm text-secondary font-bold">{{ formatPrice(build.price) }}</p>
         </div>
       </div>
     </div>
