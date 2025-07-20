@@ -68,12 +68,16 @@ useHead(
         :to="`/components/${component.slug}`"
         v-for="component in category?.components"
         :key="component.id"
-        class="rounded-3xl bg-white shadow-sm overflow-auto"
+        class="rounded-3xl bg-gray-100 shadow-sm overflow-hidden group"
       >
-        <div class="flex flex-col items-center mb-4">
-          <img :src="component.imgUrl" :alt="component.name" class="object-cover aspect-square" />
+        <div class="flex flex-col items-center overflow-hidden">
+          <img
+            :src="component.imgUrl || '/components/placeholder.jpg'"
+            :alt="component.name"
+            class="object-cover aspect-square group-hover:scale-110 transition-all duration-200"
+          />
         </div>
-        <div class="flex flex-col items-center bg-gray-100 p-4">
+        <div class="flex flex-col items-center p-4">
           <h2 class="font-bold text-lg">{{ component.name }}</h2>
           <p class="text-gray-600">{{ formatPrice(component.price) }}</p>
           <button
