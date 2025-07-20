@@ -12,17 +12,18 @@ const token = ref(localStorage.getItem('token'))
 const user = reactive<Partial<User>>({})
 
 if (token.value) {
-  const decodedToken: any = jwtDecode(token.value)
-  const fetchedUser = await getUser(decodedToken.email)
+  ;(async () => {
+    const decodedToken: any = jwtDecode(token.value)
+    const fetchedUser = await getUser(decodedToken.email)
+    Object.assign(user, fetchedUser)
+    if (user.id) {
+      localStorage.setItem('userId', user.id)
+    }
 
-  Object.assign(user, fetchedUser)
-
-  if (user.id) {
-    localStorage.setItem('userId', user.id)
-  }
-
-  console.log(user, 'user')
+    console.log(user, 'user')
+  })()
 }
+
 
 export function useAuth() {
   return {
