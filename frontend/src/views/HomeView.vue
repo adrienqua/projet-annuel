@@ -9,6 +9,31 @@ import HomeSlider from '@/components/home/HomeSlider.vue'
 import type { Build } from '@/components/types/build'
 import HomeAbout from '@/components/home/HomeAbout.vue'
 import HomeReviews from '@/components/home/HomeReviews.vue'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'BuildMyPC | Configurateur de PC sur mesure nouvelle génération',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Sélectionnez vos composants et créez facilement le PC de vos rêves. Que vous soyez gamer, créateur ou professionnel, BuildMyPC vous aide à concevoir une configuration puissante, fiable et parfaitement adaptée à vos besoins.',
+    },
+    { name: 'author', content: 'BuildMyPC' },
+    { name: 'robots', content: 'index, follow' },
+    {
+      property: 'og:title',
+      content: 'BuildMyPC | Configurateur de PC sur mesure nouvelle génération',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Sélectionnez vos composants et créez facilement le PC de vos rêves. Que vous soyez gamer, créateur ou professionnel, BuildMyPC vous aide à concevoir une configuration puissante, fiable et parfaitement adaptée à vos besoins.',
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'fr_FR' },
+  ],
+})
 
 const builds = ref<Build[]>([])
 

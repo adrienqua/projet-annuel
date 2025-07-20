@@ -1,9 +1,7 @@
 import Login from '@/components/Login.vue'
 import Register from '@/components/Register.vue'
-import ComponentDetail from '@/pages/ComponentDetail.vue'
 import BuilderView from '@/views/BuilderView.vue'
 import HomeView from '@/views/HomeView.vue'
-import ComponentCompare from '@/pages/ComponentCompare.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import ProfileView from '@/views/ProfileView.vue'
 import AboutView from '@/views/AboutView.vue'
@@ -11,6 +9,10 @@ import CartView from '@/views/CartView.vue'
 import CheckoutView from '@/views/CheckoutView.vue'
 import CheckoutSuccessView from '@/views/CheckoutSuccessView.vue'
 import CheckoutCancelView from '@/views/CheckoutCancelView.vue'
+import ComponentDetailView from '@/views/ComponentDetailView.vue'
+import ComponentCompareView from '@/views/ComponentCompareView.vue'
+import ProductListView from '@/views/ProductListView.vue'
+import CategoryListView from '@/views/CategoryListView.vue'
 
 const routes = [
   {
@@ -34,9 +36,9 @@ const routes = [
     component: ProfileView,
   },
   {
-    path: '/component/:slug',
+    path: '/components/:slug',
     name: 'ComponentDetail',
-    component: ComponentDetail,
+    component: ComponentDetailView,
   },
   {
     path: '/2fa/setup',
@@ -45,7 +47,7 @@ const routes = [
   {
     path: '/compare',
     name: 'ComponentCompare',
-    component: ComponentCompare,
+    component: ComponentCompareView,
   },
   {
     path: '/checkout/success',
@@ -61,6 +63,16 @@ const routes = [
     path: '/builder',
     name: 'Builder',
     component: BuilderView,
+  },
+  {
+    path: '/products',
+    name: 'ProductList',
+    component: ProductListView,
+  },
+  {
+    path: '/products/:slug',
+    name: 'CategoryList',
+    component: CategoryListView,
   },
   {
     path: '/cart',
@@ -94,10 +106,8 @@ const routes = [
         path: 'orders',
         component: () => import('@/views/admin/Orders.vue'),
       },
-    ]
-  }
-
-
+    ],
+  },
 ]
 
 const router = createRouter({

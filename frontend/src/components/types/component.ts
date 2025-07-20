@@ -5,6 +5,7 @@ export interface Component {
   specs: any
   ocProfiles: any
   name: string
+  description?: string
   slug: string
   price: string
   typeId: number

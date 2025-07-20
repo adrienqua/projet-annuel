@@ -156,7 +156,7 @@ watch(
           :to="{ name: 'ComponentDetail', params: { slug: component.slug } }"
           target="_blank"
           class="mr-1 cursor-pointer"
-          v-if="isEdit && type"
+          v-if="type"
           @click="handleSelectType && handleSelectType(type, index as number)"
         >
           <ArrowTopRightOnSquareIcon class="w-6 h-6" />

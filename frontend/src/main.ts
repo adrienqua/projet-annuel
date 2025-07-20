@@ -3,6 +3,7 @@ import './assets/main.css'
 import 'vuestic-ui/styles/essential.css'
 
 import { createApp } from 'vue'
+import { createHead } from '@vueuse/head'
 import { createPinia } from 'pinia'
 import { createVuestic } from 'vuestic-ui'
 import { initMatomo, trackPageView, trackSessionStart, trackSessionEnd } from './utils/matomo'
@@ -14,6 +15,7 @@ import Vue3Toastify, { type ToastContainerOptions } from 'vue3-toastify'
 import * as Sentry from '@sentry/vue'
 
 const app = createApp(App)
+const head = createHead()
 
 Sentry.init({
   app,
@@ -48,4 +50,5 @@ app.use(Vue3Toastify, {
   theme: 'colored',
 } as ToastContainerOptions)
 
+app.use(head)
 app.mount('#app')

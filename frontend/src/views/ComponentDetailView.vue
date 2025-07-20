@@ -8,10 +8,11 @@ import { formatPrice } from '@/utils/formatPrice'
 import type { Component } from '@/components/types/component'
 import { toast } from 'vue3-toastify'
 import Loader from '@/components/ui/Loader.vue'
+import { useHead } from '@vueuse/head'
 
 const route = useRoute()
 const cartStore = useCartStore()
-const component = ref<any>(null)
+const component = ref<Component | null>(null)
 
 onMounted(async () => {
   try {
@@ -34,6 +35,31 @@ const handleAddToCart = (component: Component) => {
 
   toast.success(`${component.name} ajouté au panier`)
 }
+
+useHead(
+  computed(() => ({
+    title: component.value ? `${component.value.name} | BuildMyPC` : 'BuildMyPC',
+    meta: [
+      {
+        name: 'description',
+        content: component.value ? `${component.value.description} | BuildMyPC` : 'BuildMyPC',
+      },
+      {
+        property: 'og:title',
+        content: component.value
+          ? `${component.value.name} | BuildMyPC`
+          : 'Comparateur de composants | BuildMyPC',
+      },
+      {
+        property: 'og:description',
+        content: component.value ? `${component.value.description} | BuildMyPC` : 'BuildMyPC',
+      },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:locale', content: 'fr_FR' },
+      { name: 'robots', content: 'index, follow' },
+    ],
+  })),
+)
 </script>
 
 <template>

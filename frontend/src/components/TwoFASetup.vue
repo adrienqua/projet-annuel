@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 const emit = defineEmits(['setup-success'])
+const API = import.meta.env.VITE_API_URL
+const router = useRouter()
 const userId = ref('')
 const qrCodeUrl = ref<string | null>(null)
 const errorMsg = ref('')
@@ -16,7 +19,8 @@ const generateQRCode = async () => {
     }
     userId.value = id
 
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/twofa/setup`, {
+  try {
+    const { data } = await axios.get(`${API}/twofa/setup`, {
       params: { userId: userId.value },
     })
 

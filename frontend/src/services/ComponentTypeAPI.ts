@@ -23,6 +23,15 @@ export const getComponentType = async (id: number): Promise<ComponentType> => {
   }
 }
 
+export const getComponentTypeBySlug = async (slug: string) => {
+  try {
+    const response = await axios.get(`${API}/componentTypes/slug/${slug}`)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export const createComponentType = async (data: Partial<ComponentType>) => {
   try {
     const res = await axios.post(`${API}/componentTypes`, data)

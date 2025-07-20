@@ -7,7 +7,7 @@ import type { User } from '@/components/types/user'
 import { getBuilds } from '@/services/BuildAPI'
 import { getUserOrders } from '@/services/UserAPI'
 import { useAuth } from '@/stores/auth'
-import { formatPrice } from '@/utils/formatPrice'
+import { useHead } from '@vueuse/head'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import TwoFAModal from '@/components/modals/TwoFAModal.vue'
@@ -15,6 +15,28 @@ const modalRef = ref<InstanceType<typeof TwoFAModal> | null>(null)
 
 
 const router = useRouter()
+useHead({
+  title: 'Mon compte | BuildMyPC',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Gérez vos informations personnelles, vos configurations de PC et suivez vos commandes.',
+    },
+    { property: 'og:title', content: 'Mon compte | BuildMyPC' },
+    {
+      property: 'og:description',
+      content:
+        'Gérez vos informations personnelles, vos configurations de PC et suivez vos commandes.',
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'fr_FR' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'author', content: 'BuildMyPC' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+  ],
+})
+
 const auth = useAuth()
 const user = auth.user as User
 

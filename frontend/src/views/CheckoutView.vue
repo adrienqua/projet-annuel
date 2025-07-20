@@ -16,6 +16,17 @@ import { useAuth } from '@/stores/auth'
 import type { User } from '@/components/types/user'
 import { checkoutOrder } from '@/services/CheckoutAPI'
 import { useRouter } from 'vue-router'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Finaliser ma commande | BuildMyPC',
+  meta: [
+    {
+      name: 'robots',
+      content: 'noindex, nofollow',
+    },
+  ],
+})
 
 const { cartProducts } = useCartStore()
 const auth = useAuth()

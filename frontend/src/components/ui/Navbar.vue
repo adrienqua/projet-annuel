@@ -34,10 +34,17 @@ watchEffect(() => {
 <template>
   <nav class="bg-black text-white w-full z-50 border-b border-gray-800">
     <div class="container px-6 py-4 flex items-center justify-between mx-auto max-w-6xl">
-      <router-link to="/" class="text-xl font-semibold text-secondary-400">Logo</router-link>
+      <router-link to="/" class="text-xl font-semibold text-secondary-400">BuildMyPC</router-link>
 
       <!-- Desktop  -->
       <ul class="hidden md:flex space-x-6 text-sm">
+        <li>
+          <router-link
+            to="/products"
+            class="hover:text-secondary-400 transition duration-300 font-medium"
+            >Produits</router-link
+          >
+        </li>
         <li>
           <router-link
             to="/builder"
@@ -67,7 +74,6 @@ watchEffect(() => {
             Admin
           </router-link>
         </li>
-
       </ul>
 
       <div class="hidden md:flex text-sm">
@@ -146,6 +152,11 @@ watchEffect(() => {
         </div>
       </div>
       <router-link
+        to="/products"
+        class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
+        >Produits</router-link
+      >
+      <router-link
         to="/builder"
         class="block px-6 py-3 hover:bg-gray-800 hover:text-secondary-400 transition duration-300 font-medium"
         >Configurateur</router-link
@@ -167,7 +178,6 @@ watchEffect(() => {
       >
         Admin
       </router-link>
-
     </div>
   </nav>
 </template>

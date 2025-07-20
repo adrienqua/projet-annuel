@@ -1,12 +1,28 @@
 <script setup lang="ts">
+import type { Component } from '@/components/types/component'
+import type { ComponentType } from '@/components/types/componentType'
+import type { Manufacturer } from '@/components/types/manufacturer'
+import { useHead } from '@vueuse/head'
 import { ref, onMounted } from 'vue'
 
-const components = ref([])
+useHead({
+  title: 'Admin Composants | BuildMyPC',
+  meta: [
+    {
+      name: 'robots',
+      content: 'noindex, nofollow',
+    },
+  ],
+})
+
+const API = import.meta.env.VITE_API_URL
+
+const components = ref<Component[]>([])
 const showModal = ref(false)
 const isEditing = ref(false)
 
-const componentTypes = ref([])
-const manufacturers = ref([])
+const componentTypes = ref<ComponentType[]>([])
+const manufacturers = ref<Manufacturer[]>([])
 
 const editedComponent = ref({
   id: null,
@@ -31,14 +47,14 @@ const columns = [
 ]
 
 const fetchComponents = async () => {
-  const res = await fetch('http://localhost:5000/api/components')
+  const res = await fetch(`${API}/components`)
   components.value = await res.json()
 }
 
 const fetchTypesAndManufacturers = async () => {
   const [typesRes, manuRes] = await Promise.all([
-    fetch('http://localhost:5000/api/componentTypes'),
-    fetch('http://localhost:5000/api/manufacturers'),
+    fetch(`${API}/componentTypes`),
+    fetch(`${API}/manufacturers`),
   ])
   componentTypes.value = await typesRes.json()
   manufacturers.value = await manuRes.json()
@@ -70,8 +86,8 @@ const editComponent = (row: any) => {
 const saveComponent = async () => {
   const method = isEditing.value ? 'PUT' : 'POST'
   const url = isEditing.value
-    ? `http://localhost:5000/api/components/${editedComponent.value.id}`
-    : 'http://localhost:5000/api/components'
+    ? `${API}/components/${editedComponent.value.id}`
+    : `${API}/components`
 
   await fetch(url, {
     method,
@@ -86,7 +102,7 @@ const saveComponent = async () => {
 const deleteComponent = async (row: any) => {
   const id = row.rowData.id
   if (!id || !confirm('Supprimer ce composant ?')) return
-  await fetch(`http://localhost:5000/api/components/${id}`, {
+  await fetch(`${API}/components/${id}`, {
     method: 'DELETE',
   })
   fetchComponents()
@@ -99,9 +115,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button class="btn btn-secondary mb-3" @click="openCreateModal">
-    Ajouter un composant
-  </button>
+  <button class="btn btn-secondary mb-3" @click="openCreateModal">Ajouter un composant</button>
 
   <VaDataTable :items="components" :columns="columns">
     <template #cell(actions)="{ row }">
@@ -124,7 +138,11 @@ onMounted(() => {
 
       <div>
         <label class="label"><span class="label-text">Date de sortie</span></label>
-        <input type="date" v-model="editedComponent.releaseDate" class="input input-bordered w-full" />
+        <input
+          type="date"
+          v-model="editedComponent.releaseDate"
+          class="input input-bordered w-full"
+        />
       </div>
 
       <div>
