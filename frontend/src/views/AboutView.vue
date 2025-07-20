@@ -213,6 +213,12 @@ useHead({
           </div>
         </details>
       </section>
+
+      <p class="text-sm leading-relaxed mb-12 mt-6 text-gray-500">
+        Ce projet est protégé par le droit d’auteur. Toute reproduction, réutilisation ou diffusion
+        totale ou partielle du code source, sans autorisation explicite de l’auteur, est strictement
+        interdite.
+      </p>
     </article>
   </main>
 

@@ -38,13 +38,42 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 })
 
+router.get('/slug/:slug', async (req: Request, res: Response) => {
+    const slug = req.params.slug
+
+    try {
+        const component = await prisma.component.findUnique({
+            where: { slug },
+            include: {
+                type: true,
+                manufacturer: true,
+                vendorComponents: {
+                    include: {
+                        vendor: true,
+                        priceHistory: true,
+                    },
+                },
+            },
+        })
+
+        if (!component) {
+            res.status(404).json({ message: 'Composant introuvable' })
+            return
+        }
+
+        res.status(200).json(component)
+    } catch (error: any) {
+        res.status(500).json({ message: 'Erreur serveur', error: error.message })
+    }
+})
+
 router.get('/', async (req: Request, res: Response) => {
     try {
         const components = await prisma.component.findMany({
             include: {
                 type: true,
                 manufacturer: true,
-            }
+            },
         })
         res.status(200).json(components)
     } catch (error: any) {
@@ -81,11 +110,13 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     try {
-        const { name, price, releaseDate, specs, ocProfiles, typeId, manufacturerId } = req.body
+        const { name, slug, price, releaseDate, specs, ocProfiles, typeId, manufacturerId } =
+            req.body
 
         const component = await prisma.component.create({
             data: {
                 name,
+                slug,
                 price,
                 releaseDate: releaseDate ? new Date(releaseDate) : undefined,
                 specs,
@@ -104,12 +135,14 @@ router.post('/', async (req: Request, res: Response) => {
 router.put('/:id', async (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        const { name, price, releaseDate, specs, ocProfiles, typeId, manufacturerId } = req.body
+        const { name, slug, price, releaseDate, specs, ocProfiles, typeId, manufacturerId } =
+            req.body
 
         const component = await prisma.component.update({
             where: { id: Number(id) },
             data: {
                 name,
+                slug,
                 price,
                 releaseDate: releaseDate ? new Date(releaseDate) : undefined,
                 specs,

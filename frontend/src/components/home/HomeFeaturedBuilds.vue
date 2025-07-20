@@ -11,7 +11,7 @@ const props = defineProps<{
   <div class="mt-16 px-4">
     <h2 class="font-montserrat text-2xl font-black text-center mb-6">Configuration vedettes</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div v-for="build in builds" :key="build.id" class="card rounded-3xlbg-base-200 shadow-md">
+      <div v-for="build in builds" :key="build.id" class="card rounded-3xl bg-base-200 shadow-md">
         <figure>
           <img
             :src="`/img/builds/${build.id}.jpg`"

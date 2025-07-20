@@ -84,18 +84,18 @@
 }
 .Toastify__toast-theme--colored {
   border-radius: 1rem;
+  margin-top: 4.5rem;
 }
-
 
 @keyframes rgb-cycle {
   0% {
-    backgroundPosition: '0% 50%'
+    backgroundposition: '0% 50%';
   }
   50% {
-    backgroundPosition: '100% 50%'
+    backgroundposition: '100% 50%';
   }
   100% {
-    backgroundPosition: '100% 50%'
+    backgroundposition: '100% 50%';
   }
 }
 

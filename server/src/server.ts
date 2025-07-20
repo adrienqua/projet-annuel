@@ -51,8 +51,6 @@ app.get('/debug-sentry', function mainHandler(req, res) {
 
 Sentry.setupExpressErrorHandler(app)
 
-console.log('Sentry DSN:', process.env.SERVER_SENTRY_DSN)
-
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running at http://localhost:${PORT}`)
 })

@@ -34,7 +34,7 @@ const routes = [
     component: ProfileView,
   },
   {
-    path: '/component/:id',
+    path: '/component/:slug',
     name: 'ComponentDetail',
     component: ComponentDetail,
   },

@@ -48,7 +48,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="relative w-full shadow-md max-h-[650px] overflow-hidden h-[650px]">
+  <div
+    class="relative w-full shadow-md overflow-hidden md:h-[650px] md:max-h-[650px] h-[300px] max-h-[300px]"
+  >
     <div
       class="flex transition-transform duration-700 ease-in-out h-full"
       :style="{ transform: `translateX(-${currentIndex * 100}%)` }"

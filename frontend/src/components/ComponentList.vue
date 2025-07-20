@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { getComponents } from '@/services/ComponentAPI'
-import { onMounted, reactive, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import type { Component } from './types/component'
-import { getComponentTypes } from '@/services/ComponentTypeAPI'
 import type { ComponentType } from './types/componentType'
-import Loader from './ui/Loader.vue'
-import Modal from './ui/Modal.vue'
-import { PencilIcon, PlusIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { ArrowTopRightOnSquareIcon, PencilIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import { formatPrice } from '@/utils/formatPrice'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   components: Component[]
@@ -21,6 +19,7 @@ const props = defineProps<{
   selectedType?: string
 }>()
 
+const router = useRouter()
 const componentsList = ref<Component[]>([])
 
 // Check components compatibility
@@ -50,7 +49,7 @@ watch(
         component.disabled = true
       }
 
-      // RAM compatibility check - only check when motherboard is selected
+      // RAM compatibility check (when motherboard is selected)
       if (
         props.selectedType === 'ram' &&
         selectedMotherboard &&
@@ -60,7 +59,7 @@ watch(
         component.disabled = true
       }
 
-      // Motherboard RAM compatibility check - only check when RAM is selected
+      // Motherboard compatibility check (when RAM is selected)
       if (
         props.selectedType === 'motherboard' &&
         selectedRam &&
@@ -70,7 +69,7 @@ watch(
         component.disabled = true
       }
 
-      // Case PSU compatibility check - only check when PSU is selected
+      // Case PSU compatibility check (when PSU is selected)
       if (
         props.selectedType === 'case' &&
         selectedPsu &&
@@ -80,7 +79,7 @@ watch(
         component.disabled = true
       }
 
-      // PSU case compatibility check - only check when case is selected
+      // PSU case compatibility check (when case is selected)
       if (
         props.selectedType === 'powerSupply' &&
         selectedCase &&
@@ -90,7 +89,7 @@ watch(
         component.disabled = true
       }
 
-      /*       // CPU Cooler radiator size and Case compatibility check
+      /*       // CPU Cooler radiator compatibility check (when CPU Cooler is selected)
       if (
         props.selectedType === 'cpuCooler' &&
         selectedCase &&
@@ -102,7 +101,7 @@ watch(
       }
       console.log('coolerno', component.specs.tdp_W, '>', selectedCase?.specs.aio_max_format_mm)
 
-      // Case CPU Cooler compatibility check - only check when CPU Cooler is selected
+      // Case compatibility check (when CPU Cooler is selected)
       if (
         props.selectedType === 'case' &&
         selectedCpuCooler &&
@@ -153,6 +152,15 @@ watch(
         <div class="text-sm text-secondary-400">En stock</div>
       </div>
       <div class="flex gap-4">
+        <router-link
+          :to="{ name: 'ComponentDetail', params: { slug: component.slug } }"
+          target="_blank"
+          class="mr-1 cursor-pointer"
+          v-if="isEdit && type"
+          @click="handleSelectType && handleSelectType(type, index as number)"
+        >
+          <ArrowTopRightOnSquareIcon class="w-6 h-6" />
+        </router-link>
         <button
           class="mr-1 cursor-pointer"
           v-if="isEdit && type"
