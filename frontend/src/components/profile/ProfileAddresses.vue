@@ -56,6 +56,7 @@ function openModal(address?: Address) {
     }
     editingAddress.value = null
   }
+  console.log('rdegui')
   modalRef.value?.open()
 }
 
@@ -63,10 +64,10 @@ async function saveAddress() {
   try {
     if (editingAddress.value) {
       await updateAddress(form.value.id, form.value)
-      toast.success('Adresse modifiée')
+      toast.success('Adresse modifiée !')
     } else {
       await createAddress(form.value)
-      toast.success('Adresse ajoutée')
+      toast.success('Adresse ajoutée !')
     }
     emit('user-updated')
     modalRef.value?.close()
@@ -78,7 +79,7 @@ async function saveAddress() {
 async function handleDeleteAddress(id: number) {
   try {
     await deleteAddressApi(id)
-    toast.success('Adresse supprimée')
+    toast.success('Adresse supprimée !')
     emit('user-updated')
   } catch {
     toast.error('Erreur lors de la suppression')
@@ -116,51 +117,47 @@ async function handleDeleteAddress(id: number) {
           </span>
         </li>
       </ul>
-      <Modal ref="modalRef" title="Adresse" class="font-medium">
-        <form @submit.prevent="saveAddress">
-          <label class="block mb-1 font-semibold">Libellé</label>
-          <input
-            v-model="form.label"
-            placeholder="Libellé"
-            class="mb-2 input input-bordered w-full"
-          />
-          <label class="block mb-1 font-semibold">Nom</label>
-          <input v-model="form.name" placeholder="Nom" class="mb-2 input input-bordered w-full" />
-          <label class="block mb-1 font-semibold">Téléphone</label>
-          <input
-            v-model="form.phone"
-            placeholder="Téléphone"
-            class="mb-2 input input-bordered w-full"
-          />
-          <label class="block mb-1 font-semibold">Adresse</label>
-          <input
-            v-model="form.address"
-            placeholder="Adresse"
-            class="mb-2 input input-bordered w-full"
-          />
-          <label class="block mb-1 font-semibold">Complément</label>
-          <input
-            v-model="form.addressComplement"
-            placeholder="Complément"
-            class="mb-2 input input-bordered w-full"
-          />
-          <label class="block mb-1 font-semibold">Code postal</label>
-          <input
-            v-model="form.postalCode"
-            placeholder="Code postal"
-            class="mb-2 input input-bordered w-full"
-          />
-          <label class="block mb-1 font-semibold">Ville</label>
-          <input v-model="form.city" placeholder="Ville" class="mb-2 input input-bordered w-full" />
-          <label class="block mb-1 font-semibold">Pays</label>
-          <input
-            v-model="form.country"
-            placeholder="Pays"
-            class="mb-2 input input-bordered w-full"
-          />
-          <button type="submit" class="btn btn-secondary mt-2">Enregistrer</button>
-        </form>
-      </Modal>
     </div>
+    <Modal ref="modalRef" title="Adresse" class="font-medium">
+      <form @submit.prevent="saveAddress">
+        <label class="block mb-1 font-semibold">Libellé</label>
+        <input
+          v-model="form.label"
+          placeholder="Libellé"
+          class="mb-2 input input-bordered w-full"
+        />
+        <label class="block mb-1 font-semibold">Nom</label>
+        <input v-model="form.name" placeholder="Nom" class="mb-2 input input-bordered w-full" />
+        <label class="block mb-1 font-semibold">Téléphone</label>
+        <input
+          v-model="form.phone"
+          placeholder="Téléphone"
+          class="mb-2 input input-bordered w-full"
+        />
+        <label class="block mb-1 font-semibold">Adresse</label>
+        <input
+          v-model="form.address"
+          placeholder="Adresse"
+          class="mb-2 input input-bordered w-full"
+        />
+        <label class="block mb-1 font-semibold">Complément</label>
+        <input
+          v-model="form.addressComplement"
+          placeholder="Complément"
+          class="mb-2 input input-bordered w-full"
+        />
+        <label class="block mb-1 font-semibold">Code postal</label>
+        <input
+          v-model="form.postalCode"
+          placeholder="Code postal"
+          class="mb-2 input input-bordered w-full"
+        />
+        <label class="block mb-1 font-semibold">Ville</label>
+        <input v-model="form.city" placeholder="Ville" class="mb-2 input input-bordered w-full" />
+        <label class="block mb-1 font-semibold">Pays</label>
+        <input v-model="form.country" placeholder="Pays" class="mb-2 input input-bordered w-full" />
+        <button type="submit" class="btn btn-secondary mt-2">Enregistrer</button>
+      </form>
+    </Modal>
   </div>
 </template>

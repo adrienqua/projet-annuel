@@ -1,25 +1,19 @@
 import { reactive, ref } from 'vue'
 import { jwtDecode } from 'jwt-decode'
 import { getUser } from '@/services/AuthAPI'
+import type { User } from '@/components/types/user'
 
-interface MyJwtPayload {
-  email: string
-}
-
-const token = ref<string | null>(localStorage.getItem('token'))
-let user = reactive<any>({})
+const token = ref(localStorage.getItem('token'))
+let user = reactive<Partial<User>>({})
 
 if (token.value) {
-  ;(async () => {
-    const decodedToken = jwtDecode<MyJwtPayload>(token.value as string)
-    const fetchedUser = await getUser(decodedToken.email)
-    Object.assign(user, fetchedUser)
-    if (user.id) {
-      localStorage.setItem('userId', user.id)
-    }
+  const decodedToken: any = jwtDecode(token.value)
+  user = await getUser(decodedToken.email)
+  if (user?.id) {
+    localStorage.setItem('userId', user.id)
+  }
 
-    console.log(user, 'user')
-  })()
+  console.log(user, 'user')
 }
 
 export function useAuth() {

@@ -13,7 +13,7 @@ const slides = ref([
     src: '/img/displays/2.jpg',
     alt: 'Découvrez nos produits',
     text: 'Découvrez nos produits',
-    route: '/',
+    route: '/products',
   },
   {
     src: '/img/displays/3.png',
