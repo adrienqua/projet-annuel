@@ -9,7 +9,9 @@ import { getUserOrders } from '@/services/UserAPI'
 import { useAuth } from '@/stores/auth'
 import { formatPrice } from '@/utils/formatPrice'
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const auth = useAuth()
 const user = auth.user as User
 
@@ -33,6 +35,9 @@ const handleLogout = () => {
   window.location.href = '/login'
 }
 
+const setupTwoFa = () => {
+  router.push('/2fa/setup')
+}
 onMounted(() => {
   fetchBuilds()
   fetchOrders()
@@ -46,5 +51,11 @@ onMounted(() => {
     <div class="flex items-center justify-center mt-8">
       <button @click="handleLogout" type="button" class="btn bg-gray-200">Se déconnecter</button>
     </div>
+    <div v-if="!user.isTwoFA" class="flex items-center justify-center mt-6">
+      <button @click="setupTwoFa" class="btn bg-secondary-400 text-white">
+        Gestion de la double authentification
+      </button>
+    </div>
+
   </main>
 </template>

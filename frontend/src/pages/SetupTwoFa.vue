@@ -40,38 +40,42 @@ const handleReset = async () => {
     code.value = ''
   } catch (err) {
     console.error('Erreur reset 2FA', err)
-    message.value = '❌ Échec de la réinitialisation'
+    message.value = 'Échec de la réinitialisation'
   }
 }
 </script>
 
 <template>
-  <div class="p-8 max-w-md mx-aut container px-4 pt-12">
-    <h1 class="text-2xl font-bold mb-4">Configurer 2FA</h1>
+  <main class="min-h-[80vh] flex items-center justify-center bg-base-100 px-4">
+    <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-lg border border-gray-200">
+      <h1 class="text-3xl font-bold mb-6 text-center text-neutral">Activer la double authentification</h1>
 
-    <button @click="handleSetup" class="bg-green-500 text-white px-4 py-2 rounded mb-4">
-      Générer le QR Code
-    </button>
-
-    <div v-if="qrCodeUrl">
-      <p>Scanne ce QR code avec Google Authenticator :</p>
-      <img :src="qrCodeUrl" alt="QR Code" class="my-4 w-48" />
-
-      <input
-        v-model="code"
-        type="text"
-        placeholder="Code à 6 chiffres"
-        class="w-full px-4 py-2 border border-gray-300 rounded mb-4"
-      />
-      <button @click="handleVerify" class="bg-blue-500 text-white px-4 py-2 rounded">
-        Vérifier
+      <button @click="handleSetup" class="btn btn-success w-full mb-4">
+        Générer le QR Code
       </button>
+
+      <div v-if="qrCodeUrl" class="text-center">
+        <p class="text-sm text-gray-600 mb-4">Scanne le QR code avec Google Authenticator :</p>
+        <img :src="qrCodeUrl" alt="QR Code" class="mx-auto mb-4 w-48 rounded border" />
+
+        <input
+          v-model="code"
+          type="text"
+          maxlength="6"
+          placeholder="Code à 6 chiffres"
+          class="input input-bordered w-full mb-4"
+        />
+
+        <button @click="handleVerify" class="btn btn-primary w-full">
+          Vérifier le code
+        </button>
+      </div>
+
+      <button @click="handleReset" class="btn btn-error w-full mt-6">
+        Réinitialiser le 2FA
+      </button>
+
+      <p v-if="message" class="mt-4 text-center text-sm text-red-600">{{ message }}</p>
     </div>
-
-    <p class="mt-4 text-red-600">{{ message }}</p>
-  </div>
-
-  <button @click="handleReset" class="bg-red-500 text-white px-4 py-2 rounded mt-2">
-    Réinitialiser le 2FA
-  </button>
+  </main>
 </template>
