@@ -65,7 +65,7 @@ const subTotal = computed(() => {
 
 const handleResetCart = () => {
   useCartStore().handleEmptyCart()
-  products.value = []
+  cartProducts.splice(0)
 }
 </script>
 

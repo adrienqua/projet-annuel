@@ -55,6 +55,26 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 })
 
+router.get('/slug/:slug', async (req: Request, res: Response) => {
+    try {
+        const { slug } = req.params
+
+        const componentType = await prisma.componentType.findUnique({
+            where: { slug },
+            include: { components: true },
+        })
+
+        if (!componentType) {
+            res.status(404).json({ error: 'ComponentType not found' })
+            return
+        }
+
+        res.json(componentType)
+    } catch (error) {
+        res.status(500).json({ error })
+    }
+})
+
 router.put('/:id', async (req: Request, res: Response) => {
     try {
         const { id } = req.params
