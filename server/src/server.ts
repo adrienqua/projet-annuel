@@ -11,6 +11,7 @@ import cartRoute from './routes/cart.route'
 import twofaRoute from './routes/twofa.route'
 import carrierRoute from './routes/carrier.route'
 import addressRoute from './routes/address.route'
+import manufacturerRoute from './routes/manufacturer.route'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
@@ -38,6 +39,7 @@ app.use('/api/cart', cartRoute)
 app.use('/api/twofa', twofaRoute)
 app.use('/api/carriers', carrierRoute)
 app.use('/api/addresses', addressRoute)
+app.use('/api/manufacturers', manufacturerRoute)
 
 app.get('/', (req, res) => {
     res.send('Hello from TypeScript!')

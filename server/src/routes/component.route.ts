@@ -8,8 +8,7 @@ router.get('/:id', async (req: Request, res: Response) => {
     const id = Number(req.params.id)
 
     if (isNaN(id)) {
-        res.status(400).json({ message: 'ID invalide' })
-        return
+        return res.status(400).json({ message: 'ID invalide' })
     }
 
     try {
@@ -28,8 +27,7 @@ router.get('/:id', async (req: Request, res: Response) => {
         })
 
         if (!component) {
-            res.status(404).json({ message: 'Composant introuvable' })
-            return
+            return res.status(404).json({ message: 'Composant introuvable' })
         }
 
         res.status(200).json(component)
@@ -81,7 +79,15 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
     try {
-        const { name, price, releaseDate, specs, ocProfiles, typeId, manufacturerId } = req.body
+        const {
+            name,
+            price,
+            releaseDate,
+            specs,
+            ocProfiles,
+            typeId,
+            manufacturerId,
+        } = req.body
 
         const component = await prisma.component.create({
             data: {
@@ -90,8 +96,8 @@ router.post('/', async (req: Request, res: Response) => {
                 releaseDate: releaseDate ? new Date(releaseDate) : undefined,
                 specs,
                 ocProfiles,
-                typeId,
-                manufacturerId,
+                typeId: typeof typeId === 'object' ? typeId.value : typeId,
+                manufacturerId: typeof manufacturerId === 'object' ? manufacturerId.value : manufacturerId,
             },
         })
 
