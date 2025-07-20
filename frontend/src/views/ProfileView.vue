@@ -9,7 +9,12 @@ import { getUserOrders } from '@/services/UserAPI'
 import { useAuth } from '@/stores/auth'
 import { useHead } from '@vueuse/head'
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import TwoFAModal from '@/components/modals/TwoFAModal.vue'
+const modalRef = ref<InstanceType<typeof TwoFAModal> | null>(null)
 
+
+const router = useRouter()
 useHead({
   title: 'Mon compte | BuildMyPC',
   meta: [
@@ -55,6 +60,9 @@ const handleLogout = () => {
   window.location.href = '/login'
 }
 
+const setupTwoFa = () => {
+  router.push('/2fa/setup')
+}
 onMounted(() => {
   fetchBuilds()
   fetchOrders()
@@ -68,5 +76,13 @@ onMounted(() => {
     <div class="flex items-center justify-center mt-8">
       <button @click="handleLogout" type="button" class="btn bg-gray-200">Se déconnecter</button>
     </div>
+    <div v-if="!user.isTwoFA" class="flex items-center justify-center mt-6">
+      <button @click="modalRef?.open()" class="btn bg-secondary-400 text-white">
+        Activer la double authentification
+      </button>
+    </div>
+
+    <TwoFAModal ref="modalRef" />
+
   </main>
 </template>
