@@ -1,7 +1,7 @@
 // utils/matomo.js
 export const initMatomo = () => {
     // Récupérer les variables d'environnement
-    const matomoUrl = import.meta.env.VITE_MATOMO_URL || 'http://localhost:8081';
+    const matomoUrl = import.meta.env.VITE_MATOMO_URL;
     const siteId = import.meta.env.VITE_MATOMO_SITE_ID || '1';
   
     // Initialiser Matomo

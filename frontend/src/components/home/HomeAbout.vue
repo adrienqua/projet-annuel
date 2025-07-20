@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { trackButtonClick } from '../../utils/matomo'
 
 const carouselRef = ref<HTMLElement | null>(null)
 
@@ -15,6 +16,10 @@ onMounted(() => {
     carousel.style.transform = `translateX(-${index * 100}%)`
   }, 3000)
 })
+
+const handleConfigButtonClick = () => {
+  trackButtonClick('HomePage - Commencer à configurer mon PC')
+}
 </script>
 
 <template>
@@ -45,8 +50,9 @@ onMounted(() => {
 
       <div class="flex justify-center mt-8">
         <router-link
+          @click="handleConfigButtonClick"
           to="/builder"
-          class="btn btn-secondary text-secondary-900 btn-lg p-7.5 rounded-3xl hover:scale-105 duration-300 transition-all"
+          class="btn btn-secondary text-secondary-900 btn-lg p-7.5 rounded-3xl hover:scale-105 duration-300 transition-all" 
         >
           Commencer à configurer mon PC
         </router-link>

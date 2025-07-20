@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
+const API = import.meta.env.VITE_API_URL
 const router = useRouter()
 const userId = ref('')
 const qrCodeUrl = ref<string | null>(null)
@@ -23,7 +24,7 @@ const generateQRCode = async () => {
   }
 
   try {
-    const { data } = await axios.get('http://localhost:5000/api/twofa/setup', {
+    const { data } = await axios.get(`${API}/twofa/setup`, {
       params: { userId: userId.value },
     })
 

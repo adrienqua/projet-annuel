@@ -73,10 +73,6 @@ declare global {
     trackEvent('Form', 'Submit', formName)
   }
   
-  export const trackDownload = (fileName: string): void => {
-    trackEvent('Download', 'File', fileName)
-  }
-  
   export const trackAPICall = (endpoint: string, method: string): void => {
     trackEvent('API', method, endpoint)
   }
