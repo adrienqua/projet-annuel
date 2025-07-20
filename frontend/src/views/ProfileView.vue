@@ -5,13 +5,15 @@ import type { Build } from '@/components/types/build'
 import type { Order } from '@/components/types/order'
 import type { User } from '@/components/types/user'
 import { getBuilds } from '@/services/BuildAPI'
-import { getUserOrders } from '@/services/UserAPI'
+import { getUserAddresses, getUserOrders } from '@/services/UserAPI'
 import { useAuth } from '@/stores/auth'
 import { useHead } from '@vueuse/head'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import ProfileSecurity from '@/components/profile/ProfileSecurity.vue'
 import { getUser } from '@/services/AuthAPI'
+import type { Address } from '@/components/types/address'
+import ProfileAddresses from '@/components/profile/ProfileAddresses.vue'
 
 useHead({
   title: 'Mon compte | BuildMyPC',
@@ -42,6 +44,7 @@ const authUser = auth.user as User
 const user = ref<User | null>(null)
 const builds = ref<Build[]>([])
 const orders = ref<Order[]>([])
+const addresses = ref<Address[]>([])
 
 const fetchBuilds = async () => {
   await getBuilds(authUser.id).then((res: Build[]) => {
@@ -52,6 +55,11 @@ const fetchBuilds = async () => {
 const fetchUser = async () => {
   await getUser(authUser.email).then((res: User) => {
     user.value = res
+  })
+}
+const fetchAddresses = async () => {
+  await getUserAddresses(authUser.id).then((res: Address[]) => {
+    addresses.value = res
   })
 }
 
@@ -66,11 +74,9 @@ const handleLogout = () => {
   window.location.href = '/login'
 }
 
-const setupTwoFa = () => {
-  router.push('/2fa/setup')
-}
 onMounted(() => {
   fetchUser()
+  fetchAddresses()
   fetchBuilds()
   fetchOrders()
 })
@@ -78,7 +84,10 @@ onMounted(() => {
 <template>
   <main class="mx-auto container max-w-6xl px-4 pt-12">
     <h1 class="font-montserrat font-black text-3xl">Mon compte</h1>
-    <ProfileSecurity :user="user" @user-updated="fetchUser" />
+    <div class="flex flex-col md:flex-row gap-6">
+      <ProfileAddresses :addresses="addresses" @user-updated="fetchAddresses" />
+      <ProfileSecurity :user="user" @user-updated="fetchUser" />
+    </div>
     <ProfileOrders :orders="orders" />
     <ProfileBuilds :builds="builds" />
     <div class="flex items-center justify-center mt-8">
