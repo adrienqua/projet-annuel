@@ -10,6 +10,9 @@ import { useAuth } from '@/stores/auth'
 import { formatPrice } from '@/utils/formatPrice'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import TwoFAModal from '@/components/modals/TwoFAModal.vue'
+const modalRef = ref<InstanceType<typeof TwoFAModal> | null>(null)
+
 
 const router = useRouter()
 const auth = useAuth()
@@ -52,10 +55,12 @@ onMounted(() => {
       <button @click="handleLogout" type="button" class="btn bg-gray-200">Se déconnecter</button>
     </div>
     <div v-if="!user.isTwoFA" class="flex items-center justify-center mt-6">
-      <button @click="setupTwoFa" class="btn bg-secondary-400 text-white">
-        Gestion de la double authentification
+      <button @click="modalRef?.open()" class="btn bg-secondary-400 text-white">
+        Activer la double authentification
       </button>
     </div>
+
+    <TwoFAModal ref="modalRef" />
 
   </main>
 </template>

@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
+const emit = defineEmits(['verified'])
 const token = ref('')
 const userId = localStorage.getItem('userId') || ''
 const router = useRouter()
@@ -12,16 +13,17 @@ const verifyCode = async () => {
   try {
     const res = await axios.post('/api/2fa/verify', { userId, token: token.value })
     if (res.data.verified) {
-      message.value = '✅ Code vérifié ! Authentification activée.'
+      message.value = 'Code vérifié ! Authentification activée.'
       router.push('/')
     } else {
-      message.value = '❌ Code incorrect'
+      message.value = 'Code incorrect'
     }
   } catch (e) {
     message.value = 'Erreur lors de la vérification.'
     console.error(e)
   }
 }
+emit('verified')
 </script>
 
 <template>
