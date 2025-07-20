@@ -23,11 +23,11 @@ useHead({
 
 <template>
   <main class="max-w-3xl mx-auto p-6 bg-white rounded-3xl shadow-md px-4 mt-12">
-    <article aria-labelledby="about-title" class="mb-10">
-      <h1 id="about-title" class="text-3xl font-bold mb-4 text-primary">
+    <article aria-labelledby="about-title" class="mb-10 p-6">
+      <h1 id="about-title" class="font-montserrat text-3xl font-black mb-4 text-primary">
         À propos de notre configurateur PC
       </h1>
-      <p class="text-lg leading-relaxed mb-2">
+      <p class="text-lg leading-relaxed mb-12">
         Ce site est un configurateur de
         <span class="font-semibold text-secondary">PC sur mesure</span>, développé dans le cadre
         d’un <span class="font-semibold text-accent">projet académique</span> par quatre étudiants
@@ -43,177 +43,177 @@ useHead({
           >site officiel de l'ESGI</a
         >.
       </p>
-    </article>
 
-    <section aria-labelledby="mission-title" class="mb-4">
-      <details class="group">
-        <summary
-          class="cursor-pointer text-2xl font-semibold mb-3 text-secondary text-center rounded-full py-2 px-4 inline-block w-full bg-primary shadow-md transition-colors group-open:bg-primary/80"
-        >
-          Notre mission
-        </summary>
-        <div class="p-4">
-          <p class="text-base leading-relaxed">
-            Proposer une plateforme intuitive, rapide et intelligente pour permettre à tous – du
-            passionné au néophyte – de créer facilement une configuration PC idéale,
-            <span class="font-semibold text-accent"
-              >adaptée à ses usages (gaming, bureautique, montage, etc.)</span
-            >
-            et à son budget.
-          </p>
-        </div>
-      </details>
-    </section>
-
-    <section aria-labelledby="features-title" class="mb-4">
-      <details class="group">
-        <summary
-          class="cursor-pointer text-2xl font-semibold mb-3 text-secondary text-center rounded-full py-2 px-4 inline-block w-full bg-primary shadow-md transition-colors group-open:bg-primary/80"
-        >
-          Fonctionnalités principales
-        </summary>
-        <div class="p-4">
-          <ul class="list-disc ml-6 space-y-2 text-base">
-            <li>
-              <span class="font-semibold text-primary">Choix guidé</span> des composants compatibles
-              (processeur, carte graphique, RAM, stockage...)
-            </li>
-            <li>
-              <span class="font-semibold text-primary">Calcul automatique</span> du prix total en
-              temps réel
-            </li>
-            <li>
-              <span class="font-semibold text-primary">Conseils intelligents</span> selon les
-              besoins spécifiques
-            </li>
-            <li>
-              <span class="font-semibold text-primary">Interface responsive</span> et accessible sur
-              tous les appareils
-            </li>
-          </ul>
-        </div>
-      </details>
-    </section>
-
-    <section aria-labelledby="project-info-title" class="mb-4">
-      <details class="group">
-        <summary
-          class="cursor-pointer text-2xl font-semibold mb-3 text-secondary text-center rounded-full py-2 px-4 inline-block w-full bg-primary shadow-md transition-colors group-open:bg-primary/80"
-        >
-          À propos du projet
-        </summary>
-        <div class="p-4">
-          <p class="mb-2">
-            Ce configurateur a été réalisé dans le cadre du cursus de Mastère 1 à l’<span
-              class="font-semibold text-primary"
-              >ESGI</span
-            >
-            (École Supérieure de Génie Informatique). <br />
-            L’équipe est composée de :
-          </p>
-          <ul class="list-disc ml-6 space-y-1">
-            <li>Adrien QUACCHA</li>
-            <li>Simon DENIS</li>
-            <li>Francis CHAN</li>
-            <li>Grégoire WARTNER</li>
-          </ul>
-        </div>
-      </details>
-    </section>
-
-    <section>
-      <details class="group">
-        <summary
-          class="cursor-pointer text-2xl font-semibold mb-3 text-secondary text-center rounded-full py-2 px-4 inline-block w-full bg-primary shadow-md transition-colors group-open:bg-primary/80"
-        >
-          Technologies utilisées
-        </summary>
-        <div class="p-4">
-          <div class="flex space-x-8 overflow-x-auto py-4 justify-center">
-            <a
-              href="https://vuejs.org/"
-              target="_blank"
-              rel="noopener"
-              class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-primary/10 rounded-xl p-2"
-            >
-              <img
-                src="/logos/vue.svg"
-                alt="Vue 3"
-                class="h-12 mb-2 cursor-pointer transition-transform duration-300"
-              />
-              <span
-                class="text-base font-semibold text-primary group-hover:text-primary-dark transition-colors"
-                >Vue 3</span
+      <section aria-labelledby="mission-title" class="mb-4">
+        <details class="group">
+          <summary
+            class="cursor-pointer text-xl font-extrabold font-montserrat mb-3 text-secondary text-center rounded-full py-2 px-4 inline-block w-full bg-primary shadow-md transition-colors group-open:bg-primary/80"
+          >
+            Notre mission
+          </summary>
+          <div class="p-4">
+            <p class="text-base leading-relaxed">
+              Proposer une plateforme intuitive, rapide et intelligente pour permettre à tous – du
+              passionné au néophyte – de créer facilement une configuration PC idéale,
+              <span class="font-semibold text-accent"
+                >adaptée à ses usages (gaming, bureautique, montage, etc.)</span
               >
-            </a>
-            <a
-              href="https://www.typescriptlang.org/"
-              target="_blank"
-              rel="noopener"
-              class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-blue-100 rounded-xl p-2"
-            >
-              <img
-                src="/logos/typescript.svg"
-                alt="TypeScript"
-                class="h-12 mb-2 cursor-pointer transition-transform duration-300"
-              />
-              <span
-                class="text-base font-semibold text-blue-700 group-hover:text-blue-900 transition-colors"
-                >TypeScript</span
-              >
-            </a>
-            <a
-              href="https://vitejs.dev/"
-              target="_blank"
-              rel="noopener"
-              class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-yellow-100 rounded-xl p-2"
-            >
-              <img
-                src="/logos/vite.svg"
-                alt="Vite"
-                class="h-12 mb-2 cursor-pointer transition-transform duration-300"
-              />
-              <span
-                class="text-base font-semibold text-yellow-600 group-hover:text-yellow-800 transition-colors"
-                >Vite</span
-              >
-            </a>
-            <a
-              href="https://tailwindcss.com/"
-              target="_blank"
-              rel="noopener"
-              class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-cyan-100 rounded-xl p-2"
-            >
-              <img
-                src="/logos/tailwindcss.svg"
-                alt="Tailwind CSS"
-                class="h-12 mb-2 cursor-pointer transition-transform duration-300"
-              />
-              <span
-                class="text-base font-semibold text-cyan-600 group-hover:text-cyan-800 transition-colors"
-                >Tailwind CSS</span
-              >
-            </a>
-            <a
-              href="https://nodejs.org/"
-              target="_blank"
-              rel="noopener"
-              class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-green-100 rounded-xl p-2"
-            >
-              <img
-                src="/logos/nodejs.svg"
-                alt="Node.js"
-                class="h-12 mb-2 cursor-pointer transition-transform duration-300"
-              />
-              <span
-                class="text-base font-semibold text-green-700 group-hover:text-green-900 transition-colors"
-                >Node.js</span
-              >
-            </a>
+              et à son budget.
+            </p>
           </div>
-        </div>
-      </details>
-    </section>
+        </details>
+      </section>
+
+      <section aria-labelledby="features-title" class="mb-4">
+        <details class="group">
+          <summary
+            class="cursor-pointer text-xl font-extrabold font-montserrat mb-3 text-secondary text-center rounded-full py-2 px-4 inline-block w-full bg-primary shadow-md transition-colors group-open:bg-primary/80"
+          >
+            Fonctionnalités principales
+          </summary>
+          <div class="p-4">
+            <ul class="list-disc ml-6 space-y-2 text-base">
+              <li>
+                <span class="font-semibold text-primary">Choix guidé</span> des composants
+                compatibles (processeur, carte graphique, RAM, stockage...)
+              </li>
+              <li>
+                <span class="font-semibold text-primary">Calcul automatique</span> du prix total en
+                temps réel
+              </li>
+              <li>
+                <span class="font-semibold text-primary">Conseils intelligents</span> selon les
+                besoins spécifiques
+              </li>
+              <li>
+                <span class="font-semibold text-primary">Interface responsive</span> et accessible
+                sur tous les appareils
+              </li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <section aria-labelledby="project-info-title" class="mb-4">
+        <details class="group">
+          <summary
+            class="cursor-pointer text-xl font-extrabold font-montserrat mb-3 text-secondary text-center rounded-full py-2 px-4 inline-block w-full bg-primary shadow-md transition-colors group-open:bg-primary/80"
+          >
+            À propos du projet
+          </summary>
+          <div class="p-4">
+            <p class="mb-2">
+              Ce configurateur a été réalisé dans le cadre du cursus de Mastère 1 à l’<span
+                class="font-semibold text-primary"
+                >ESGI</span
+              >
+              (École Supérieure de Génie Informatique). <br />
+              L’équipe est composée de :
+            </p>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>Adrien QUACCHA</li>
+              <li>Simon DENIS</li>
+              <li>Francis CHAN</li>
+              <li>Grégoire WARTNER</li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <section>
+        <details class="group">
+          <summary
+            class="cursor-pointer text-xl font-extrabold font-montserrat mb-3 text-secondary text-center rounded-full py-2 px-4 inline-block w-full bg-primary shadow-md transition-colors group-open:bg-primary/80"
+          >
+            Technologies utilisées
+          </summary>
+          <div class="p-4">
+            <div class="flex space-x-8 overflow-x-auto py-4 justify-center">
+              <a
+                href="https://vuejs.org/"
+                target="_blank"
+                rel="noopener"
+                class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-primary/10 rounded-xl p-2"
+              >
+                <img
+                  src="/logos/vue.svg"
+                  alt="Vue 3"
+                  class="h-12 mb-2 cursor-pointer transition-transform duration-300"
+                />
+                <span
+                  class="text-base font-semibold text-primary group-hover:text-primary-dark transition-colors"
+                  >Vue 3</span
+                >
+              </a>
+              <a
+                href="https://www.typescriptlang.org/"
+                target="_blank"
+                rel="noopener"
+                class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-blue-100 rounded-xl p-2"
+              >
+                <img
+                  src="/logos/typescript.svg"
+                  alt="TypeScript"
+                  class="h-12 mb-2 cursor-pointer transition-transform duration-300"
+                />
+                <span
+                  class="text-base font-semibold text-blue-700 group-hover:text-blue-900 transition-colors"
+                  >TypeScript</span
+                >
+              </a>
+              <a
+                href="https://vitejs.dev/"
+                target="_blank"
+                rel="noopener"
+                class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-yellow-100 rounded-xl p-2"
+              >
+                <img
+                  src="/logos/vite.svg"
+                  alt="Vite"
+                  class="h-12 mb-2 cursor-pointer transition-transform duration-300"
+                />
+                <span
+                  class="text-base font-semibold text-yellow-600 group-hover:text-yellow-800 transition-colors"
+                  >Vite</span
+                >
+              </a>
+              <a
+                href="https://tailwindcss.com/"
+                target="_blank"
+                rel="noopener"
+                class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-cyan-100 rounded-xl p-2"
+              >
+                <img
+                  src="/logos/tailwindcss.svg"
+                  alt="Tailwind CSS"
+                  class="h-12 mb-2 cursor-pointer transition-transform duration-300"
+                />
+                <span
+                  class="text-base font-semibold text-cyan-600 group-hover:text-cyan-800 transition-colors"
+                  >Tailwind CSS</span
+                >
+              </a>
+              <a
+                href="https://nodejs.org/"
+                target="_blank"
+                rel="noopener"
+                class="flex flex-col items-center min-w-[100px] transition-transform duration-300 hover:scale-110 hover:bg-green-100 rounded-xl p-2"
+              >
+                <img
+                  src="/logos/nodejs.svg"
+                  alt="Node.js"
+                  class="h-12 mb-2 cursor-pointer transition-transform duration-300"
+                />
+                <span
+                  class="text-base font-semibold text-green-700 group-hover:text-green-900 transition-colors"
+                  >Node.js</span
+                >
+              </a>
+            </div>
+          </div>
+        </details>
+      </section>
+    </article>
   </main>
 
   <footer class="bg-base-200 text-base-content py-10 mt-10 shadow-inner">
