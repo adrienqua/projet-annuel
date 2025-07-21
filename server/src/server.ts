@@ -21,14 +21,24 @@ dotenv.config()
 
 const app = express()
 const PORT = Number(process.env.PORT) || 5000
-const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost'
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:5000',
+    'https://buildmypc.cloud',
+    'https://www.buildmypc.cloud',
+    'https://api.buildmypc.cloud'
+]
 
-app.use(
-    cors({
-        origin: corsOrigin,
-        credentials: true,
-    })
-)
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true)
+        } else {
+            callback(new Error(`Origin ${origin} not allowed by CORS`))
+        }
+    },
+    credentials: true,
+}))
 
 app.use(express.json())
 app.use('/api/auth', userAuth)
