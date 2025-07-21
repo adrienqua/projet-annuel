@@ -5,6 +5,7 @@ import type { User } from '@/components/types/user'
 
 const token = ref<string | null>(localStorage.getItem('token'))
 const user = ref<Partial<User>>({})
+
 const initUser = async () => {
   if (token.value) {
     try {
@@ -14,10 +15,9 @@ const initUser = async () => {
       if (fetchedUser?.id) {
         user.value = fetchedUser
         localStorage.setItem('userId', fetchedUser.id)
-        console.log('User loaded:', fetchedUser)
       }
     } catch (err) {
-      console.error('Erreur lors du chargement du user:', err)
+      console.error('Erreur auth:', err)
       clearToken()
     }
   }
