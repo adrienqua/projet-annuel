@@ -8,7 +8,7 @@ import { getBuilds } from '@/services/BuildAPI'
 import { getUserAddresses, getUserOrders } from '@/services/UserAPI'
 import { useAuth } from '@/stores/auth'
 import { useHead } from '@vueuse/head'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import ProfileSecurity from '@/components/profile/ProfileSecurity.vue'
 import { getUser } from '@/services/AuthAPI'
@@ -74,12 +74,18 @@ const handleLogout = () => {
   window.location.href = '/login'
 }
 
-onMounted(() => {
-  fetchUser()
-  fetchAddresses()
-  fetchBuilds()
-  fetchOrders()
-})
+watch(
+  () => auth.user.id,
+  (newUser) => {
+    if (newUser) {
+      fetchUser()
+      fetchAddresses()
+      fetchBuilds()
+      fetchOrders()
+    }
+  },
+  { immediate: true },
+)
 </script>
 <template>
   <main class="mx-auto container max-w-6xl px-4 pt-12">

@@ -5,7 +5,7 @@ import { ArrowLeftStartOnRectangleIcon } from '@heroicons/vue/24/outline'
 import { ShoppingCartIcon, UserIcon } from '@heroicons/vue/24/solid'
 import { computed, onMounted, ref, watchEffect } from 'vue'
 
-const { user } = useAuth() as any
+const { user } = useAuth()
 const { cartProducts } = useCartStore()
 const isOpen = ref(false)
 const token = ref<string | null>(null)
