@@ -60,14 +60,14 @@ router.post('/', async (req: Request, res: Response) => {
             })
         }
 
-/*         let shipping
+        /*         let shipping
         if (subTotal >= 600) {
             shipping = 0
         } else {
             shipping = carrierPrice
         } */
         let shipping = carrierPrice
-        
+
         const total = subTotal + shipping
 
         const order = await prisma.order
@@ -107,7 +107,7 @@ router.post('/', async (req: Request, res: Response) => {
                     shipping_rate_data: {
                         type: 'fixed_amount',
                         fixed_amount: {
-                            amount: subTotal >= 60 ? 0 : Math.round(carrierPrice * 100),
+                            amount: Math.round(carrierPrice * 100),
                             currency: 'EUR',
                         },
                         display_name: carrierName,
