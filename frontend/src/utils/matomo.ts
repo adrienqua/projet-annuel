@@ -1,7 +1,18 @@
 declare global {
   interface Window {
-    _paq: any[]
+    _paq: any[];
   }
+
+  interface MatomoTracker {
+    setUserId(userId: string | null): void;
+    disableAlwaysUseSendBeacon(): void;
+  }
+
+  interface MatomoNamespace {
+    getTracker(): MatomoTracker | null;
+  }
+
+  var Matomo: MatomoNamespace;
 }
 
 export const initMatomo = (): void => {
@@ -9,7 +20,15 @@ export const initMatomo = (): void => {
   const siteId = import.meta.env.VITE_MATOMO_SITE_ID
 
   window._paq = window._paq || []
-  window._paq.push(['disableAlwaysUseSendBeacon'])
+  window._paq.push(() => {
+    if (typeof Matomo !== 'undefined' && typeof Matomo.getTracker === 'function') {
+      const tracker = Matomo.getTracker();
+      if (tracker) {
+        tracker.setUserId(null);
+        tracker.disableAlwaysUseSendBeacon();
+      }
+    }
+  });
   window._paq.push(['trackPageView'])
   window._paq.push(['enableLinkTracking'])
 

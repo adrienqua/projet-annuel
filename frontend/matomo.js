@@ -6,7 +6,15 @@ export const initMatomo = () => {
 
   // Initialiser Matomo
   window._paq = window._paq || []
-  window._paq.push(['disableAlwaysUseSendBeacon'])
+  window._paq.push(() => {
+    if (typeof Matomo !== 'undefined' && typeof Matomo.getTracker === 'function') {
+      const tracker = Matomo.getTracker()
+      if (tracker) {
+        tracker.setUserId(null)
+        tracker.disableAlwaysUseSendBeacon()
+      }
+    }
+  })
   window._paq.push(['trackPageView'])
   window._paq.push(['enableLinkTracking'])
   ;(function () {
