@@ -143,6 +143,13 @@ const handleRemoveComponent = (component: Component, type: string) => {
 }
 
 const handleSaveBuild = async (type = 'save') => {
+  if (!user.id) {
+    router.push('/account').then(() => {
+      toast.error('Vous devez être connecté pour enregistrer une configuration.')
+    })
+      return
+  }
+
   await createBuild({
     name: 'Ma configuration',
     price: totalPrice.value.toString(),

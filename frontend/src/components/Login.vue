@@ -4,6 +4,29 @@ import { useAuth } from '@/stores/auth'
 import { onMounted, ref } from 'vue'
 import { verifyLogin2FA } from '@/services/TwoFAAPI'
 import { useRouter } from 'vue-router'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Se connecter | BuildMyPC',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Connectez-vous pour accéder à votre compte pour gérer vos informations personnelles, vos configurations de PC et suivre vos commandes.',
+    },
+    { property: 'og:title', content: 'Se connecter | BuildMyPC' },
+    {
+      property: 'og:description',
+      content:
+        'Connectez-vous pour accéder à votre compte pour gérer vos informations personnelles, vos configurations de PC et suivre vos commandes.',
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'fr_FR' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'author', content: 'BuildMyPC' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+  ],
+})
 
 const router = useRouter()
 

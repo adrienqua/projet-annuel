@@ -1,8 +1,31 @@
 <script setup lang="ts">
 import { login, register } from '@/services/AuthAPI'
 import { useAuth } from '@/stores/auth'
+import { useHead } from '@vueuse/head'
 import { onMounted, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+
+useHead({
+  title: "S'inscrire | BuildMyPC",
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Inscrivez-vous pour créer un compte et gérer vos informations personnelles, vos configurations de PC et suivre vos commandes.',
+    },
+    { property: 'og:title', content: "S'inscrire | BuildMyPC" },
+    {
+      property: 'og:description',
+      content:
+        'Inscrivez-vous pour créer un compte et gérer vos informations personnelles, vos configurations de PC et suivre vos commandes.',
+    },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'fr_FR' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'author', content: 'BuildMyPC' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+  ],
+})
 
 const router = useRouter()
 

@@ -13,6 +13,7 @@ import ComponentDetailView from '@/views/ComponentDetailView.vue'
 import ComponentCompareView from '@/views/ComponentCompareView.vue'
 import ProductListView from '@/views/ProductListView.vue'
 import CategoryListView from '@/views/CategoryListView.vue'
+import { useAuth } from '@/stores/auth'
 
 const routes = [
   {
@@ -34,6 +35,7 @@ const routes = [
     path: '/account',
     name: 'Account',
     component: ProfileView,
+    meta: { requiresAuth: true },
   },
   {
     path: '/components/:slug',
@@ -113,6 +115,27 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+
+router.beforeEach(async (to, from, next) => {
+  const auth = useAuth()
+
+  while (!auth.isReady) {
+    await new Promise((resolve) => setTimeout(resolve, 10))
+  }
+
+  const isLoggedIn = !!auth.user?.email
+  const isAdmin = auth.user?.role === 'ADMIN'
+
+  if (to.meta.requiresAuth && !isLoggedIn) {
+    return next('/login')
+  }
+
+  if (to.meta.requiresAdmin && !isAdmin) {
+    return next('/')
+  }
+
+  next()
 })
 
 export default router

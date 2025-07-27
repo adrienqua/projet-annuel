@@ -7,6 +7,7 @@ import { defineStore } from 'pinia'
 export const useAuth = defineStore('auth', () => {
   const token = ref(localStorage.getItem('token'))
   let user = reactive<Partial<User>>({})
+  const isReady = ref(false)
 
   const initAuth = async () => {
     if (token.value) {
@@ -20,12 +21,14 @@ export const useAuth = defineStore('auth', () => {
 
       console.log(user, 'user')
     }
+    isReady.value = true
   }
 
   initAuth()
 
   return {
     user: user,
+    isReady: isReady,
     setToken(value: string) {
       token.value = value
       localStorage.setItem('token', value)
