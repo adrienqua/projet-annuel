@@ -33,6 +33,15 @@ async function main() {
                 twoFaSecret: null,
                 isTwoFA: false,
             },
+            {
+                createdAt: new Date(Date.now() - 45 * 24 * 3600 * 1000),
+                name: 'John Doe',
+                email: 'j.doe@test.com',
+                role: 'USER',
+                password: await bcrypt.hash('Password123*', 12),
+                twoFaSecret: null,
+                isTwoFA: false,
+            },
         ],
     })
 
