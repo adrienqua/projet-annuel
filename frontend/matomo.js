@@ -6,10 +6,9 @@ export const initMatomo = () => {
 
   // Initialiser Matomo
   window._paq = window._paq || []
+  window._paq.push(['disableAlwaysUseSendBeacon'])
   window._paq.push(['trackPageView'])
   window._paq.push(['enableLinkTracking'])
-  window._paq.push(['disableAlwaysUseSendBeacon'])
-
   ;(function () {
     const u = `${matomoUrl}/`
     window._paq.push(['setTrackerUrl', u + 'matomo.php'])
