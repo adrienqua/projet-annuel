@@ -125,7 +125,7 @@ watch(
     <li
       v-for="(component, index) in isSelect ? componentsList : components"
       :key="component.id"
-      class="flex justify-between items-center"
+      class="flex flex-col lg:flex-row justify-between items-center"
       :class="{
         'opacity-50 cursor-not-allowed': component.disabled,
       }"
@@ -151,7 +151,7 @@ watch(
         <div class="text-sm font-medium">{{ formatPrice(component.price) }}</div>
         <div class="text-sm text-secondary-400">En stock</div>
       </div>
-      <div class="flex gap-4">
+      <div class="flex gap-4 justify-between">
         <router-link
           :to="{ name: 'ComponentDetail', params: { slug: component.slug } }"
           target="_blank"

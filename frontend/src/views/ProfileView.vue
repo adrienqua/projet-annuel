@@ -14,6 +14,7 @@ import ProfileSecurity from '@/components/profile/ProfileSecurity.vue'
 import { getUser } from '@/services/AuthAPI'
 import type { Address } from '@/components/types/address'
 import ProfileAddresses from '@/components/profile/ProfileAddresses.vue'
+import { toast } from 'vue3-toastify'
 
 useHead({
   title: 'Mon compte | BuildMyPC',
